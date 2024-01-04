@@ -1,21 +1,22 @@
 <!doctype html>
 <html lang="en">
    <head>
-      <!-- Required meta tags -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <!-- favicon -->
-      <link rel="icon" type="image/png" href="../assets/images/favicon.png">
-      <!-- Bootstrap CSS -->
-      <link rel="stylesheet" href="assets/css/bootstrap.min.css" media="all">
-      <!-- Fonts Awesome CSS -->
-      <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
-      <!-- google fonts -->
-      <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
-      <!-- Custom CSS -->
-      <link rel="stylesheet" type="text/css" href="style.css">
-      <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-      <title>John Travels LK</title>
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- favicon -->
+        <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css" media="all">
+        <!-- Fonts Awesome CSS -->
+        <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- google fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Woocurs Academy LK</title>
 </head>
 <body>
 
@@ -154,112 +155,26 @@
                 <div id="dashboard-Navigation" class="slick-nav"></div>
                 <div id="navigation" class="navigation-container">
                     <ul>
-                        <li class="active-menu"><a href="user-dashboard.php"><i class="far fa-chart-bar"></i> Dashboard</a></li>
-                        <li><a href="user-edit.php"><i class="fas fa-user"></i>Edit Profile</a> </li>
-                       
-                        <li><a href="user-packages.php"><i class="fas fa-umbrella-beach"></i>View Package</a></li>
-                        
-                        <li><a href="user-enquiry.php"><i class="fas fa-ticket-alt"></i> Enquiry </a></li>   
-                         <li><a href="user-db-wishlist.php"><i class="far fa-heart"></i>Wishlist</a></li>
-                        <li><a href="user-db-comment.php"> <i class='bx bx-chat'></i>Comments</a></li>
-                        <li><a href="user-add-blog.php"><i class="fas fa-comments"></i>Create Blogs</a></li>
+                        <li class="active-menu"><a href="student_dashboard.php"><i class="far fa-chart-bar"></i> Dashboard</a></li>
+                        <li><a href="student_edit.php"><i class="fas fa-user"></i> Profile</a> </li>
+                        <li><a href="student_course.php"><i class="fa fa-book"></i> Course</a></li>
+                        <li><a href="student_notes.php"><i class="fa fa-sticky-note-o"></i> Notes</a></li>
+                        <li><a href="student_assignment.php"><i class="fa fa-tasks"></i> Assignments </a></li>
+                        <li><a href="calender.php"><i class="fa fa-calendar"></i> Calendar</a></li>
+                        <li><a href="student_payment.php"> <i class='fa fa-credit-card'></i> Payment</a></li>
                         <li><a href="login.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="db-info-wrap">
-                <div class="row">
-                    <!-- Item -->
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="db-info-list">
-                            <div class="dashboard-stat-icon bg-blue">
-                                <i class="bx bx-book"></i>
-                            </div>
-                            <div class="dashboard-stat-content">
-                                <h4>Booking</h4>
-                                <h5>22,520</h5> 
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item -->
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="db-info-list">
-                            <div class="dashboard-stat-icon bg-green">
-                                <i class='bx bx-file'></i>
-                            
-                            </div>
-                            <div class="dashboard-stat-content">
-                                <h4>Approval</h4>
-                                <h5>16,520</h5> 
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item -->
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="db-info-list">
-                            <div class="dashboard-stat-icon bg-purple">
-                                <i class='bx bxs-file'></i>
-                                
-                            </div>
-                            <div class="dashboard-stat-content">
-                                <h4>Pending</h4>
-                                <h5>18,520</h5> 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="db-info-list">
-                            <div class="dashboard-stat-icon bg-red">
-                                <i class='bx bxs-comment-x'></i>
-                                
-                            </div>
-                            <div class="dashboard-stat-content">
-                                <h4>Cancel</h4>
-                                <h5>9,520</h5> 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                   
-                                        
-                                
-                   
-            
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="dashboard-box">
-                            <h4>My Bookings </h4>
-                            
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Package</th>
-                                            <th>Date</th>
-                                            <th>Destination</th>
-                                            <th>package ID</th>
-                                            <th>status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            
-                                            <td><a href="#"><span class="list-name">Kathy Brown</span><span class="list-enq-city"></span></a>
-                                            </td>
-                                            <td>12.21.2121</td>
-                                            <td>vavuniya</td>
-                                            <td>100</td>
-                                            <td>
-                                                <span class="badge badge-primary">Pending</span>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>  
-                </div>
-                
+            <!-- contents satrt -->
+
+
+
+
+
+
+
+
                 
             <!-- Content / End -->
             <!-- Copyrights -->

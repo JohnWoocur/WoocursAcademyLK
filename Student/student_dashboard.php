@@ -141,8 +141,8 @@
                         </a>
                         <div class="dropdown-menu account-menu">
                             <ul>
-                                <li><a href="user-edit.php"><i class="fas fa-cog"></i>Edit Profile</a></li>
-                                <li><a href="profile-card.php"><i class="fas fa-user-tie"></i>Profile</a></li>
+                                <li><a href="student_edit.php"><i class="fas fa-cog"></i>Edit Profile</a></li>
+                                <li><a href="student_profilecard.php"><i class="fas fa-user-tie"></i>Profile</a></li>
                                 <li><a href="user-change-password.php"><i class="fas fa-key"></i>Password</a></li>
                                 <li><a href="login.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
                             </ul>
@@ -156,7 +156,7 @@
                 <div id="navigation" class="navigation-container">
                     <ul>
                         <li class="active-menu"><a href="student_dashboard.php"><i class="far fa-chart-bar"></i> Dashboard</a></li>
-                        <li><a href="student_edit.php"><i class="fas fa-user"></i> Profile</a> </li>
+                        <li><a href="student_profilecard.php"><i class="fas fa-user"></i> Profile</a> </li>
                         <li><a href="student_course.php"><i class="fa fa-book"></i> Course</a></li>
                         <li><a href="student_notes.php"><i class="fa fa-sticky-note-o"></i> Notes</a></li>
                         <li><a href="student_assignment.php"><i class="fa fa-tasks"></i> Assignments </a></li>

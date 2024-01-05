@@ -20,8 +20,8 @@
 </head>
 <body>
 
-    <!-- start Container Wrapper -->
-    <div id="container-wrapper">
+   <!-- start Container Wrapper -->
+   <div id="container-wrapper">
         <!-- Dashboard -->
         <div id="dashboard" class="dashboard-container">
             <div class="dashboard-header sticky-header">
@@ -37,100 +37,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" id="notifyDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <div class="dropdown-item">
-                                <i class="far fa-envelope"></i>
-                                <span class="notify">3</span>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu notification-menu" aria-labelledby="notifyDropdown">
-                            <h4> 3 Notifications</h4>
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <div class="list-img">
-                                            <img src="assets/images/comment.jpg" alt="">
-                                        </div>
-                                        <div class="notification-content">
-                                            <p>You have a notification.</p>
-                                            <small>2 hours ago</small>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="list-img">
-                                            <img src="assets/images/comment2.jpg" alt="">
-                                        </div>
-                                        <div class="notification-content">
-                                            <p>You have a notification.</p>
-                                            <small>2 hours ago</small>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="list-img">
-                                            <img src="assets/images/comment3.jpg" alt="">
-                                        </div>
-                                        <div class="notification-content">
-                                            <p>You have a notification.</p>
-                                            <small>2 hours ago</small>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                            <a href="#" class="all-button">See all messages</a>
-                        </div>
-                    </div>
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown">
-                            <div class="dropdown-item">
-                                <i class="far fa-bell"></i>
-                                <span class="notify">3</span>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu notification-menu">
-                            <h4> 3 Messages</h4>
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <div class="list-img">
-                                            <img src="assets/images/comment4.jpg" alt="">
-                                        </div>
-                                        <div class="notification-content">
-                                            <p>You have a notification.</p>
-                                            <small>2 hours ago</small>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="list-img">
-                                            <img src="assets/images/comment5.jpg" alt="">
-                                        </div>
-                                        <div class="notification-content">
-                                            <p>You have a notification.</p>
-                                            <small>2 hours ago</small>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="list-img">
-                                            <img src="assets/images/comment6.jpg" alt="">
-                                        </div>
-                                        <div class="notification-content">
-                                            <p>You have a notification.</p>
-                                            <small>2 hours ago</small>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                            <a href="#" class="all-button">See all messages</a>
-                        </div>
-                    </div>
+                   
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
@@ -155,13 +62,13 @@
                 <div id="dashboard-Navigation" class="slick-nav"></div>
                 <div id="navigation" class="navigation-container">
                     <ul>
-                        <li><a href="admin_dashboard.php"><i class="fa fa-chart-bar"></i>Dashboard</a> </li>
-                        <li><a href="staff.php"><i class="fas fa-user"></i>Staff</a> </li>
-                        <li><a href="a_studentlist.php"><i class="fa fa-users"></i>Students</a></li> 
+                    <li><a href="admin_dashboard.php"><i class="fa fa-chart-bar"></i>Dashboard</a> </li>
+                        <li><a href="admin_stafflist.php"><i class="fas fa-user"></i>Staff</a> </li>
+                        <li><a href="admin_studentlist.php"><i class="fa fa-users"></i>Students</a></li> 
                         <li><a href="courses.php"><i class="fa fa-book"></i> Courses </a></li>   
-                         <li><a href="leave.php"><i class="fa fa-calendar-times-o"></i> Leave</a></li>
-                        <li><a href="payments.php"> <i class='fa fa-credit-card'></i> Payments </a></li>
-                        <li><a href="salary.php"><i class="fas fa-money"></i> Salary </a></li>
+                         <li><a href="admin_leave.php"><i class="fa fa-calendar-times-o"></i> Leave</a></li>
+                        <li><a href="admin_paymentlist.php"> <i class='fa fa-credit-card'></i> Payments </a></li>
+                        <li><a href="admin_salary.php"><i class="fas fa-money"></i> Salary </a></li>
                         <li><a href="login.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
                 </div>
@@ -178,7 +85,7 @@
                             
                             </div>
                             <div class="dashboard-stat-content">
-                                <h4><a href="a_studentlist.php">Student List</a></h4>
+                                <h4><a href="admin_studentlist.php">Student List</a></h4>
                                 
                             </div>
                         </div>
@@ -192,7 +99,7 @@
                                 
                             </div>
                             <div class="dashboard-stat-content">
-                                <h4><a href="a_rejectedstudentlist.php">Rejected</a></h4>
+                                <h4><a href="admin_rejectedstudentlist.php">Rejected</a></h4>
                                  
                             </div>
                         </div>
@@ -213,16 +120,18 @@
                                     <thead>
                                         <tr>
                                             <th>Student ID</th>
-                                            <th>Student Name</th>
-                                            <th>Course</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
                                             <th>Category</th>
-                                            <th>Payment</th>
+                                            <!-- <th>Course</th> -->
+                                            <th>Department</th>
+                                            <!-- <th>Payment</th> -->
                                             <th>Status</th>
                                         </tr>
                                     </thead>
                                     <?php
                                     include "db_connection.php";
-                                    $result = mysqli_query($connection,"SELECT * FROM students WHERE Status = 'Active'");
+                                    $result = mysqli_query($conn,"SELECT * FROM students WHERE status = 'Active'");
 
                                     ?>
 
@@ -237,12 +146,14 @@
                                         <?php 
                                         // output data of each row
                                         
-                                            echo'<td>'.$row["st_id"].'</td>';
-                                            echo'<td>'.$row["st_name"].'</td>';
-                                            echo'<td>'.$row["course_name"].'</td>';
-                                            echo'<td>'.$row["category"].'</td>';
-                                            echo'<td>'.$row["payment"].'</td>';
-                                            echo'<td>'.$row["status"].'</td>';
+                                        echo'<td>'.$row["student_id"].'</td>';
+                                        echo'<td>'.$row["first_name"].'</td>';
+                                        echo'<td>'.$row["last_name"].'</td>';
+                                        echo'<td>'.$row["category"].'</td>';
+                                        // echo'<td>'.$row["course_name"].'</td>';
+                                        echo'<td>'.$row["department"].'</td>';
+                                        // echo'<td>'.$row["payment"].'</td>';
+                                        echo'<td>'.$row["status"].'</td>';
                                         
 
                                             ?>
@@ -251,7 +162,7 @@
                                         </tr>
                                         <?php
                                     }
-                                    $connection->close();
+                                    $conn->close();
                                         ?>
                                         
                                     </tbody>

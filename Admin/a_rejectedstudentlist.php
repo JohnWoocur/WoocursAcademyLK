@@ -3,19 +3,20 @@
    <head>
       <!-- Required meta tags -->
       <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <!-- favicon -->
-      <link rel="icon" type="image/png" href="../assets/images/favicon.png">
-      <!-- Bootstrap CSS -->
-      <link rel="stylesheet" href="assets/css/bootstrap.min.css" media="all">
-      <!-- Fonts Awesome CSS -->
-      <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
-      <!-- google fonts -->
-      <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
-      <!-- Custom CSS -->
-      <link rel="stylesheet" type="text/css" href="style.css">
-      <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-      <title>Woocurs Academy LK</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- favicon -->
+        <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css" media="all">
+        <!-- Fonts Awesome CSS -->
+        <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- google fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Woocurs Academy LK</title>
 </head>
 <body>
 
@@ -168,17 +169,7 @@
             <div class="db-info-wrap">
                 <div class="row">
                     <!-- Item -->
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="db-info-list">
-                            <div class="dashboard-stat-icon bg-blue">
-                                <i class="bx bx-book"></i>
-                            </div>
-                            <div class="dashboard-stat-content">
-                                <h4>Courses</h4>
-                                <h5>03</h5> 
-                            </div>
-                        </div>
-                    </div>
+                  
                     <!-- Item -->
                     <div class="col-xl-3 col-sm-6">
                         <div class="db-info-list">
@@ -187,33 +178,22 @@
                             
                             </div>
                             <div class="dashboard-stat-content">
-                                <h4>Approval</h4>
-                                <h5>01</h5> 
+                                <h4><a href="a_activatedstudentlist.php">Aproved</a></h4>
+                                
                             </div>
                         </div>
                     </div>
                     <!-- Item -->
+                   
                     <div class="col-xl-3 col-sm-6">
                         <div class="db-info-list">
-                            <div class="dashboard-stat-icon bg-purple">
-                                <i class='bx bxs-file'></i>
+                            <div class="dashboard-stat-icon bg-blue">
+                                <i class='fa fa-users'></i>
                                 
                             </div>
                             <div class="dashboard-stat-content">
-                                <h4>Pending</h4>
-                                <h5>01</h5> 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="db-info-list">
-                            <div class="dashboard-stat-icon bg-red">
-                                <i class='bx bxs-comment-x'></i>
-                                
-                            </div>
-                            <div class="dashboard-stat-content">
-                                <h4>Cancel</h4>
-                                <h5>0</h5> 
+                                <h4><a href="a_studentlist.php">Student List</a></h4>
+                               
                             </div>
                         </div>
                     </div>
@@ -236,12 +216,44 @@
                                             <th>Student Name</th>
                                             <th>Course</th>
                                             <th>Category</th>
-                                            <th>District</th>
-                                            <th>Registration No</th>
+                                            <th>Payment</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
-                                   <tbody>
+                                    <?php
+                                    include "db_connection.php";
+                                    $result = mysqli_query($connection,"SELECT * FROM students WHERE Status = 'Reject'");
+
+                                    ?>
+
+                                    <tbody>
+                                        <?php
+
+                                    while($row = $result->fetch_assoc()) {
+                                        ?>
+
+                                        <tr>
+
+                                        <?php 
+                                        // output data of each row
+                                        
+                                            echo'<td>'.$row["st_id"].'</td>';
+                                            echo'<td>'.$row["st_name"].'</td>';
+                                            echo'<td>'.$row["course_name"].'</td>';
+                                            echo'<td>'.$row["category"].'</td>';
+                                            echo'<td>'.$row["payment"].'</td>';
+                                            echo'<td>'.$row["status"].'</td>';
+                                        
+
+                                            ?>
+
+                                            
+                                        </tr>
+                                        <?php
+                                    }
+                                    $connection->close();
+                                        ?>
+                                        
                                     </tbody>
                                 </table>
                             </div>

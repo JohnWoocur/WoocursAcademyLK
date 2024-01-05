@@ -3,20 +3,20 @@
 include "db_connection.php";
 
 
-$st_id = $_GET['st_id'];
+$student_id = $_GET['student_id'];
 
 
-$result = "UPDATE students  SET Status ='Reject' WHERE st_id ={$_GET['st_id']} " ;
+$result = "UPDATE students  SET Status ='Reject' WHERE student_id ={$_GET['student_id']} " ;
 
-if ($connection->query ($result)=== TRUE) 
+if ($conn->query ($result)=== TRUE) 
     {
        
-        header("Location:a_studentlist.php");
+        header("Location:admin_studentlist.php");
     }
 else{
     echo "Error";
     }  
-$connection->close();
+$conn->close();
 
 
 

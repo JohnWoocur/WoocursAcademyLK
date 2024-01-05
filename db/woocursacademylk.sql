@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2024 at 05:01 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- Generation Time: Jan 05, 2024 at 03:33 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,7 +34,7 @@ CREATE TABLE `admins` (
   `username` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `contact_no` varchar(10) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(50) NOT NULL,
   `gender` enum('male','female','other') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -47,7 +47,7 @@ CREATE TABLE `admins` (
 CREATE TABLE `assignments` (
   `assignment_id` int(11) NOT NULL,
   `course_id` int(11) NOT NULL,
-  `lecture_id` int(11) NOT NULL,
+  `staff_id` int(11) NOT NULL,
   `file` varchar(255) NOT NULL,
   `post_date` date NOT NULL,
   `deadline` date NOT NULL
@@ -60,10 +60,11 @@ CREATE TABLE `assignments` (
 --
 
 CREATE TABLE `courses` (
-  `c_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
   `course_name` varchar(100) NOT NULL,
+  `staff_id` int(11) NOT NULL,
   `duration` varchar(50) NOT NULL,
-  `category` int(50) NOT NULL,
+  `category` varchar(255) NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
   `num_student` int(11) NOT NULL,
@@ -85,8 +86,9 @@ CREATE TABLE `leaves` (
   `description` int(11) NOT NULL,
   `start_date` int(11) NOT NULL,
   `end_date` int(11) NOT NULL,
+  `no_of_leaves` int(10) NOT NULL,
   `date` date NOT NULL,
-  `status` int(11) NOT NULL
+  `status` varchar(255) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -98,7 +100,7 @@ CREATE TABLE `leaves` (
 CREATE TABLE `notes` (
   `notes_id` int(11) NOT NULL,
   `course_id` int(11) NOT NULL,
-  `lecture_id` int(11) NOT NULL,
+  `staff_id` int(11) NOT NULL,
   `file` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -112,6 +114,7 @@ CREATE TABLE `payments` (
   `pay_id` int(11) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `last_name` int(50) NOT NULL,
+  `student_id` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
   `address` varchar(255) NOT NULL,
   `reason` varchar(255) NOT NULL,
@@ -132,7 +135,8 @@ CREATE TABLE `salarys` (
   `staff_id` int(11) NOT NULL,
   `month` varchar(100) NOT NULL,
   `credited_date` date NOT NULL,
-  `salary` float NOT NULL
+  `salary` float NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -150,10 +154,10 @@ CREATE TABLE `staffs` (
   `contact_no` varchar(10) NOT NULL,
   `address` varchar(255) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(50) NOT NULL,
   `qualification` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `status` tinyint(1) NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'pending',
   `salary` float NOT NULL,
   `department` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -169,26 +173,27 @@ CREATE TABLE `students` (
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `gender` enum('male','female','other') NOT NULL,
+  `category` varchar(255) NOT NULL,
   `email` varchar(50) NOT NULL,
   `contact_no` varchar(10) NOT NULL,
   `dob` date NOT NULL,
   `department` varchar(50) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(50) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `status` tinyint(1) NOT NULL
+  `status` varchar(255) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student_assignment`
+-- Table structure for table `student_assignments`
 --
 
-CREATE TABLE `student_assignment` (
-  `id` int(11) NOT NULL,
-  `student_id` int(11) NOT NULL,
+CREATE TABLE `student_assignments` (
+  `student_assignment_id` int(11) NOT NULL,
   `assignment_id` int(11) NOT NULL,
-  `assignment_file` varchar(255) NOT NULL
+  `student_id` int(11) NOT NULL,
+  `file` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -196,52 +201,83 @@ CREATE TABLE `student_assignment` (
 --
 
 --
+-- Indexes for table `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`admin_id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `contact_no` (`contact_no`);
+
+--
 -- Indexes for table `assignments`
 --
 ALTER TABLE `assignments`
-  ADD PRIMARY KEY (`assignment_id`);
+  ADD PRIMARY KEY (`assignment_id`),
+  ADD KEY `course_id` (`course_id`),
+  ADD KEY `staff_id` (`staff_id`);
 
 --
 -- Indexes for table `courses`
 --
 ALTER TABLE `courses`
-  ADD PRIMARY KEY (`c_id`);
+  ADD PRIMARY KEY (`course_id`),
+  ADD UNIQUE KEY `course_name` (`course_name`),
+  ADD KEY `staff_id` (`staff_id`);
 
 --
 -- Indexes for table `leaves`
 --
 ALTER TABLE `leaves`
-  ADD PRIMARY KEY (`leave_id`);
+  ADD PRIMARY KEY (`leave_id`),
+  ADD KEY `staff_id` (`staff_id`);
 
 --
 -- Indexes for table `notes`
 --
 ALTER TABLE `notes`
-  ADD PRIMARY KEY (`notes_id`);
+  ADD PRIMARY KEY (`notes_id`),
+  ADD KEY `lecture_id` (`staff_id`),
+  ADD KEY `course_id` (`course_id`);
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`pay_id`),
+  ADD UNIQUE KEY `slip_no` (`slip_no`),
+  ADD KEY `student_id` (`student_id`);
 
 --
 -- Indexes for table `salarys`
 --
 ALTER TABLE `salarys`
-  ADD PRIMARY KEY (`salary_id`);
+  ADD PRIMARY KEY (`salary_id`),
+  ADD KEY `staff_id` (`staff_id`);
 
 --
 -- Indexes for table `staffs`
 --
 ALTER TABLE `staffs`
-  ADD PRIMARY KEY (`staff_id`);
+  ADD PRIMARY KEY (`staff_id`),
+  ADD UNIQUE KEY `contact_no` (`contact_no`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
-  ADD PRIMARY KEY (`student_id`);
+  ADD PRIMARY KEY (`student_id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `contact_no` (`contact_no`);
 
 --
--- Indexes for table `student_assignment`
+-- Indexes for table `student_assignments`
 --
-ALTER TABLE `student_assignment`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `student_assignments`
+  ADD PRIMARY KEY (`student_assignment_id`),
+  ADD UNIQUE KEY `assignment_id` (`assignment_id`,`student_id`),
+  ADD KEY `student_id` (`student_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -257,7 +293,7 @@ ALTER TABLE `assignments`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `leaves`
@@ -290,10 +326,53 @@ ALTER TABLE `students`
   MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `student_assignment`
+-- Constraints for dumped tables
 --
-ALTER TABLE `student_assignment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for table `assignments`
+--
+ALTER TABLE `assignments`
+  ADD CONSTRAINT `assignments_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`),
+  ADD CONSTRAINT `assignments_ibfk_2` FOREIGN KEY (`staff_id`) REFERENCES `staffs` (`staff_id`);
+
+--
+-- Constraints for table `courses`
+--
+ALTER TABLE `courses`
+  ADD CONSTRAINT `courses_ibfk_1` FOREIGN KEY (`staff_id`) REFERENCES `staffs` (`staff_id`);
+
+--
+-- Constraints for table `leaves`
+--
+ALTER TABLE `leaves`
+  ADD CONSTRAINT `leaves_ibfk_1` FOREIGN KEY (`staff_id`) REFERENCES `staffs` (`staff_id`);
+
+--
+-- Constraints for table `notes`
+--
+ALTER TABLE `notes`
+  ADD CONSTRAINT `notes_ibfk_1` FOREIGN KEY (`staff_id`) REFERENCES `staffs` (`staff_id`),
+  ADD CONSTRAINT `notes_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`);
+
+--
+-- Constraints for table `payments`
+--
+ALTER TABLE `payments`
+  ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`);
+
+--
+-- Constraints for table `salarys`
+--
+ALTER TABLE `salarys`
+  ADD CONSTRAINT `salarys_ibfk_1` FOREIGN KEY (`staff_id`) REFERENCES `staffs` (`staff_id`);
+
+--
+-- Constraints for table `student_assignments`
+--
+ALTER TABLE `student_assignments`
+  ADD CONSTRAINT `student_assignments_ibfk_1` FOREIGN KEY (`assignment_id`) REFERENCES `assignments` (`assignment_id`),
+  ADD CONSTRAINT `student_assignments_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

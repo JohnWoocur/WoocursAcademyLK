@@ -172,8 +172,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         
-                           
-                       
+                          
                     </div>
                 </div>
                
@@ -183,70 +182,77 @@
                         <div class="dashboard-box user-form-wrap">
 
                         <div class="wrapper">
-        <div class="inner">
-            <div class="image-holder">
-                <img src="assets/images/WoocursAcademy.png" alt="img">
-            </div>
-            <?php
+                        <main class="container">
+                        <?php
             include "db_connection.php";
             $id=1;
 
-                $sql="SELECT * FROM `students` WHERE student_id='$id'";
+                $sql="SELECT * FROM `students`WHERE student_id='$id'";
                 $check=mysqli_query($conn,$sql);
 
                 if($check){
                     if(mysqli_num_rows($check)==1)
                     {
-                            $row=mysqli_fetch_assoc($check); 
-                            $first_name = $row['first_name'];
-                            $last_name = $row['last_name'];
-                            $dob = $row['dob'];
-                            $contact_no= $row['contact_no'];
-                            
-                            $email = $row['email'];
-                            $image=$row["image"];
+                      $row=mysqli_fetch_assoc($check); 
+                      $first_name = $row['first_name'];
+                      $last_name = $row['last_name'];
+                      $dob = $row['dob'];
+                      $contact_no= $row['contact_no'];
+                     
+                      $email = $row['email'];
+                      $image=$row["image"];
+                      $name=$first_name." ".$last_name;
                     }
                 }        
              ?>
-            <form action="stu_update.php" method="post" enc="multipart/form-data">
-                <h3> Profile</h3>
-                
-                <div class="form-wrapper">
-                    <input type="text" placeholder="firstName" name="first_name" class="form-control" value="<?php echo $first_name ; ?>"><br>
-                    
-                </div>
-                <div class="form-wrapper">
-                    <input type="text" placeholder="lastname" name="last_name" class="form-control" value="<?php echo $last_name ; ?>"><br>
-                    
-                </div>
-                <div class="form-wrapper">
-                    <input type="text" placeholder="dob" name="dob"class="form-control" value="<?php echo $dob ; ?>"><br>
-                    
-                </div>
-                <div class="form-wrapper">
-                    <input type="text" placeholder="contact_no" name="contact_no" class="form-control" value="<?php echo $contact_no; ?>"><br>
-                    
-                </div>
-                
-                <div class="form-wrapper">
-                    <input type="text" placeholder="email" name="email" class="form-control" value="<?php echo $email; ?>"><br>
-                    
-                </div>
-                <div class="form-wrapper">
-                    <!-- <img src="staff_pro/<?php echo $image; ?>" alt="profile"> -->
-                    <input type="file" placeholder="add your image" name="image" class="form-control">
-                    
-                </div>
-                <button type="submit" class="sub" >submit</button>
+  <div class="card">
+    <img src="student_pro/<?php echo $image;?>" alt="User image" class="card__image" />
+    <div class="card__text">
+    
+      
+        <form name="name" class="form-control"  value=""type="text"><?php echo $name;?>
+            </form>
+        
+        <!-- <form name="descripe" class="describe" type="text">
+        </form> -->
+          <!-- <div class="t-box">
+            <i class="fa fa-calendar info" ></i>
+            <label>Date Of Birth </label>
+            <form name="dob" class="form-control" type="date">
+            </form>
+          </div>   -->
+        <div class="t-box">
+        <i class="fa fa-envelope" ></i>
+        <label>Email</label>
+        
+        <form name="email" class="form-control" value=""  ><?php echo  $email;?>
             </form>
         </div>
-    </div>
-                            
+        <!-- <div class="t-box">
+          <i class="fa fa-id-card info"></i>
+          <label>NIC</label>
+          <form name="nic" class="form-control" type="text">
+          </form>
+        </div> -->
+        <div class="t-box">
+          <i class="fa fa-mobile info"></i>
+          <label> Phone Number</label>
+          <form name="phone" class="form-control" value="" type="number" ><?php echo $contact_no;?>
+            </form>
+        </div>
+        
+        </div>
+    
+      <div class="socials">
+      <button class="linkedin"><i class="fab fa-linkedin"></i></button>
+      <button class="twitter"><i class="fab fa-twitter"></i></button>
+      <button class="google"><i class="fab fa-google"></i></button>
+      <button class="facebook"><i class="fab fa-facebook-f"></i></button>
+      <button class="instagram"><i class="fab fa-instagram"></i></button>
+      </div>
+        
                             </form>
-                        </div>
-                    </div>  
-                </div>
-            </div>
+                        <!-- </div>
 
 
 

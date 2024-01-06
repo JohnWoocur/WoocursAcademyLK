@@ -37,7 +37,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="dropdown">
+                    <!-- <div class="dropdown">
                         <a class="dropdown-toggle" id="notifyDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="dropdown-item">
                                 <i class="far fa-envelope"></i>
@@ -130,7 +130,7 @@
                             </ul>
                             <a href="#" class="all-button">See all messages</a>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
@@ -166,16 +166,51 @@
                     </ul>
                 </div>
             </div>
-            <!-- contents satrt -->
-
-
-
-
-
-
-
-
-                
+            <!-- contents start -->
+            <div class="db-info-wrap">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="dashboard-box table-opp-color-box">
+                       
+                            <h4>NOTES</h4>
+                            
+                            <div class="table-responsive">
+                            <form  action="db_view_notes.php" method="POST" enctype="multipart/form-data">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Course</th>
+                                            <th>Lecture Id</th>
+                                            <th>Notes File</th>
+                                            <th>View</th>
+                                            <th>Download</th>
+                                        </tr>
+                                    </thead>
+                                     <?php 
+                                        require 'db_connection.php';
+                                        $query="SELECT * FROM `notes`";
+                                        $result=mysqli_query($conn,$query);
+                                        while($row=mysqli_fetch_assoc($result)):?>
+                                        <tr>
+                                            <td><?php echo $row['Notes_id']; ?></td>
+                                            <td><?php echo $row['Subject_name']; ?></td>
+                                            <td><?php echo $row['Lecture_id']; ?></td>
+                                            <td><?php echo $row['Notes_pdf']; ?></td>
+                                            <td><a href="../staff/materials/<?php echo $row['Notes_pdf']; ?>" target="_blank"><span class="badge badge-success"><i class="far fa-eye"></i></span></a></td>
+                                            <td><a href="../staff/materials/<?php echo $row['Notes_pdf']; ?>" target="_blank"><span class="badge badge-danger"><i class="fa fa-download"></i></span></a></td>
+                                            
+                                        </tr>
+                                        <?php
+                                          endwhile;
+                                        ?>  
+                                </table>
+                            </form>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">

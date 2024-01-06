@@ -17,6 +17,28 @@
         <!-- Custom CSS -->
         <link rel="stylesheet" type="text/css" href="style.css">
         <title>Woocurs Academy LK</title>
+
+        <!-- Favicon -->
+        <link href="assets/c_css/img/favicon.ico" rel="icon">
+
+<!-- Google Web Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+
+<!-- Icon Font Stylesheet -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Libraries Stylesheet -->
+<link href="assets/c_css/lib/animate/animate.min.css" rel="stylesheet">
+<link href="assets/c_css/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+<!-- Customized Bootstrap Stylesheet -->
+<link href="assets/c_css/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Template Stylesheet -->
+<link href="assets/c_css/css/style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -168,21 +190,95 @@
             </div>
             <!-- contents satrt -->
 
+             <!---course-->
+            <div class="db-info-wrap db-wislist-wrap">
+                <div class="dashboard-box ">
+                    <div class="row">
 
 
 
+                        <div class="container-xxl py-5" id="courses">
+
+                            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                                <h6 class="section-title bg-white text-center text-primary px-3">Courses</h6>
+                                <h1 class="mb-5">Popular Courses</h1>
+                            </div>
+
+                             
+                                    
+                            <div class="row g-4 justify-content-center">
+                                <?php
+                                require "db_connection.php";
+
+                                $query = "SELECT * FROM `courses` LIMIT 6";
+                                $result = mysqli_query($conn, $query);
+
+                                if ($result->num_rows > 0) {
+                                    // output data of each row
+                                    while ($row = $result->fetch_assoc()):
+                                        ?>
+                                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                                            <div class="course-item bg-light">
+                                                <div class="position-relative overflow-hidden">
+                                                    <img class="img-fluid" src="../Admin/img/<?php echo $row['c_image']; ?>"
+                                                        alt="">
+                                                    <div
+                                                        class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+                                                        <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end"
+                                                            style="border-radius: 30px 0 0 30px;">EDIT</a>
+                                                        <a href='a_course_delete.php? c_id=<?php echo $row["c_id"]; ?>'
+                                                            class="flex-shrink-0 btn btn-sm btn-primary px-3"
+                                                            style="border-radius: 0 30px 30px 0;">DELETE</a>
+                                                    </div>
+                                                </div>
+                                                <div class="text-center p-4 pb-0">
+                                                    <div class="mb-3">
+                                                        <small class="fa fa-star text-primary"></small>
+                                                        <small class="fa fa-star text-primary"></small>
+                                                        <small class="fa fa-star text-primary"></small>
+                                                        <small class="fa fa-star text-primary"></small>
+                                                        <small class="fa fa-star text-primary"></small>
+                                                    </div>
+                                                    <h5 class="mb-4">
+                                                        <?php echo $row['course_name']; ?>
+                                                    </h5>
+                                                </div>
+                                                <div class="d-flex border-top">
+                                                    <small class="flex-fill text-center border-end py-2"><i
+                                                            class="fa fa-clock  text-primary me-2"></i>
+                                                        <?php echo $row['category']; ?>
+                                                    </small>
+                                                    <small class="flex-fill text-center border-end py-2"><i
+                                                            class="fa fa-calendar text-primary me-2"></i>
+                                                        <?php echo $row['duration']; ?>
+                                                    </small>
+                                                    <small class="flex-fill text-center py-2"><i
+                                                            class="fa fa-user text-primary me-2"></i>
+                                                        <?php echo $row['num_student']; ?>
+                                                    </small>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php
+                                    endwhile;
+                                }
+                                ?>
+        <!-- Courses End -->
 
 
-
-
-                
+               
+            </div>
             <!-- Content / End -->
             <!-- Copyrights -->
+            <div>
             <div class="copyrights">
-               Copyright © 2023 John Travels LK. All rights reserveds.
+               Copyright © 2023 Woocurs Academy. All rights reserveds.
             </div>
         </div>
         <!-- Dashboard / End -->
+    </div>
+    <!-- end Container Wrapper -->
     </div>
     <!-- end Container Wrapper -->
     <!-- *Scripts* -->

@@ -1,23 +1,22 @@
 <!doctype html>
 <html lang="en">
    <head>
-     <!-- Required meta tags -->
-     <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- favicon -->
-        <link rel="icon" type="image/png" href="../assets/images/favicon.png">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css" media="all">
-        <!-- Fonts Awesome CSS -->
-        <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <!-- google fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/pro.css">
-        <title>Woocurs Academy LK</title>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!-- favicon -->
+      <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="assets/css/bootstrap.min.css" media="all">
+      <!-- Fonts Awesome CSS -->
+      <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
+      <!-- google fonts -->
+      <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+      <!-- Custom CSS -->
+      <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+      <!-- Custom CSS -->
+      <link rel="stylesheet" type="text/css" href="assets/css/pro.css">
+      <title>John Travels LK</title>
 </head>
 <body>
 
@@ -142,10 +141,10 @@
                         </a>
                         <div class="dropdown-menu account-menu">
                             <ul>
-                                <li><a href="student_edit.php"><i class="fas fa-cog"></i>Edit Profile</a></li>
-                                <li><a href="student_profilecard.php"><i class="fas fa-user-tie"></i>Profile</a></li>
-                                <li><a href="user-change-password.php"><i class="fas fa-key"></i>Password</a></li>
-                                <li><a href="login.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                                <li><a href="admin_edit.php"><i class="fas fa-cog"></i>Edit Profile</a></li>
+                                <li><a href="admin_profilecard.php"><i class="fas fa-user-tie"></i>Profile</a></li>
+                                <li><a href="#"><i class="fas fa-key"></i>Password</a></li>
+                                <li><a href="#"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
                             </ul>
                         </div>
                     </div>
@@ -156,24 +155,29 @@
                 <div id="dashboard-Navigation" class="slick-nav"></div>
                 <div id="navigation" class="navigation-container">
                     <ul>
-                        <li class="active-menu"><a href="student_dashboard.php"><i class="far fa-chart-bar"></i> Dashboard</a></li>
-                        <li><a href="student_profilecard.php"><i class="fas fa-user"></i> Profile</a> </li>
-                        <li><a href="student_course.php"><i class="fa fa-book"></i> Course</a></li>
-                        <li><a href="student_notes.php"><i class="fa fa-sticky-note-o"></i> Notes</a></li>
-                        <li><a href="student_assignment.php"><i class="fa fa-tasks"></i> Assignments </a></li>
-                        <li><a href="calender.php"><i class="fa fa-calendar"></i> Calendar</a></li>
-                        <li><a href="student_payment.php"> <i class='fa fa-credit-card'></i> Payment</a></li>
+                        
+                            <li><a href="admin_dashboard.php"><i class="fa fa-chart-bar"></i>Dashboard</a> </li>
+                        <li><a href="staff.php"><i class="fas fa-user"></i>Staff</a> </li>
+                        <li><a href="a_studentlist.php"><i class="fa fa-users"></i>Students</a> </ul>
+                        <ul>
+                                <li><a href="a_studentactive.php">Active</a></li>
+                                <li><a href="a_studentpending.php">Pending</a></li>
+                            </ul>  
+                            <ul> 
+                        </li> 
+                        <li><a href="courses.php"><i class="fa fa-book"></i> Courses </a></li>   
+                         <li><a href="leave.php"><i class="fa fa-calendar-times-o"></i> Leave</a></li>
+                        <li><a href="payments.php"> <i class='fa fa-credit-card'></i> Payments </a></li>
+                        <li><a href="salary.php"><i class="fas fa-money"></i> Salary </a></li>
                         <li><a href="login.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
                 </div>
             </div>
-            <!-- contents satrt -->
             <div class="db-info-wrap">
                 <div class="row">
                     <div class="col-lg-12">
                         
-                           
-                       
+                          
                     </div>
                 </div>
                
@@ -183,78 +187,75 @@
                         <div class="dashboard-box user-form-wrap">
 
                         <div class="wrapper">
-        <div class="inner">
-            <div class="image-holder">
-                <img src="assets/images/WoocursAcademy.png" alt="img">
-            </div>
-            <?php
+                        <main class="container">
+                        <?php
             include "db_connection.php";
             $id=1;
 
-                $sql="SELECT * FROM `students` WHERE student_id='$id'";
+                $sql="SELECT * FROM `admins`WHERE admin_id='$id'";
                 $check=mysqli_query($conn,$sql);
 
                 if($check){
                     if(mysqli_num_rows($check)==1)
                     {
-                            $row=mysqli_fetch_assoc($check); 
-                            $first_name = $row['first_name'];
-                            $last_name = $row['last_name'];
-                            $dob = $row['dob'];
-                            $contact_no= $row['contact_no'];
-                            
-                            $email = $row['email'];
-                            $image=$row["image"];
+                      $row=mysqli_fetch_assoc($check); 
+                      $first_name = $row['first_name'];
+                      $last_name = $row['last_name'];
+                      
+                      $contact_no= $row['contact_no'];
+                      $email = $row['email'];
+                    
+                      $name=$first_name." ".$last_name;
                     }
                 }        
              ?>
-            <form action="stu_update.php" method="post" enc="multipart/form-data">
-                <h3> Profile</h3>
-                
-                <div class="form-wrapper">
-                    <input type="text" placeholder="firstName" name="first_name" class="form-control" value="<?php echo $first_name ; ?>"><br>
-                    
-                </div>
-                <div class="form-wrapper">
-                    <input type="text" placeholder="lastname" name="last_name" class="form-control" value="<?php echo $last_name ; ?>"><br>
-                    
-                </div>
-                <div class="form-wrapper">
-                    <input type="text" placeholder="dob" name="dob"class="form-control" value="<?php echo $dob ; ?>"><br>
-                    
-                </div>
-                <div class="form-wrapper">
-                    <input type="text" placeholder="contact_no" name="contact_no" class="form-control" value="<?php echo $contact_no; ?>"><br>
-                    
-                </div>
-                
-                <div class="form-wrapper">
-                    <input type="text" placeholder="email" name="email" class="form-control" value="<?php echo $email; ?>"><br>
-                    
-                </div>
-                <div class="form-wrapper">
-                    <!-- <img src="staff_pro/<?php echo $image; ?>" alt="profile"> -->
-                    <input type="file" placeholder="add your image" name="image" class="form-control">
-                    
-                </div>
-                <button type="submit" class="sub" >submit</button>
+  <div class="card">
+    <img src="admin_pro/default_pic.jpg" alt="User image" class="card__image" />
+    <div class="card__text">
+    
+      
+        <form name="name" class="form-control"  value=""type="text"><?php echo $name;?>
+            </form>
+        
+        <!-- <form name="descripe" class="describe" type="text">
+        </form> -->
+          <!-- <div class="t-box">
+            <i class="fa fa-calendar info" ></i>
+            <label>Date Of Birth </label>
+            <form name="dob" class="form-control" type="date">
+            </form>
+          </div>   -->
+        <div class="t-box">
+        <i class="fa fa-envelope" ></i>
+        <label>Email</label>
+        
+        <form name="email" class="form-control" value=""  ><?php echo  $email;?>
             </form>
         </div>
-    </div>
-                            
+        <!-- <div class="t-box">
+          <i class="fa fa-id-card info"></i>
+          <label>NIC</label>
+          <form name="nic" class="form-control" type="text">
+          </form>
+        </div> -->
+        <div class="t-box">
+          <i class="fa fa-mobile info"></i>
+          <label> Phone Number</label>
+          <form name="phone" class="form-control" value="" type="number" ><?php echo $contact_no;?>
+            </form>
+        </div>
+        
+        </div>
+    
+      <div class="socials">
+      <button class="linkedin"><i class="fab fa-linkedin"></i></button>
+      <button class="twitter"><i class="fab fa-twitter"></i></button>
+      <button class="google"><i class="fab fa-google"></i></button>
+      <button class="facebook"><i class="fab fa-facebook-f"></i></button>
+      <button class="instagram"><i class="fab fa-instagram"></i></button>
+      </div>
+        
                             </form>
-                        </div>
-                    </div>  
-                </div>
-            </div>
-
-
-
-
-
-
-
-                
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">

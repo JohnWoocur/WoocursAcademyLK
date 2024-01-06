@@ -36,8 +36,8 @@
                                 <a href="#"><span class="search_btn"><i class="fa fa-search" aria-hidden="true"></i></span></a>
                             </div>
                         </form>
-                    </div>
-                    <div class="dropdown">
+                     </div>
+                    <!--<div class="dropdown">
                         <a class="dropdown-toggle" id="notifyDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="dropdown-item">
                                 <i class="far fa-envelope"></i>
@@ -130,7 +130,7 @@
                             </ul>
                             <a href="#" class="all-button">See all messages</a>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
@@ -141,8 +141,8 @@
                         </a>
                         <div class="dropdown-menu account-menu">
                             <ul>
-                                <li><a href="user-edit.php"><i class="fas fa-cog"></i>Edit Profile</a></li>
-                                <li><a href="profile-card.php"><i class="fas fa-user-tie"></i>Profile</a></li>
+                                <li><a href="student_edit.php"><i class="fas fa-cog"></i>Edit Profile</a></li>
+                                <li><a href="student_profilecard.php.php"><i class="fas fa-user-tie"></i>Profile</a></li>
                                 <li><a href="user-change-password.php"><i class="fas fa-key"></i>Password</a></li>
                                 <li><a href="login.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
                             </ul>
@@ -156,7 +156,7 @@
                 <div id="navigation" class="navigation-container">
                     <ul>
                         <li class="active-menu"><a href="student_dashboard.php"><i class="far fa-chart-bar"></i> Dashboard</a></li>
-                        <li><a href="student_edit.php"><i class="fas fa-user"></i> Profile</a> </li>
+                        <li><a href="student_profilecard.php"><i class="fas fa-user"></i> Profile</a> </li>
                         <li><a href="student_course.php"><i class="fa fa-book"></i> Course</a></li>
                         <li><a href="student_notes.php"><i class="fa fa-sticky-note-o"></i> Notes</a></li>
                         <li><a href="student_assignment.php"><i class="fa fa-tasks"></i> Assignments </a></li>
@@ -166,16 +166,58 @@
                     </ul>
                 </div>
             </div>
-            <!-- contents satrt -->
-
-
-
-
-
-
-
-
-                
+            <!-- contents start -->
+             <div class="db-info-wrap">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="dashboard-box table-opp-color-box">
+                            <h4>ASSIGNMENTS</h4>
+                            <div class="table-responsive">
+                            <!-- <form  action="staff_view_assignment.php" method="POST" enctype="multipart/form-data">  -->
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Course</th>
+                                            <th>Lecture Id</th>
+                                            <th>Assignment File</th>
+                                            <th>Post Date</th>
+                                            <th>Deadline</th>
+                                            <th>View</th>
+                                            <th>Download</th>
+                                            <th>Upload</th>
+                                        </tr>
+                                    </thead>
+                                    <?php 
+                                            require 'db_connection.php';
+                                            $query="SELECT * FROM `assignment`";
+                                            $result=mysqli_query($conn,$query);
+                                            while($row=mysqli_fetch_assoc($result)):?>
+                                            <form action="stu_upload_assignment.php" method="POST" enctype="multipart/form-data"><tr>
+                                                <td><?php echo $row['Assignment_id']; ?></td>
+                                                <td><?php echo $row['Lecture_id']; ?></td>
+                                                <td><?php echo $row['Subject_name']; ?></td>
+                                                <td><?php echo $row['Assignment_pdf']; ?></td>
+                                                <td><?php echo $row['Post_date']; ?></td>
+                                                <td><?php echo $row['Deadline']; ?></td>
+                                                <td><a href="../Staff/materials/<?php echo $row['Assignment_pdf']; ?>" target="_blank"><span class="badge badge-success"><i class="far fa-eye"></i></span></a></td>
+                                                <td><a href="../staff/materials/<?php echo $row['Assignment_pdf']; ?>" target="_blank"><span class="badge badge-danger"><i class="fa fa-download"></i></span></a></td>
+                                                <td>
+                                                    <input type="file" name="file" accept="image/*"><span class="badge badge-success"><i class="fa fa-upload"></i><button type="submit"></button></span>
+                                                </td>
+                                            </tr>
+                                            </form>
+                                    <?php
+                                        endwhile;
+                                    ?>
+                                    
+                                </table>
+                            <!-- </form> -->
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">

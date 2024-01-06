@@ -1,49 +1,23 @@
-<?php
-require "db-connection.php";
-$year=date('Y');
-$month=date('F');
 
-// echo $month;
-$query="SELECT * FROM `salarys` WHERE year='$year' AND month='$month'";
-$result=mysqli_query($conn,$query);
-if(mysqli_num_rows($result)==0){
-    $query2="SELECT * FROM `staffs`";
-    $result2=mysqli_query($conn,$query2);
-    if(mysqli_num_rows($result2)>0){
-        while($row=mysqli_fetch_assoc($result2)){
-            $id=$row['staff_id'];
-            $query3="INSERT INTO `salarys`(`staff_id`, `month`, `year`, `credited_date`, `status`, `slip_number`, `slip_img`) VALUES ('$id','$month','$year','','Pending','','')";
-            $result3=mysqli_query($conn,$query3);
-        }
-    }
-        
-
-    // for($i=1;$i<=10;$i++){
-
-    // }
-}
-
-?>
 <!doctype html>
 <html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- favicon -->
-    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" media="all">
-    <!-- Fonts Awesome CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
-    <!-- google fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>John Travels LK</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!-- favicon -->
+      <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="assets/css/bootstrap.min.css" media="all">
+      <!-- Fonts Awesome CSS -->
+      <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
+      <!-- google fonts -->
+      <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+      <!-- Custom CSS -->
+      <link rel="stylesheet" type="text/css" href="style.css">
+      <title>John Travels LK</title>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <style>
         .modal {
             display: none;
             position: fixed;
@@ -62,10 +36,7 @@ if(mysqli_num_rows($result)==0){
             margin: auto;
             padding: 20px;
             border: 1px solid #888;
-            width: 60%;
-            justify-content: center;
-            box-shadow: 10px;
-            /* z-index: 2; */
+            width: 80%;
         }
 
         .close {
@@ -77,59 +48,22 @@ if(mysqli_num_rows($result)==0){
 
         .close:hover,
         .close:focus {
-            color: red;
+            color: black;
             text-decoration: none;
             cursor: pointer;
         }
-
-        .btnn i {
-
-            justify-content: center;
-            align-items: center;
-
-
-        }
-
-        h3 {
-            text-align: center;
-
-        }
-
-        h2 {
-            text-align: center;
-            color: blue;
-        }
     </style>
 </head>
-
 <body>
 
-    <div class="modal" id="paymentModal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Woocurs Academy </h2>
-            <h3>Payment Page</h3>
-            <hr>
-            <table>
-                <tr>
-                    <th>Woocurs Academy</th>
-                </tr>
-                <tr>
-                    <th>address</th>
-                </tr>
-            </table>
-            <hr>
-            <table>
-                <tr>
-                    <th>Woocurs Academy</th>
-                </tr>
-                <tr>
-                    <th>address</th>
-                </tr>
-            </table>
-            <button class="btnn" onclick="window.print()"><i class="fa fa-print"></i></button>
-        </div>
-    </div>
+<div class="modal" id="paymentModal">
+                                            <div class="modal-content">
+                                            <span class="close">&times;</span>
+                                            <h2>Payment Page</h2>
+                                            <h3>ddd</h3>
+                                            <button onclick="window.print()">Print</button>
+</div>
+ </div>
 
     <!-- start Container Wrapper -->
     <div id="container-wrapper">
@@ -266,26 +200,25 @@ if(mysqli_num_rows($result)==0){
                 <div id="dashboard-Navigation" class="slick-nav"></div>
                 <div id="navigation" class="navigation-container">
                     <ul>
-
-                        <li><a href="admin_dashboard.php"><i class="fa fa-chart-bar"></i>Dashboard</a> </li>
+                        
+                            <li><a href="admin_dashboard.php"><i class="fa fa-chart-bar"></i>Dashboard</a> </li>
                         <li><a href="staff.php"><i class="fas fa-user"></i>Staff</a> </li>
-                        <li><a href="a_studentlist.php"><i class="fa fa-users"></i>Students</a>
-                    </ul>
-                    <ul>
-                        <li><a href="a_studentactive.php">Active</a></li>
-                        <li><a href="a_studentpending.php">Pending</a></li>
-                    </ul>
-                    <ul>
-                        </li>
-                        <li><a href="courses.php"><i class="fa fa-book"></i> Courses </a></li>
-                        <li><a href="leave.php"><i class="fa fa-calendar-times-o"></i> Leave</a></li>
+                        <li><a href="a_studentlist.php"><i class="fa fa-users"></i>Students</a> </ul>
+                        <ul>
+                                <li><a href="a_studentactive.php">Active</a></li>
+                                <li><a href="a_studentpending.php">Pending</a></li>
+                            </ul>  
+                            <ul> 
+                        </li> 
+                        <li><a href="courses.php"><i class="fa fa-book"></i> Courses </a></li>   
+                         <li><a href="leave.php"><i class="fa fa-calendar-times-o"></i> Leave</a></li>
                         <li><a href="payments.php"> <i class='fa fa-credit-card'></i> Payments </a></li>
                         <li><a href="salary.php"><i class="fas fa-money"></i> Salary </a></li>
                         <li><a href="login.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
                 </div>
             </div>
-
+            
             <div class="db-info-wrap">
                 <div class="row">
                     <!-- Item -->
@@ -336,77 +269,84 @@ if(mysqli_num_rows($result)==0){
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="dashboard-box">
                             <h4>Staff Salary Details</h4>
-                            <!-- <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST"> -->
+                            
+                                
+                            <a href="salary.php"><button type="submit" class="badge badge-primary" name="show">Back</button></a>
                             
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
                                         <tr>
+                                            <th>Staff Id</th>
                                             <th>Month</th>
-                                            <th>Year</th>
                                             <th>Credited_date</th>
                                             <th>Status</th>
                                             <th>Payroll</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                    
-                                        <?php
-                                        require 'db-connection.php';
-                                        $id=1;
-                                        $query4="SELECT * FROM `salarys` WHERE `staff_id`='$id'";
-                                        $result4=mysqli_query($conn,$query4);
-                                        while($row=mysqli_fetch_array($result4)):
-                                        ?><form>
-                                            <tr>
-                                                <!-- <td><span class="list-img"><img src="assets/images/<?php echo $row['image']; ?>" alt=""></span>
-                                                </td> -->
-                                                <td><a href="#"><span class="list-name"><?php echo $row['month']; ?></span></a>
-                                                </td>
-                                                <td><a href="#"><span class="list-name"><?php echo $row['year']; ?></span></a>
-                                                </td>
-                                                <td><?php echo $row['credited_date']; ?></td>
-                                                <td>
+                                    <?php 
+                                        if(isset($_POST['month'])and isset($_POST['year'])){
+                                            $month=$_POST['month'];
+                                            $year=$_POST['year'];
+                                            ?>
+                                    <?php
+                                       require 'db-connection.php';
+                                       $query4 = "SELECT * FROM `salarys` WHERE month='$month' AND year='$year'";
+                                       $result4 = mysqli_query($conn, $query4);
+                                       if (mysqli_num_rows($result4)) {
+                                           while ($row2 = mysqli_fetch_array($result4)) { ?>
+                                   
+                                               <tr>
+                                                   <!-- <td><span class="list-img"><img src="assets/images/comment.jpg" alt=""></span>
+                                                   </td> -->
+                                                   <td><a href="#"><span class="list-name"><?php echo $row2['staff_id']; ?></span></a></td>
+                                                   <td><a href="#"><span class="list-name"><?php echo $row2['month']; ?></span></a>
+                                                   </td>
+                                                   <td><?php echo $row2['credited_date'];?></td>
+                                   
+                                                   <td>
+                                                       <?php
+                                                       if($row2['status']=='Pending'):?>
+                                                        <span class="badge badge-danger">Pending</span>
                                                     <?php
-                                                    
-                                                        if($row['status']=='Pending'):?>
-                                                            <span class="badge badge-danger">Pending</span>
-                                                        <?php
-                                                        else: ?>
-                                                        <span class="badge badge-success">Success</span>
-                                                        <?php
-                                                        endif;
-                                                    
-                                                    ?>
-                                                    
-                                                    
-                                                </td>
-                                                
-                                                <td>
-                                                    <!-- <a href=""><span class="badge badge-primary" id="viewButton">view</span></a> -->
-                                                    <button class="badge badge-primary" id="viewButton">View</button>
-                                                </td>
-                                            </tr>
-                                        <?php endwhile;
+                                                    else: ?>
+                                                    <span class="badge badge-success">Success</span>
+                                                    <?php
+                                                    endif;
+                                                       ?>
+                                                   </td>
+                                                   <td>
+                                   
+                                                       <!-- <a href=""><span class="badge badge-primary" id="viewButton">view</span></a> -->
+                                                       <button class="badge badge-primary" id="viewButton">View</button>
+                                                   </td>
+                                               </tr>
+                                   
+                                       <?php
+                                           }
+                                       }
+                                       else{?>
+                                       <tr>no records</tr>
+                                       <?php
+                                           
+                                       }}
                                         ?>
-
-                                    </tbody>
                                 </table>
                             </div>
                         </div>
-                    </div>
+                    </div>  
                 </div>
-
+                
             </div>
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">
-                Copyright © 2023 John Travels LK. All rights reserveds.
+               Copyright © 2023 John Travels LK. All rights reserveds.
             </div>
         </div>
         <!-- Dashboard / End -->
@@ -425,17 +365,17 @@ if(mysqli_num_rows($result)==0){
         var span = document.getElementsByClassName("close")[0];
 
         // When the user clicks the button, open the modal
-        btn.onclick = function() {
+        btn.onclick = function () {
             modal.style.display = "block";
         }
 
         // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
+        span.onclick = function () {
             modal.style.display = "none";
         }
 
         // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
@@ -452,5 +392,4 @@ if(mysqli_num_rows($result)==0){
     <script src="assets/js/jquery.slicknav.js"></script>
     <script src="assets/js/dashboard-custom.js"></script>
 </body>
-
 </html>

@@ -49,7 +49,7 @@
                         <div class="dropdown-menu account-menu">
                             <ul>
                                 <li><a href="admin_edit.php"><i class="fas fa-cog"></i>Edit Profile</a></li>
-                                <li><a href="admin_profilecard.php"><i class="fas fa-user-tie"></i>Profile</a></li>
+                                <li><a href="profile_card.php"><i class="fas fa-user-tie"></i>Profile</a></li>
                                 <li><a href="admin_change_password.php"><i class="fas fa-key"></i>Password</a></li>
                                 <li><a href="login.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
                             </ul>
@@ -66,7 +66,7 @@
                         <li><a href="admin_stafflist.php"><i class="fas fa-user"></i>Staff</a> </li>
                         <li><a href="admin_studentlist.php"><i class="fa fa-users"></i>Students</a></li> 
                         <li><a href="courses.php"><i class="fa fa-book"></i> Courses </a></li>   
-                        <li><a href="admin_leave_list.php"><i class="fa fa-calendar-times-o"></i>Manage Staff Leave</a></li>
+                         <li><a href="admin_leave_list.php"><i class="fa fa-calendar-times-o"></i>Manage Staff Leave</a></li>
                         <li><a href="admin_paymentlist.php"> <i class='fa fa-credit-card'></i> Payments </a></li>
                         <li><a href="admin_salary.php"><i class="fas fa-money"></i> Salary </a></li>
                         <li><a href="login.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
@@ -85,7 +85,7 @@
                             
                             </div>
                             <div class="dashboard-stat-content">
-                                <h4><a href="admin_studentlist.php">Student List</a></h4>
+                                <h4><a href="admin_leave_list.php">Staff Leave List</a></h4>
                                 
                             </div>
                         </div>
@@ -99,7 +99,7 @@
                                 
                             </div>
                             <div class="dashboard-stat-content">
-                                <h4><a href="admin_rejectedstudentlist.php">Rejected</a></h4>
+                                <h4><a href="admin_rejected_leave_list.php">Rejected Leave</a></h4>
                                  
                             </div>
                         </div>
@@ -113,25 +113,36 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="dashboard-box">
-                            <h4>Students Details </h4>
+                            <h4>Staff Leave Details </h4>
                             
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Student ID</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Category</th>
-                                            <!-- <th>Course</th> -->
-                                            <th>Department</th>
-                                            <!-- <th>Payment</th> -->
+                                            <th>Staff ID</th>
+											<th>Staff Name</th>
+                                            <th>Leave Type</th>
+                                            <th>Start Date</th>
+											<th>End Date</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
+									<?php
+                                    include "db_connection.php";
+                                    $sql = mysqli_query($conn,"SELECT * FROM staffs WHERE status = 'Active'");
+
+                                    ?>
+
+                                    <tbody>
+                                        <?php
+
+                                    while($row = $sql->fetch_assoc()) {
+										$name = $row["last_name"];
+                                        ?>
+										
                                     <?php
                                     include "db_connection.php";
-                                    $result = mysqli_query($conn,"SELECT * FROM students WHERE status = 'Active'");
+                                    $result = mysqli_query($conn,"SELECT * FROM leaves WHERE status = 'approved'");
 
                                     ?>
 
@@ -146,22 +157,20 @@
                                         <?php 
                                         // output data of each row
                                         
-                                        echo'<td>'.$row["student_id"].'</td>';
-                                        echo'<td>'.$row["first_name"].'</td>';
-                                        echo'<td>'.$row["last_name"].'</td>';
-                                        echo'<td>'.$row["category"].'</td>';
-                                        // echo'<td>'.$row["course_name"].'</td>';
-                                        echo'<td>'.$row["department"].'</td>';
-                                        // echo'<td>'.$row["payment"].'</td>';
-                                        echo'<td>'.$row["status"].'</td>';
+											echo'<td>'.$row["staff_id"].'</td>';
+                                            echo'<td>'.$row["last_name"].'</td>';
+											echo'<td>'.$row["type"].'</td>';
+											echo'<td>'.$row["start_date"].'</td>';
+											echo'<td>'.$row["end_date"].'</td>';
+                                            echo'<td>'.$row["status"].'</td>';
                                         
-
                                             ?>
 
                                            
                                         </tr>
                                         <?php
                                     }
+									}
                                     $conn->close();
                                         ?>
                                         
@@ -176,7 +185,7 @@
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">
-               Copyright © 2023 John Travels LK. All rights reserveds.
+               Copyright © 2023 Woocurs Academy LK. All rights reserveds.
             </div>
         </div>
         <!-- Dashboard / End -->

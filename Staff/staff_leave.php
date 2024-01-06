@@ -1,3 +1,36 @@
+<?php
+include 'db-connection.php';
+session_start();
+if(!isset($_SESSION["id"])){
+    header("Location:login.php");
+    exit();
+    }
+if(isset($_SESSION['id'])){
+    $staff_id = $_SESSION['id'];
+
+    $sql = "SELECT `staff_id`, `last_name`, `contact_no`, `email`, FROM `staffs` WHERE staff_id = $staff_id"; 
+
+    $result = mysqli_query($conn, $sql);
+    if($row=mysqli_fetch_assoc($result)){
+
+    $staff_id = $row['staff_id'];
+    $last_name = $row['last_name'];
+    $contact_no = $row['contact_no'];
+    $uNumber =$row['Mobile_number'];
+    $email = $row['email'];
+    }
+    
+    else{
+      header("Location: staff_dashboard.php");
+      
+    }
+
+
+}
+
+?>
+
+
 <!doctype html>
 <html lang="en">
    <head>
@@ -84,48 +117,41 @@
                     <div class="col-lg-12">
                     </div>
                 </div>
-               
-<div>
+			<div>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="dashboard-box user-form-wrap">
                             <h4>APPLY LEAVE</h4>
-                            <form class="form-horizontal" method="post">
+                            <form action="sta_leave_add.php" class="form-horizontal" method="post">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Staff ID</label>
-                                            <input name="firstname" class="form-control" type="text">
+                                            <input name="firstname" class="form-control" type="text" value="<?php echo $staff_id; ?>" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Staff Name</label>
-                                            <input name="lastname" class="form-control" type="text">
+                                            <input name="lastname" class="form-control" type="text" value="<?php echo $last_name; ?>" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Email</label>
-                                            <input name="email" class="form-control" type="email">
+                                            <input name="email" class="form-control" type="email" value="<?php echo $email; ?>" required>
                                         </div>  
                                     </div>
 									<div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Phone Number</label>
-                                            <input name="phone" id="input-phone" class="form-control" value="" placeholder="" type="text">
+                                            <input name="phone" id="input-phone" class="form-control" type="text" value="<?php echo $contact_no; ?>" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>NIC Number</label>
-                                            <input name="ID" class="form-control" type="number">
-                                        </div>  
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
                                             <label>Leave Type</label>
-                                            <select class="form-select" id="Leave" name="Leave">
+                                            <select class="form-select" id="Leave" name="type">
                                                 <option>SELECT LEAVE TYPE</option>
                                                 <option value="PL">Privilege Leave</option>
                                                 <option value="CL">Casual Leave</option>
@@ -136,15 +162,21 @@
                                     </div>
 									<div class="col-sm-6">
                                         <div class="form-group">
+                                            <label>No of Days</label>
+                                            <input name="no_of_leaves" class="form-control" type="number">
+                                        </div>																					
+                                    </div>
+									<div class="col-sm-6">
+                                        <div class="form-group">
                                             <label>Start Date</label>
-                                            <input name="date" class="form-control" type="date">
+                                            <input name="start_date" class="form-control" type="date">
                                         </div>  
                                     </div>
 									<div class="col-sm-6">
                                         <div class="form-group">
                                             <label>End Date</label>
-                                            <input name="date" class="form-control" type="date">
-                                        </div>  
+                                            <input name="end_date" class="form-control" type="date">
+                                        </div>																					
                                     </div>
                                     <div class="col-12">
                                         <h4>Describe Leave</h4>
@@ -152,11 +184,10 @@
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>Please Describe Your Leave</label>
-                                            <textarea class="form-control" id="message" name="message" placeholder="" required=""></textarea>
+                                            <textarea class="form-control" id="message" name="description" placeholder="" required=""></textarea>
                                         </div>
                                     </div>
-                                
-                                    <button type="submit" class="button-primary">APPLY LEAVE</button>
+                                    <button type="submit" class="button-primary">Request Leave</button>
                                 </div>
                             </form>
                         </div>

@@ -1,5 +1,5 @@
 <?php 
-require "db-connection.php";
+require "db_connection.php";
 session_start();
 // $filename=$_FILES["slip"]["name"];
 // $tempname=$_FILES["slip"]["tmp_name"];
@@ -25,11 +25,11 @@ if(mysqli_num_rows($result2)==1){
     while($row2=mysqli_fetch_assoc($result2)){
         if( !$row2['slip_img']==""){
             $_SESSION['slip-s']="Slip successfully updated ";
-            header('location:salary.php');
+            header('location:admin_salary.php');
         }
         else{
             $_SESSION['slip-f']="Slip update failed";
-            header('location:salary.php');
+            header('location:admin_salary.php');
         }
     }
 }

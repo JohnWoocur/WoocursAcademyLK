@@ -213,7 +213,7 @@
                         <li><a href="courses.php"><i class="fa fa-book"></i> Courses </a></li>   
                          <li><a href="leave.php"><i class="fa fa-calendar-times-o"></i> Leave</a></li>
                         <li><a href="payments.php"> <i class='fa fa-credit-card'></i> Payments </a></li>
-                        <li><a href="salary.php"><i class="fas fa-money"></i> Salary </a></li>
+                        <li><a href="admin_salary.php"><i class="fas fa-money"></i> Salary </a></li>
                         <li><a href="login.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
                 </div>
@@ -222,7 +222,7 @@
             <div class="db-info-wrap">
                 <div class="row">
                     <!-- Item -->
-                    <div class="col-xl-3 col-sm-6">
+                    <!-- <div class="col-xl-3 col-sm-6">
                         <div class="db-info-list">
                             <div class="dashboard-stat-icon bg-blue">
                                 <i class="far fa-chart-bar"></i>
@@ -232,9 +232,9 @@
                                 <h5>22,520</h5>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Item -->
-                    <div class="col-xl-3 col-sm-6">
+                    <!-- <div class="col-xl-3 col-sm-6">
                         <div class="db-info-list">
                             <div class="dashboard-stat-icon bg-green">
                                 <i class="fas fa-dollar-sign"></i>
@@ -244,9 +244,9 @@
                                 <h5>16,520</h5>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Item -->
-                    <div class="col-xl-3 col-sm-6">
+                    <!-- <div class="col-xl-3 col-sm-6">
                         <div class="db-info-list">
                             <div class="dashboard-stat-icon bg-purple">
                                 <i class="fas fa-users"></i>
@@ -256,8 +256,8 @@
                                 <h5>18,520</h5>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-6">
+                    </div> -->
+                    <!-- <div class="col-xl-3 col-sm-6">
                         <div class="db-info-list">
                             <div class="dashboard-stat-icon bg-red">
                                 <i class="far fa-envelope-open"></i>
@@ -267,7 +267,7 @@
                                 <h5>19,520</h5>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 
                 <div class="row">
@@ -276,7 +276,7 @@
                             <h4>Staff Salary Details</h4>
                             
                                 
-                            <a href="salary.php"><button type="submit" class="badge badge-primary" name="show">Back</button></a>
+                            <a href="admin_salary.php"><button type="submit" class="badge badge-primary" name="show">Back</button></a>
                             
                             <div class="table-responsive">
                                 <table class="table">
@@ -295,7 +295,7 @@
                                             $year=$_POST['year'];
                                             ?>
                                     <?php
-                                       require 'db-connection.php';
+                                       require 'db_connection.php';
                                        $query4 = "SELECT * FROM `salarys` WHERE month='$month' AND year='$year'";
                                        $result4 = mysqli_query($conn, $query4);
                                        if (mysqli_num_rows($result4)) {
@@ -304,8 +304,8 @@
                                                <tr>
                                                    <!-- <td><span class="list-img"><img src="assets/images/comment.jpg" alt=""></span>
                                                    </td> -->
-                                                   <td><a href="#"><span class="list-name"><?php echo $row2['staff_id']; ?></span></a></td>
-                                                   <td><a href="#"><span class="list-name"><?php echo $row2['month']; ?></span></a>
+                                                   <td><a href="#"><span class="list-name"><?php $id=$row2['staff_id']; echo $id; ?></span></a></td>
+                                                   <td><a href="#"><span class="list-name"><?php $month=$row2['month']; echo $month; ?></span></a>
                                                    </td>
                                                    <td><?php echo $row2['credited_date'];?></td>
                                    
@@ -323,7 +323,7 @@
                                                    <td>
                                    
                                                        <!-- <a href=""><span class="badge badge-primary" id="viewButton">view</span></a> -->
-                                                       <button class="badge badge-primary" id="viewButton">View</button>
+                                                       <a href="admin_payroll.php?id=<?php echo $id;?> & month=<?php echo $month;?>" target="_blank"><button class="badge badge-primary" >View</button></a>
                                                    </td>
                                                </tr>
                                    

@@ -195,15 +195,17 @@ if(mysqli_num_rows($result)==0){
                                                 <td><?php echo $row['credited_date']; ?></td>
                                                 <td>
                                                     <?php
-                                                    
-                                                        if($row['status']=='Pending'):?>
+                                                    $query4="SELECT `slip_img` FROM `salarys` WHERE `staff_id`='$id'";
+                                                    $result4=mysqli_query($conn,$query4);
+                                                    while($row2=mysqli_fetch_array($result4)){
+                                                        if($row2['slip_img']==''):?>
                                                             <span class="badge badge-danger">Pending</span>
                                                         <?php
                                                         else: ?>
                                                         <span class="badge badge-success">Success</span>
                                                         <?php
                                                         endif;
-                                                    
+                                                    }
                                                     ?>
                                                     
                                                     

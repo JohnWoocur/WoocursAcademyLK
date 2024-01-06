@@ -435,10 +435,10 @@ if(mysqli_num_rows($result)==0){
                                                     $result4=mysqli_query($conn,$query4);
                                                     while($row2=mysqli_fetch_array($result4)){
                                                         if($row2['slip_img']==''):?>
-                                                            <button type="submit" class="badge badge-primary">Add</button>
+                                                            <button type="submit" class="badge badge-primary" name="add">Add</button>
                                                         <?php
                                                         else: ?>
-                                                        <button type="submit" class="badge badge-primary" hidden>Add</button>
+                                                        <button type="submit" class="badge badge-primary" name="edit">Edit</button>
                                                         <?php
                                                         endif;
                                                     }

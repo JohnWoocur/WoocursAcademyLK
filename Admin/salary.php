@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "db-connection.php";
 $year=date('Y');
 $month=date('F');
@@ -339,18 +340,61 @@ if(mysqli_num_rows($result)==0){
 
                 <div class="row">
                     <div class="col-lg-12">
+                    <?php 
+                        if(isset($_SESSION['slip-s'])):?>
+                        <span class="badge badge-success"><?php echo $_SESSION['slip-s']; ?></span>
+
+                        <?php 
+                        unset($_SESSION['slip-s']);
+                        endif;
+                        ?>
+                        <?php 
+                        if(isset($_SESSION['slip-f'])):?>
+                        <span class="badge badge-danger"><?php echo $_SESSION['slip-f']; ?></span>
+
+                        <?php 
+                        unset($_SESSION['slip-f']);
+                        endif;
+                        ?>
+                    
                         <div class="dashboard-box">
                             <h4>Staff Salary Details</h4>
                             <!-- <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST"> -->
-                            
+                            <form action="month_salary.php" method="POST">
+                            <select name="month">
+                                    <option value="January">January</option>
+                                    <option value="February">February</option>
+                                    <option value="March">March</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="November">November</option>
+                                    <option value="December">December</option>
+                                </select>
+                                <select name="year">
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+                                    <option value="2029">2029</option>
+                                    <option value="2030">2030</option>
+                                </select>
+                            <button type="submit" class="badge badge-primary" name="show">Show</button>
+                            </form>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
                                         <tr>
+                                            <th>Staff</th>
+                                            <th>Name</th>
                                             <th>Month</th>
-                                            <th>Year</th>
-                                            <th>Credited_date</th>
                                             <th>Status</th>
+                                            <th>File</th>
                                             <th>Payroll</th>
                                         </tr>
                                     </thead>
@@ -358,35 +402,53 @@ if(mysqli_num_rows($result)==0){
                                     
                                         <?php
                                         require 'db-connection.php';
-                                        $id=1;
-                                        $query4="SELECT * FROM `salarys` WHERE `staff_id`='$id'";
-                                        $result4=mysqli_query($conn,$query4);
-                                        while($row=mysqli_fetch_array($result4)):
-                                        ?><form>
+                                        $query = "SELECT * FROM `staffs` ";
+                                        $result = mysqli_query($conn, $query);
+                                        while ($row = mysqli_fetch_assoc($result)) :
+                                           $id=$row['staff_id'];
+                                        ?><form action="a_add_slip.php?id=<?php echo $row['staff_id'];?>" method="POST" enctype="multipart/form-data">
                                             <tr>
-                                                <!-- <td><span class="list-img"><img src="assets/images/<?php echo $row['image']; ?>" alt=""></span>
-                                                </td> -->
-                                                <td><a href="#"><span class="list-name"><?php echo $row['month']; ?></span></a>
+                                                <td><span class="list-img"><img src="assets/images/<?php echo $row['image']; ?>" alt=""></span>
                                                 </td>
-                                                <td><a href="#"><span class="list-name"><?php echo $row['year']; ?></span></a>
+                                                <td><a href="#"><span class="list-name"><?php echo $row['first_name']; ?></span><span class="list-enq-city"><?php echo $row['email']; ?></span></a>
                                                 </td>
-                                                <td><?php echo $row['credited_date']; ?></td>
+                                                <td><?php echo date('F'); ?></td>
                                                 <td>
                                                     <?php
-                                                    
-                                                        if($row['status']=='Pending'):?>
+                                                    $query4="SELECT `slip_img` FROM `salarys` WHERE `staff_id`='$id'";
+                                                    $result4=mysqli_query($conn,$query4);
+                                                    while($row2=mysqli_fetch_array($result4)){
+                                                        if($row2['slip_img']==''):?>
                                                             <span class="badge badge-danger">Pending</span>
                                                         <?php
                                                         else: ?>
                                                         <span class="badge badge-success">Success</span>
                                                         <?php
                                                         endif;
-                                                    
+                                                    }
                                                     ?>
                                                     
                                                     
                                                 </td>
-                                                
+                                                <td><form action="a_add_slip.php" method="POST" enctype="multipart/form-data">
+                                                    <span class="badge badge-primary"><input type="file" name="myFile" value="myFile" accept="image/*"></span>
+                                                    <!-- <a href="a_add_slip.php?name=slip"><span class="badge badge-primary">Add</span></a> -->
+                                                    <?php
+                                                    $query4="SELECT * FROM `salarys` WHERE `staff_id`='$id'";
+                                                    $result4=mysqli_query($conn,$query4);
+                                                    while($row2=mysqli_fetch_array($result4)){
+                                                        if($row2['slip_img']==''):?>
+                                                            <button type="submit" class="badge badge-primary">Add</button>
+                                                        <?php
+                                                        else: ?>
+                                                        <button type="submit" class="badge badge-primary" hidden>Add</button>
+                                                        <?php
+                                                        endif;
+                                                    }
+                                                    ?>
+                                                    
+                                                    </form>
+                                                </td>
                                                 <td>
                                                     <!-- <a href=""><span class="badge badge-primary" id="viewButton">view</span></a> -->
                                                     <button class="badge badge-primary" id="viewButton">View</button>

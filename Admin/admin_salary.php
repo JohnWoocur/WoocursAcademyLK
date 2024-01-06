@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "db-connection.php";
+require "db_connection.php";
 $year=date('Y');
 $month=date('F');
 
@@ -272,16 +272,13 @@ if(mysqli_num_rows($result)==0){
                         <li><a href="staff.php"><i class="fas fa-user"></i>Staff</a> </li>
                         <li><a href="a_studentlist.php"><i class="fa fa-users"></i>Students</a>
                     </ul>
-                    <ul>
-                        <li><a href="a_studentactive.php">Active</a></li>
-                        <li><a href="a_studentpending.php">Pending</a></li>
-                    </ul>
+                    
                     <ul>
                         </li>
                         <li><a href="courses.php"><i class="fa fa-book"></i> Courses </a></li>
                         <li><a href="leave.php"><i class="fa fa-calendar-times-o"></i> Leave</a></li>
                         <li><a href="payments.php"> <i class='fa fa-credit-card'></i> Payments </a></li>
-                        <li><a href="salary.php"><i class="fas fa-money"></i> Salary </a></li>
+                        <li><a href="admin_salary.php"><i class="fas fa-money"></i> Salary </a></li>
                         <li><a href="login.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
                 </div>
@@ -290,7 +287,7 @@ if(mysqli_num_rows($result)==0){
             <div class="db-info-wrap">
                 <div class="row">
                     <!-- Item -->
-                    <div class="col-xl-3 col-sm-6">
+                    <!-- <div class="col-xl-3 col-sm-6">
                         <div class="db-info-list">
                             <div class="dashboard-stat-icon bg-blue">
                                 <i class="far fa-chart-bar"></i>
@@ -300,9 +297,9 @@ if(mysqli_num_rows($result)==0){
                                 <h5>22,520</h5>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Item -->
-                    <div class="col-xl-3 col-sm-6">
+                    <!-- <div class="col-xl-3 col-sm-6">
                         <div class="db-info-list">
                             <div class="dashboard-stat-icon bg-green">
                                 <i class="fas fa-dollar-sign"></i>
@@ -312,9 +309,9 @@ if(mysqli_num_rows($result)==0){
                                 <h5>16,520</h5>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Item -->
-                    <div class="col-xl-3 col-sm-6">
+                    <!-- <div class="col-xl-3 col-sm-6">
                         <div class="db-info-list">
                             <div class="dashboard-stat-icon bg-purple">
                                 <i class="fas fa-users"></i>
@@ -324,8 +321,8 @@ if(mysqli_num_rows($result)==0){
                                 <h5>18,520</h5>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-6">
+                    </div> -->
+                    <!-- <div class="col-xl-3 col-sm-6">
                         <div class="db-info-list">
                             <div class="dashboard-stat-icon bg-red">
                                 <i class="far fa-envelope-open"></i>
@@ -335,7 +332,7 @@ if(mysqli_num_rows($result)==0){
                                 <h5>19,520</h5>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="row">
@@ -401,18 +398,18 @@ if(mysqli_num_rows($result)==0){
                                     <tbody>
                                     
                                         <?php
-                                        require 'db-connection.php';
+                                        require 'db_connection.php';
                                         $query = "SELECT * FROM `staffs` ";
                                         $result = mysqli_query($conn, $query);
                                         while ($row = mysqli_fetch_assoc($result)) :
-                                           $id=$row['staff_id'];
+                                           $id=$row['staff_id']; 
                                         ?><form action="a_add_slip.php?id=<?php echo $row['staff_id'];?>" method="POST" enctype="multipart/form-data">
                                             <tr>
                                                 <td><span class="list-img"><img src="assets/images/<?php echo $row['image']; ?>" alt=""></span>
                                                 </td>
                                                 <td><a href="#"><span class="list-name"><?php echo $row['first_name']; ?></span><span class="list-enq-city"><?php echo $row['email']; ?></span></a>
                                                 </td>
-                                                <td><?php echo date('F'); ?></td>
+                                                <td><?php $month=date('F'); echo $month; ?></td>
                                                 <td>
                                                     <?php
                                                     $query4="SELECT `slip_img` FROM `salarys` WHERE `staff_id`='$id'";
@@ -450,8 +447,8 @@ if(mysqli_num_rows($result)==0){
                                                     </form>
                                                 </td>
                                                 <td>
-                                                    <!-- <a href=""><span class="badge badge-primary" id="viewButton">view</span></a> -->
-                                                    <button class="badge badge-primary" id="viewButton">View</button>
+                                                    <a href="admin_payroll.php?id=<?php echo $id;?> & month=<?php echo $month;?>" target="_blank"><span class="badge badge-primary">view</span></a>
+                                                    <!-- <button class="badge badge-primary" id="viewButton">View</button> -->
                                                 </td>
                                             </tr>
                                         <?php endwhile;

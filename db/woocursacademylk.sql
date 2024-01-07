@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2024 at 03:33 PM
+-- Generation Time: Jan 07, 2024 at 03:36 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -62,7 +62,7 @@ CREATE TABLE `assignments` (
 CREATE TABLE `courses` (
   `course_id` int(11) NOT NULL,
   `course_name` varchar(100) NOT NULL,
-  `staff_id` int(11) NOT NULL,
+  `staff_id` int(11) DEFAULT NULL,
   `duration` varchar(50) NOT NULL,
   `category` varchar(255) NOT NULL,
   `start_date` date NOT NULL,
@@ -72,6 +72,13 @@ CREATE TABLE `courses` (
   `description` text NOT NULL,
   `c_image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`course_id`, `course_name`, `staff_id`, `duration`, `category`, `start_date`, `end_date`, `num_student`, `fees`, `description`, `c_image`) VALUES
+(1, '', NULL, '', '', '0000-00-00', '0000-00-00', 0, 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -154,7 +161,7 @@ CREATE TABLE `staffs` (
   `contact_no` varchar(10) NOT NULL,
   `address` varchar(255) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(20) NOT NULL,
   `qualification` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'pending',
@@ -178,7 +185,7 @@ CREATE TABLE `students` (
   `contact_no` varchar(10) NOT NULL,
   `dob` date NOT NULL,
   `department` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(20) NOT NULL,
   `image` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -194,6 +201,21 @@ CREATE TABLE `student_assignments` (
   `assignment_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `file` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_courses`
+--
+
+CREATE TABLE `student_courses` (
+  `student_course_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `paid_amount` float NOT NULL,
+  `is_paid` tinyint(1) NOT NULL DEFAULT 0,
+  `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -280,6 +302,13 @@ ALTER TABLE `student_assignments`
   ADD KEY `student_id` (`student_id`);
 
 --
+-- Indexes for table `student_courses`
+--
+ALTER TABLE `student_courses`
+  ADD PRIMARY KEY (`student_course_id`),
+  ADD UNIQUE KEY `student_id` (`student_id`,`course_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -293,7 +322,7 @@ ALTER TABLE `assignments`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `leaves`
@@ -324,6 +353,18 @@ ALTER TABLE `staffs`
 --
 ALTER TABLE `students`
   MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `student_assignments`
+--
+ALTER TABLE `student_assignments`
+  MODIFY `student_assignment_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `student_courses`
+--
+ALTER TABLE `student_courses`
+  MODIFY `student_course_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

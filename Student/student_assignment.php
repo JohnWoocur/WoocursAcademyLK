@@ -190,23 +190,27 @@
                                     </thead>
                                     <?php 
                                             require 'db_connection.php';
-                                            $query="SELECT * FROM `assignment`";
+                                            $query="SELECT * FROM `assignments`";
                                             $result=mysqli_query($conn,$query);
-                                            while($row=mysqli_fetch_assoc($result)):?>
-                                            <form action="stu_upload_assignment.php" method="POST" enctype="multipart/form-data"><tr>
-                                                <td><?php echo $row['Assignment_id']; ?></td>
-                                                <td><?php echo $row['Lecture_id']; ?></td>
-                                                <td><?php echo $row['Subject_name']; ?></td>
-                                                <td><?php echo $row['Assignment_pdf']; ?></td>
-                                                <td><?php echo $row['Post_date']; ?></td>
-                                                <td><?php echo $row['Deadline']; ?></td>
-                                                <td><a href="../Staff/materials/<?php echo $row['Assignment_pdf']; ?>" target="_blank"><span class="badge badge-success"><i class="far fa-eye"></i></span></a></td>
-                                                <td><a href="../staff/materials/<?php echo $row['Assignment_pdf']; ?>" target="_blank"><span class="badge badge-danger"><i class="fa fa-download"></i></span></a></td>
+                                            while($row=mysqli_fetch_assoc($result)):
+                                            $id=1;?>
+                                            
+                                                <tr>
+                                                <td><?php echo $row['assignment_id']; ?></td>
+                                                <td><?php echo $row['course_id']; ?></td>
+                                                <td><?php echo $row['staff_id']; ?></td>
+                                                <td><?php echo $row['file']; ?></td>
+                                                <td><?php echo $row['post_date']; ?></td>
+                                                <td><?php echo $row['deadline']; ?></td>
+                                                <td><a href="../Staff/materials/<?php echo $row['file']; ?>" target="_blank"><span class="badge badge-success"><i class="far fa-eye"></i></span></a></td>
+                                                <td><a href="../staff/materials/<?php echo $row['file']; ?>>"download="<?php echo $row['file'];?>"><span class="badge badge-danger"><i class="fa fa-download"></i></span></a></td>
                                                 <td>
-                                                    <input type="file" name="file" accept="image/*"><span class="badge badge-success"><i class="fa fa-upload"></i><button type="submit"></button></span>
-                                                </td>
+                                                <form action="stu_upload_assignment.php?aid=<?php echo $row['assignment_id']; ?> & sid=<?php echo $id; ?>" method="POST" enctype="multipart/form-data">
+                                                    <input type="file" name="file">
+                                                    <span class="badge badge-success"><button type="submit"><i class="fa fa-upload"></i></button></span>
+                                                </form></td>
                                             </tr>
-                                            </form>
+                                            
                                     <?php
                                         endwhile;
                                     ?>

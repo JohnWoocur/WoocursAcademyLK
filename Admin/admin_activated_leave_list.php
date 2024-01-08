@@ -158,11 +158,11 @@
                                         // output data of each row
                                         
 											echo'<td>'.$row["staff_id"].'</td>';
-                                            echo'<td>'.$row["last_name"].'</td>';
+                                            echo'<td>'.$name.'</td>';
 											echo'<td>'.$row["type"].'</td>';
 											echo'<td>'.$row["start_date"].'</td>';
 											echo'<td>'.$row["end_date"].'</td>';
-                                            echo'<td>'.$row["status"].'</td>';
+                                            echo'<td><span class="badge badge-success">'.$row["status"].'</span></td>';
                                         
                                             ?>
 

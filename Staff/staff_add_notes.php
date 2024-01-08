@@ -80,48 +80,40 @@
             <div class="db-info-wrap">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="dashboard-box table-opp-color-box">
-                       
-                            <h4>NOTES</h4>
+                        <div class="dashboard-box">
+                            <h4>Add New Notes</h4>
                             
-                            <div class="table-responsive">
-                            <form  action="sta_view_notes.php" method="POST" enctype="multipart/form-data">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Course</th>
-                                            <th>Lecture Id</th>
-                                            <th>Notes File</th>
-                                            <th>View</th>
-                                            <th>Delete</th>
-                                        </tr>
-                                    </thead>
-                                    <?php 
-            require 'db_connection.php';
-            $query="SELECT * FROM `notes`";
-            $result=mysqli_query($conn,$query);
-            while($row=mysqli_fetch_assoc($result)):?>
-            <tr>
-                <td><?php echo $row['notes_id']; ?></td>
-                <td><?php echo $row['course_id']; ?></td>
-                <td><?php echo $row['staff_id']; ?></td>
-                <td><?php echo $row['file']; ?></td>
-                <td><a href="../staff/materials/<?php echo $row['file']; ?>" target="_blank"><span class="badge badge-success"><i class="far fa-eye"></i></span></a></td>
-                <td><a href="sta_delete_notes.php?id=<?php echo $row['notes_id']; ?>"> <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span></a></td>
-                <!-- <th>Action</th> -->
-            </tr>
-            <?php
-            endwhile;
-            ?>
-                                  </table>
-                                <h5><b>Add Notes</b>&nbsp;&nbsp;<a href="staff_add_notes.php"><span class="badge badge-success"><i class="fa fa-plus"></i></span></a></h5>
+                            <form class="form-horizontal" method="POST" action="sta_add_notes.php" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Course Id</label>
+                                            <input name="cid" class="form-control" type="text" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Lecture Id</label>
+                                            <input name="sid" class="form-control" type="text" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6"> 
+                                        <div class="upload-input">
+                                            <div class="form-group">
+                                              <span class="upload-btn">Notes File</span>
+                                              <input type="file" name="file" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <input type="submit" name="Submit">
+                                <input type="reset" name="Reset">
                             </form>
-                            </div>
                         </div>
                     </div>  
                 </div>
-            </div>
+            
             <!-- Content / End -->
 
             <!-- Copyrights -->

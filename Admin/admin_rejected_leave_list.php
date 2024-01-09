@@ -144,7 +144,7 @@
 										
                                     <?php
                                     include "db_connection.php";
-                                    $result = mysqli_query($conn,"SELECT * FROM leaves WHERE status='Reject'");
+                                    $result = mysqli_query($conn,"SELECT * FROM leaves WHERE status='rejected'");
 
                                     ?>
 
@@ -160,11 +160,11 @@
                                         // output data of each row
                                         
 											echo'<td>'.$row["staff_id"].'</td>';
-                                            echo'<td>'.$row["last_name"].'</td>';
+                                            echo'<td>'.$name.'</td>';
 											echo'<td>'.$row["type"].'</td>';
 											echo'<td>'.$row["start_date"].'</td>';
 											echo'<td>'.$row["end_date"].'</td>';
-                                            echo'<td>'.$row["status"].'</td>';
+											echo'<td><span class="badge badge-danger">'.$row["status"].'</span></td>';
                                         
 
                                             ?>

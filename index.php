@@ -59,7 +59,7 @@
                 <a href="#courses" class="nav-item nav-link">Courses</a>
                 <a href="#contact" class="nav-item nav-link">Contact</a>
             </div>
-            <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="register.php" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     <!-- Navbar End -->
@@ -77,7 +77,7 @@
                                 <h1 class="display-3 text-white animated slideInDown">WOOCURS ACADEMY</h1>
                                 <p class="fs-5 text-white mb-4 pb-2">Academy, Which makes you as professional in English.</p>
                                 <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
-                                <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
+                                <a href="register.php" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
                             </div>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                                 <h1 class="display-3 text-white animated slideInDown">WOOCURS ACADEMY</h1>
                                 <p class="fs-5 text-white mb-4 pb-2">Academy, Which makes you as professional in IT.</p>
                                 <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
-                                <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
+                                <a href="register.php" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Now</a>
                             </div>
                         </div>
                     </div>
@@ -264,8 +264,10 @@
                         <div class="position-relative overflow-hidden">
                             <img class="img-fluid" src="../WoocursAcademyLK/Admin/img/<?php echo $row['c_image']; ?>" alt="course">
                             <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+
                                 <a href="course_details.php?course_id=<?php echo $row["course_id"]; ?>" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
                                 <a href="Student/student_course_apply.php" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Join Now</a>
+
                             </div>
                         </div>
                         <div class="text-center p-4 pb-0">

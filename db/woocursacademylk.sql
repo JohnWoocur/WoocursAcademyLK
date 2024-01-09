@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2024 at 03:33 PM
+-- Generation Time: Jan 08, 2024 at 08:44 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -62,7 +62,7 @@ CREATE TABLE `assignments` (
 CREATE TABLE `courses` (
   `course_id` int(11) NOT NULL,
   `course_name` varchar(100) NOT NULL,
-  `staff_id` int(11) NOT NULL,
+  `staff_id` int(11) DEFAULT NULL,
   `duration` varchar(50) NOT NULL,
   `category` varchar(255) NOT NULL,
   `start_date` date NOT NULL,
@@ -83,11 +83,11 @@ CREATE TABLE `leaves` (
   `leave_id` int(11) NOT NULL,
   `staff_id` int(11) NOT NULL,
   `type` varchar(100) NOT NULL,
-  `description` int(11) NOT NULL,
-  `start_date` int(11) NOT NULL,
-  `end_date` int(11) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
   `no_of_leaves` int(10) NOT NULL,
-  `date` date NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` varchar(255) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -149,12 +149,13 @@ CREATE TABLE `staffs` (
   `staff_id` int(11) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
   `gender` enum('male','female','other') NOT NULL,
   `dob` date NOT NULL,
   `contact_no` varchar(10) NOT NULL,
   `address` varchar(255) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(20) NOT NULL,
   `qualification` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'pending',
@@ -171,14 +172,15 @@ CREATE TABLE `staffs` (
 CREATE TABLE `students` (
   `student_id` int(11) NOT NULL,
   `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) DEFAULT NULL,
+  `username` varchar(50) NOT NULL,
   `gender` enum('male','female','other') NOT NULL,
   `category` varchar(255) NOT NULL,
   `email` varchar(50) NOT NULL,
   `contact_no` varchar(10) NOT NULL,
   `dob` date NOT NULL,
   `department` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(20) NOT NULL,
   `image` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -194,6 +196,21 @@ CREATE TABLE `student_assignments` (
   `assignment_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `file` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_courses`
+--
+
+CREATE TABLE `student_courses` (
+  `student_course_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `paid_amount` float NOT NULL,
+  `is_paid` tinyint(1) NOT NULL DEFAULT 0,
+  `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -261,7 +278,8 @@ ALTER TABLE `salarys`
 ALTER TABLE `staffs`
   ADD PRIMARY KEY (`staff_id`),
   ADD UNIQUE KEY `contact_no` (`contact_no`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `students`
@@ -269,7 +287,8 @@ ALTER TABLE `staffs`
 ALTER TABLE `students`
   ADD PRIMARY KEY (`student_id`),
   ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `contact_no` (`contact_no`);
+  ADD UNIQUE KEY `contact_no` (`contact_no`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `student_assignments`
@@ -280,8 +299,22 @@ ALTER TABLE `student_assignments`
   ADD KEY `student_id` (`student_id`);
 
 --
+-- Indexes for table `student_courses`
+--
+ALTER TABLE `student_courses`
+  ADD PRIMARY KEY (`student_course_id`),
+  ADD UNIQUE KEY `student_id` (`student_id`,`course_id`),
+  ADD KEY `course_id` (`course_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `assignments`
@@ -324,6 +357,18 @@ ALTER TABLE `staffs`
 --
 ALTER TABLE `students`
   MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `student_assignments`
+--
+ALTER TABLE `student_assignments`
+  MODIFY `student_assignment_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `student_courses`
+--
+ALTER TABLE `student_courses`
+  MODIFY `student_course_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -373,6 +418,13 @@ ALTER TABLE `salarys`
 ALTER TABLE `student_assignments`
   ADD CONSTRAINT `student_assignments_ibfk_1` FOREIGN KEY (`assignment_id`) REFERENCES `assignments` (`assignment_id`),
   ADD CONSTRAINT `student_assignments_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`);
+
+--
+-- Constraints for table `student_courses`
+--
+ALTER TABLE `student_courses`
+  ADD CONSTRAINT `student_courses_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`),
+  ADD CONSTRAINT `student_courses_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

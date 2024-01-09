@@ -82,7 +82,7 @@
                     <div class="col-lg-12">
                         <div class="dashboard-box table-opp-color-box">
                        
-                            <h4>NOTES</h4>
+                            <h4>UPLOADED ASSIGNMENTS</h4>
                             
                             <div class="table-responsive">
                             <form  action="sta_view_notes.php" method="POST" enctype="multipart/form-data">
@@ -90,32 +90,29 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Course</th>
-                                            <th>Lecture Id</th>
-                                            <th>Notes File</th>
+                                            <th>Course Id</th>
+                                            <th>Student Id</th>
+                                            <th>Assignment File</th>
                                             <th>View</th>
-                                            <th>Delete</th>
                                         </tr>
                                     </thead>
                                     <?php 
             require 'db_connection.php';
-            $query="SELECT * FROM `notes`";
+            $query="SELECT * FROM `student_assignments`";
             $result=mysqli_query($conn,$query);
             while($row=mysqli_fetch_assoc($result)):?>
             <tr>
-                <td><?php echo $row['notes_id']; ?></td>
-                <td><?php echo $row['course_id']; ?></td>
-                <td><?php echo $row['staff_id']; ?></td>
+                <td><?php echo $row['student_assignment_id']; ?></td>
+                <td><?php echo $row['assignment_id']; ?></td>
+                <td><?php echo $row['student_id']; ?></td>
                 <td><?php echo $row['file']; ?></td>
-                <td><a href="../staff/materials/<?php echo $row['file']; ?>" target="_blank"><span class="badge badge-success"><i class="far fa-eye"></i></span></a></td>
-                <td><a href="sta_delete_notes.php?id=<?php echo $row['notes_id']; ?>"> <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span></a></td>
-                <!-- <th>Action</th> -->
+                <td><a href="../Student/materials/<?php echo $row['file']; ?>" target="_blank"><span class="badge badge-success"><i class="far fa-eye"></i></span></a></td>
+                
             </tr>
             <?php
             endwhile;
-            ?>
-                                  </table>
-                                <h5><b>Add Notes</b>&nbsp;&nbsp;<a href="staff_add_notes.php"><span class="badge badge-success"><i class="fa fa-plus"></i></span></a></h5>
+            ?>  
+                                </table>
                             </form>
                             </div>
                         </div>

@@ -1,21 +1,26 @@
+<?php include("../protect.php");
+notAuthenticated("admin", "login.php"); // if user not authenticated and redirect to login
+?>
 <!doctype html>
 <html lang="en">
-   <head>
-      <!-- Required meta tags -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <!-- favicon -->
-      <link rel="icon" type="image/png" href="../assets/images/favicon.png">
-      <!-- Bootstrap CSS -->
-      <link rel="stylesheet" href="assets/css/bootstrap.min.css" media="all">
-      <!-- Fonts Awesome CSS -->
-      <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
-      <!-- google fonts -->
-      <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
-      <!-- Custom CSS -->
-      <link rel="stylesheet" type="text/css" href="style.css">
-      <title>John Travels LK</title>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" media="all">
+    <!-- Fonts Awesome CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>John Travels LK</title>
 </head>
+
 <body>
 
     <!-- start Container Wrapper -->
@@ -35,7 +40,7 @@
                             </div>
                         </form>
                     </div>
-                   
+
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
@@ -50,7 +55,7 @@
                                 <li><a href="#"><i class="fas fa-cog"></i>Settings</a></li>
                                 <li><a href="admin_profilecard.php"><i class="fas fa-user-tie"></i>Profile</a></li>
                                 <li><a href="#"><i class="fas fa-key"></i>Password</a></li>
-                                <li><a href="#"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                                <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
 
                             </ul>
                         </div>
@@ -62,11 +67,12 @@
                 <div id="dashboard-Navigation" class="slick-nav"></div>
                 <div id="navigation" class="navigation-container">
                     <ul>
-                        
+
                         <li><a href="admin_dashboard.php"><i class="fa fa-chart-bar"></i>Dashboard</a> </li>
                         <li><a href="admin_staff.php"><i class="fas fa-user"></i>Staff</a> </li>
                         <li><a href="a_studentlist.php"><i class="fa fa-users"></i>Students</a> </li>   
                         <li><a href="admin_course.php"><i class="fa fa-book"></i> Courses </a></li>   
+
                         <li><a href="admin_leave_list.php"><i class="fa fa-calendar-times-o"></i>Manage Staff Leave</a></li>
                         <li><a href="payments.php"> <i class='fa fa-credit-card'></i> Payments </a></li>
                         <li><a href="salary.php"><i class="fas fa-money"></i> Salary </a></li>
@@ -74,11 +80,13 @@
                   
                         
 
-                        <li><a href="login.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+
+                        <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
                 </div>
             </div>
             <div class="db-info-wrap">
+                <?php include "../session_message.php"; ?>
                 <div class="row">
                     <!-- Item -->
                     <div class="col-xl-3 col-sm-6">
@@ -88,7 +96,7 @@
                             </div>
                             <div class="dashboard-stat-content">
                                 <h4>Today Views</h4>
-                                <h5>22,520</h5> 
+                                <h5>22,520</h5>
                             </div>
                         </div>
                     </div>
@@ -100,7 +108,7 @@
                             </div>
                             <div class="dashboard-stat-content">
                                 <h4>Earnings</h4>
-                                <h5>16,520</h5> 
+                                <h5>16,520</h5>
                             </div>
                         </div>
                     </div>
@@ -112,7 +120,7 @@
                             </div>
                             <div class="dashboard-stat-content">
                                 <h4>Users</h4>
-                                <h5>18,520</h5> 
+                                <h5>18,520</h5>
                             </div>
                         </div>
                     </div>
@@ -123,7 +131,7 @@
                             </div>
                             <div class="dashboard-stat-content">
                                 <h4>Enquiry</h4>
-                                <h5>19,520</h5> 
+                                <h5>19,520</h5>
                             </div>
                         </div>
                     </div>
@@ -149,7 +157,7 @@
                                         <tr>
                                             <td>
                                                 <label class="custom-input"><input type="checkbox" checked="checked">
-                                                <span class="custom-input-field"></span></label>
+                                                    <span class="custom-input-field"></span></label>
                                             </td>
                                             <td><span class="list-img"><img src="assets/images/comment.jpg" alt=""></span>
                                             </td>
@@ -164,7 +172,7 @@
                                         <tr>
                                             <td>
                                                 <label class="custom-input"><input type="checkbox" checked="checked">
-                                                <span class="custom-input-field"></span></label>
+                                                    <span class="custom-input-field"></span></label>
                                             </td>
                                             <td><span class="list-img"><img src="assets/images/comment2.jpg" alt=""></span>
                                             </td>
@@ -179,7 +187,7 @@
                                         <tr>
                                             <td>
                                                 <label class="custom-input"><input type="checkbox" checked="checked">
-                                                <span class="custom-input-field"></span></label>
+                                                    <span class="custom-input-field"></span></label>
                                             </td>
                                             <td><span class="list-img"><img src="assets/images/comment3.jpg" alt=""></span>
                                             </td>
@@ -194,7 +202,7 @@
                                         <tr>
                                             <td>
                                                 <label class="custom-input"><input type="checkbox" checked="checked">
-                                                <span class="custom-input-field"></span></label>
+                                                    <span class="custom-input-field"></span></label>
                                             </td>
                                             <td><span class="list-img"><img src="assets/images/comment4.jpg" alt=""></span>
                                             </td>
@@ -209,7 +217,7 @@
                                         <tr>
                                             <td>
                                                 <label class="custom-input"><input type="checkbox" checked="checked">
-                                                <span class="custom-input-field"></span></label>
+                                                    <span class="custom-input-field"></span></label>
                                             </td>
                                             <td><span class="list-img"><img src="assets/images/comment5.jpg" alt=""></span>
                                             </td>
@@ -225,7 +233,7 @@
                                 </table>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                     <div class="col-lg-6">
                         <div class="dashboard-box table-opp-color-box">
                             <h4>Courses</h4>
@@ -246,7 +254,7 @@
                                         <tr>
                                             <td>
                                                 <label class="custom-input"><input type="checkbox">
-                                                <span class="custom-input-field"></span></label>
+                                                    <span class="custom-input-field"></span></label>
                                             </td>
                                             <td><span class="list-img"><img src="assets/images/comment.jpg" alt=""></span>
                                             </td>
@@ -261,7 +269,7 @@
                                         <tr>
                                             <td>
                                                 <label class="custom-input"><input type="checkbox">
-                                                <span class="custom-input-field"></span></label>
+                                                    <span class="custom-input-field"></span></label>
                                             </td>
                                             <td><span class="list-img"><img src="assets/images/comment2.jpg" alt=""></span>
                                             </td>
@@ -276,7 +284,7 @@
                                         <tr>
                                             <td>
                                                 <label class="custom-input"><input type="checkbox">
-                                                <span class="custom-input-field"></span></label>
+                                                    <span class="custom-input-field"></span></label>
                                             </td>
                                             <td><span class="list-img"><img src="assets/images/comment3.jpg" alt=""></span>
                                             </td>
@@ -291,7 +299,7 @@
                                         <tr>
                                             <td>
                                                 <label class="custom-input"><input type="checkbox">
-                                                <span class="custom-input-field"></span></label>
+                                                    <span class="custom-input-field"></span></label>
                                             </td>
                                             <td><span class="list-img"><img src="assets/images/comment4.jpg" alt=""></span>
                                             </td>
@@ -306,7 +314,7 @@
                                         <tr>
                                             <td>
                                                 <label class="custom-input"><input type="checkbox">
-                                                <span class="custom-input-field"></span></label>
+                                                    <span class="custom-input-field"></span></label>
                                             </td>
                                             <td><span class="list-img"><img src="assets/images/comment5.jpg" alt=""></span>
                                             </td>
@@ -322,7 +330,7 @@
                                 </table>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
@@ -433,16 +441,16 @@
                                 </table>
                             </div>
                         </div>
-                    </div>  
+                    </div>
                 </div>
-                <div class="row">      
+                <div class="row">
                     <!-- Recent Activity -->
                     <div class="col-lg-7 col-12">
                         <div class="dashboard-box activities-box">
                             <h4>Recent Activities</h4>
                             <ul>
                                 <li>
-                                    <i class="far fa-calendar-alt"></i> 
+                                    <i class="far fa-calendar-alt"></i>
                                     <small>5 mins ago</small>
                                     <h5>Jane has sent a request for access</h5>
                                     <a href="#" class="close-icon"><i class="fas fa-times"></i></a>
@@ -460,13 +468,13 @@
                                     <a href="#" class="close-icon"><i class="fas fa-times"></i></a>
                                 </li>
                                 <li>
-                                    <i class="far fa-calendar-alt"></i> 
+                                    <i class="far fa-calendar-alt"></i>
                                     <small>25 mins ago</small>
                                     <h5>Kathy Brown left a review on Hotel</h5>
                                     <a href="#" class="close-icon"><i class="fas fa-times"></i></a>
                                 </li>
                                 <li>
-                                   <i class="far fa-calendar-alt"></i> 
+                                    <i class="far fa-calendar-alt"></i>
                                     <small>25 mins ago</small>
                                     <h5>Kathy Brown left a review on Hotel</h5>
                                     <a href="#" class="close-icon"><i class="fas fa-times"></i></a>
@@ -485,7 +493,7 @@
                             <h4>Reports</h4>
                             <div class="report-list-content">
                                 <div class="date">
-                                   <h5>Auguest 12</h5>
+                                    <h5>Auguest 12</h5>
                                 </div>
                                 <div class="total-amt">
                                     <strong>$1250000</strong>
@@ -511,12 +519,12 @@
                                             <td>Lorem Ipsum</td>
                                             <td>6,500.00</td>
                                         </tr>
-                                        
+
                                         <tr>
                                             <td>3269</td>
                                             <td>specimen book</td>
                                             <td>6,800.00</td>
-                                        </tr>                                                    
+                                        </tr>
                                         <tr>
                                             <td>5126</td>
                                             <td>Letraset sheets</td>
@@ -542,22 +550,22 @@
                     <!-- site traffic -->
                     <div class="col-lg-4">
                         <div class="dashboard-box chart-box">
-                           <h4>Site Traffic</h4>
-                           <div id="chartContainer" style="height: 250px; width: 100%;"></div>
+                            <h4>Site Traffic</h4>
+                            <div id="chartContainer" style="height: 250px; width: 100%;"></div>
                         </div>
                     </div>
 
                     <div class="col-lg-4">
                         <div class="dashboard-box chart-box">
-                           <h4>Bar Chart</h4>
-                           <div id="barchart" style="height: 250px; width: 100%;"></div>
+                            <h4>Bar Chart</h4>
+                            <div id="barchart" style="height: 250px; width: 100%;"></div>
                         </div>
                     </div>
 
                     <div class="col-lg-4 chart-box">
                         <div class="dashboard-box">
-                           <h4>Search Engine</h4>
-                           <div id="piechart" style="height: 250px; width: 100%;"></div>
+                            <h4>Search Engine</h4>
+                            <div id="piechart" style="height: 250px; width: 100%;"></div>
                         </div>
                     </div>
                 </div>
@@ -565,7 +573,7 @@
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">
-               Copyright © 2023 John Travels LK. All rights reserveds.
+                Copyright © 2023 John Travels LK. All rights reserveds.
             </div>
         </div>
         <!-- Dashboard / End -->
@@ -581,4 +589,5 @@
     <script src="assets/js/jquery.slicknav.js"></script>
     <script src="assets/js/dashboard-custom.js"></script>
 </body>
+
 </html>

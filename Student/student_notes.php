@@ -193,13 +193,12 @@
                                         $result=mysqli_query($conn,$query);
                                         while($row=mysqli_fetch_assoc($result)):?>
                                         <tr>
-                                            <td><?php echo $row['Notes_id']; ?></td>
-                                            <td><?php echo $row['Subject_name']; ?></td>
-                                            <td><?php echo $row['Lecture_id']; ?></td>
-                                            <td><?php echo $row['Notes_pdf']; ?></td>
-                                            <td><a href="../staff/materials/<?php echo $row['Notes_pdf']; ?>" target="_blank"><span class="badge badge-success"><i class="far fa-eye"></i></span></a></td>
-                                            <td><a href="../staff/materials/<?php echo $row['Notes_pdf']; ?>" target="_blank"><span class="badge badge-danger"><i class="fa fa-download"></i></span></a></td>
-                                            
+                                        <td><?php echo $row['notes_id']; ?></td>
+                                        <td><?php echo $row['course_id']; ?></td>
+                                        <td><?php echo $row['staff_id']; ?></td>
+                                        <td><?php echo $row['file']; ?></td>
+                                            <td><a href="../staff/materials/<?php echo $row['file']; ?>" target="_blank"><span class="badge badge-success"><i class="far fa-eye"></i></span></a></td>
+                                            <td><a href="../staff/materials/<?php echo $row['file']; ?>>"download="<?php echo $row['file'];?>"><span class="badge badge-danger"><i class="fa fa-download"></i></span></a></td>
                                         </tr>
                                         <?php
                                           endwhile;

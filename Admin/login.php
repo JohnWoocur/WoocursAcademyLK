@@ -1,5 +1,5 @@
 <?php include("../protect.php");
-hasAuthenticated("staff", "staff_dashboard.php"); // if user authenticated redirect to dashboard
+hasAuthenticated("admin", "admin_dashboard.php"); // if user authenticated redirect to dashboard
 ?>
 <!doctype html>
 <html lang="en">
@@ -30,7 +30,7 @@ hasAuthenticated("staff", "staff_dashboard.php"); // if user authenticated redir
                 unset($_SESSION["error"]);
             }
             ?>
-            <form class="login-from" action="staff_login.php" method="post">
+            <form class="login-from" action="admin_login.php" method="post">
                 <h1 class="site-title">
                     <a href="#">
                         <img src="assets/images/logo.png" alt="">

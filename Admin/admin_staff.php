@@ -1,5 +1,15 @@
 <?php include("../protect.php");
 notAuthenticated("admin", "login.php"); // if user not authenticated and redirect to login
+$Aid = $_SESSION["user_id"];
+
+require "db_connection.php";
+$query = "SELECT * FROM admins WHERE admin_id = $Aid"; 
+
+$results = mysqli_query($conn, $query);
+$Irow = mysqli_fetch_assoc($results);
+$aname=$Irow["username"];
+$aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -52,8 +62,8 @@ notAuthenticated("admin", "login.php"); // if user not authenticated and redirec
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
-                                <img src="assets/images/comment.jpg" alt="">
-                                <span>My Account </span>
+                            <img src="./admin_pro/<?php echo $aimage?>" alt="">
+                                <span><?php echo"$aname";?></span>
                                 <i class="fas fa-caret-down"></i>
                             </div>
                         </a>
@@ -124,7 +134,7 @@ notAuthenticated("admin", "login.php"); // if user not authenticated and redirec
                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                       
                         Add Staff <a href ="admin_staff_add.php"> <span class="badge badge-success"><i class="fa fa-plus"></i></span></a>&nbsp;&nbsp;
                          &nbsp;&nbsp;
                         Deleted Staffs <a href ="admin_staff_delete.php"> <span class="badge badge-danger"><i class="fa fa-times"></i></span></a></h4>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 08, 2024 at 03:39 PM
+-- Generation Time: Jan 08, 2024 at 08:44 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -149,6 +149,7 @@ CREATE TABLE `staffs` (
   `staff_id` int(11) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
   `gender` enum('male','female','other') NOT NULL,
   `dob` date NOT NULL,
   `contact_no` varchar(10) NOT NULL,
@@ -171,7 +172,8 @@ CREATE TABLE `staffs` (
 CREATE TABLE `students` (
   `student_id` int(11) NOT NULL,
   `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) DEFAULT NULL,
+  `username` varchar(50) NOT NULL,
   `gender` enum('male','female','other') NOT NULL,
   `category` varchar(255) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -276,7 +278,8 @@ ALTER TABLE `salarys`
 ALTER TABLE `staffs`
   ADD PRIMARY KEY (`staff_id`),
   ADD UNIQUE KEY `contact_no` (`contact_no`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `students`
@@ -284,7 +287,8 @@ ALTER TABLE `staffs`
 ALTER TABLE `students`
   ADD PRIMARY KEY (`student_id`),
   ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `contact_no` (`contact_no`);
+  ADD UNIQUE KEY `contact_no` (`contact_no`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `student_assignments`
@@ -305,6 +309,12 @@ ALTER TABLE `student_courses`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `assignments`

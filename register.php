@@ -125,7 +125,7 @@ session_start();
                                     <form action="student_register.php" method="post">
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="first_name">First Name</label>
-                                            <input type="text" name="first_name" id="first_name" class="form-control form-control-lg" />
+                                            <input type="text" name="first_name" id="first_name" class="form-control form-control-lg" required />
                                         </div>
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="last_name">Last Name</label>
@@ -135,20 +135,20 @@ session_start();
                                         <div class="form-outline justify-content-start border border-1 py-2 d-flex  mb-5">
                                             <div class="my-1">
                                                 <label class="form-check-label ms-3" for="male">Male</label>
-                                                <input class="form-check-input mx-2" type="radio" name="gender" value="male" id="male" />
+                                                <input class="form-check-input mx-2" type="radio" name="gender" value="male" id="male" required />
                                             </div>
                                             <div class="my-1">
                                                 <label class="form-check-label" for="female">Female</label>
-                                                <input class="form-check-input mx-2" type="radio" name="gender" value="female" id="female" />
+                                                <input class="form-check-input mx-2" type="radio" name="gender" value="female" id="female" required />
                                             </div>
                                             <div class="my-1">
                                                 <label class="form-check-label" for="other">Other</label>
-                                                <input class="form-check-input mx-2" type="radio" name="gender" value="other" id="other" />
+                                                <input class="form-check-input mx-2" type="radio" name="gender" value="other" id="other" required />
                                             </div>
                                         </div>
                                         <div class="form-outline mb-4 rounded">
                                             <label class="form-label" for="category">Category</label>
-                                            <select class="form-select form-select-lg rounded-3" name="category" id="category">
+                                            <select class="form-select form-select-lg rounded-3" name="category" id="category" required>
                                                 <option value="training">Training</option>
                                                 <option value="school">School</option>
                                                 <option value="ielts">IELTS</option>
@@ -156,19 +156,19 @@ session_start();
                                         </div>
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="email">Your Email</label>
-                                            <input type="email" id="email" name="email" class="form-control form-control-lg" />
+                                            <input type="email" id="email" name="email" class="form-control form-control-lg" required />
                                         </div>
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="contact_no">Mobile Number</label>
-                                            <input type="number" maxlength="10" id="contact_no" name="contact_no" class="form-control form-control-lg" />
+                                            <input type="number" maxlength="10" id="contact_no" name="contact_no" class="form-control form-control-lg" required />
                                         </div>
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="dob">Date of Birth</label>
-                                            <input type="date" name="dob" id="dob" class="form-control form-control-lg" />
+                                            <input type="date" name="dob" id="dob" class="form-control form-control-lg" required />
                                         </div>
                                         <div class="form-outline mb-4 rounded">
                                             <label class="form-label" for="department">Department</label>
-                                            <select class="form-select form-select-lg rounded-3" name="department" id="department">
+                                            <select class="form-select form-select-lg rounded-3" name="department" id="department" required>
                                                 <option value="training">A</option>
                                                 <option value="school">B</option>
                                                 <option value="ielts">C</option>
@@ -176,11 +176,11 @@ session_start();
                                         </div>
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="password">Password</label>
-                                            <input type="password" name="password" id="password" class="form-control form-control-lg" />
+                                            <input type="password" name="password" id="password" class="form-control form-control-lg" required />
                                         </div>
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="confirm_password">Repeat your password</label>
-                                            <input type="password" name="confirm_password" id="confirm_password" class="form-control form-control-lg" />
+                                            <input type="password" name="confirm_password" id="confirm_password" class="form-control form-control-lg" required />
                                         </div>
 
 
@@ -194,7 +194,7 @@ session_start();
                                         <div class="d-flex justify-content-center">
                                             <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
                                         </div>
-                                        <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#!" class="fw-bold text-body"><u>Login here</u></a></p>
+                                        <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="student/login.php" class="fw-bold text-body"><u>Login here</u></a></p>
                                     </form>
 
                                 </div>

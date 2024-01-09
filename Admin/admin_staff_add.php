@@ -1,8 +1,19 @@
+<?php include("../protect.php");
+notAuthenticated("admin", "login.php"); // if user not authenticated and redirect to login
+$Aid = $_SESSION["user_id"];
+
+require "db_connection.php";
+$query = "SELECT * FROM admins WHERE admin_id = $Aid"; 
+
+$results = mysqli_query($conn, $query);
+$Irow = mysqli_fetch_assoc($results);
+$aname=$Irow["username"];
+$aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
+
+?>
 <!doctype html>
 <html lang="en">
-<?php
-session_start();
-?>
+
    <head>
           <!-- Required meta tags -->
           <meta charset="utf-8">
@@ -46,8 +57,8 @@ session_start();
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
-                                <img src="assets/images/comment.jpg" alt="">
-                                <span>My Account </span>
+                            <img src="./admin_pro/<?php echo $aimage?>" alt="">
+                                <span><?php echo"$aname";?></span>
                                 <i class="fas fa-caret-down"></i>
                             </div>
                         </a>
@@ -178,8 +189,14 @@ session_start();
                                     </div> 
                                     <div class="col-sm-6">
                                         <div class="form-group">
+                                            <label>Staff Name</label>
+                                            <input name="staffname" class="form-control" type="text"  placeholder="Required for Staff login" required>
+                                        </div>
+                                    </div> 
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
                                             <label>Password</label>
-                                            <input name="password" class="form-control" type="text" required>
+                                            <input name="password" class="form-control" type="password" pattern="^(?=.*[a-zA-Z])(?=\w*[0-9])\w{6,12}$" title="Must contain at least one number and one letter, and at least 6 to 12 characters (special characters not allowed)" required>
                                         </div>
                                     </div>
                                     

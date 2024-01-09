@@ -1,25 +1,33 @@
+<?php include("../protect.php");
+notAuthenticated("admin", "login.php"); // if user not authenticated and redirect to login
+$Aid = $_SESSION["user_id"];
+
+require "db_connection.php";
+$query = "SELECT * FROM admins WHERE admin_id = $Aid"; 
+
+$results = mysqli_query($conn, $query);
+$Irow = mysqli_fetch_assoc($results);
+$aname=$Irow["username"];
+$aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
+
+?>
 <?php
 include 'db_connection.php';
-session_start();
+
 // if(!isset($_SESSION["id"])){
 //     header("Location:login.php");
 //     exit();
 //     }
 
 
+$Sid = $_GET['Sid'];
 
-    $Sid = $_GET['Sid'];
+$query = "SELECT * FROM staffs WHERE staff_id = $Sid"; 
 
-    $query = "SELECT * FROM staffs WHERE staff_id = $Sid "; 
+$results = mysqli_query($conn, $query);
+$Irow = mysqli_fetch_assoc($results);
 
-    $results = mysqli_query($conn, $query);
-    $Irow = mysqli_fetch_assoc($results);
-
-    if ($Irow = mysqli_fetch_assoc($results)) {
-        $simage = $Irow['image'];
-    } else {
-        $simage ="./admin_pro/default_pic.jpg"; 
-    }
+$simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
 
 ?>
 
@@ -84,8 +92,8 @@ if(isset($_GET['Sid'])){
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
-                                <img src="assets/images/comment.jpg" alt="">
-                                <span>My Account </span>
+                            <img src="./admin_pro/<?php echo $aimage?>" alt="">
+                                <span><?php echo"$aname";?></span>
                                 <i class="fas fa-caret-down"></i>
                             </div>
                         </a>
@@ -154,7 +162,7 @@ if(isset($_GET['Sid'])){
                            
                                     <div class="col-sm-6">     
                                         <div class="form-group" style="border-radius:50px; width:30%;">
-                                        <img src="<?php echo $simage; ?>" alt="Staff image">
+                                        <img src="../Staff/staff_pro/<?php echo $simage; ?>" alt="Staff image">
                                         
                                         </div>
                                         

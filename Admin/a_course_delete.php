@@ -1,9 +1,9 @@
 <?php
 include "db_connection.php";
 
-$c_id= $_GET['c_id'];
+$course_id= $_GET['course_id'];
 
-$sql="DELETE FROM `courses` where c_id={$_GET['c_id']}";
+$sql="DELETE FROM `courses` where course_id={$_GET['course_id']}";
 $query=mysqli_query($conn,$sql);
     if ($query)
     {	

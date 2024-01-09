@@ -131,6 +131,10 @@ session_start();
                                             <label class="form-label" for="last_name">Last Name</label>
                                             <input type="text" name="last_name" id="last_name" class="form-control form-control-lg" />
                                         </div>
+                                        <div class="form-outline mb-4">
+                                            <label class="form-label" for="username">Username</label>
+                                            <input type="text" name="username" id="username" class="form-control form-control-lg" />
+                                        </div>
                                         <label class="form-label" for="category">Gender</label>
                                         <div class="form-outline justify-content-start border border-1 py-2 d-flex  mb-5">
                                             <div class="my-1">

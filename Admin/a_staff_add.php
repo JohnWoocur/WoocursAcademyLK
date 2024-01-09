@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header('location:admin_staff_add.php');
                 $_SESSION['Emsg'] = "Staff Email Already Taken. Please Use Different Email";
             } else {
-                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                $hashed_password = hash('md5',$password);
                 $query = "INSERT INTO `staffs`(`first_name`, `last_name`, `gender`, `dob`, `contact_no`, `email`, `address`, `qualification`, `password`, `status`, `department`, `salary`, `username`) VALUES ('$Firstname','$Lastname','$gender','$date','$phone','$email','$Address','$qualification','$hashed_password','$status','$department','$salary','$staffname')";
 
                 $result = mysqli_query($conn, $query);

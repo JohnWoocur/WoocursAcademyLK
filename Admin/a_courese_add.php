@@ -37,7 +37,7 @@ $query=mysqli_query($conn,$sql);
 if($query)
 {	
 	//echo "Package Added successfully!";
-	header("Location:a_course_addform.php");
+	header("Location:admin_course.php");
 }
 else 
 {

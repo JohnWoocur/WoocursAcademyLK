@@ -119,10 +119,10 @@
      <?php 
         include "db_connection.php";
 
-        $c_id= $_GET['c_id'];
-        echo "$c_id";
+        $course_id= $_GET['course_id'];
+        echo "$course_id";
 
-        $query= "SELECT * FROM `courses` WHERE c_id ='$c_id'";
+        $query= "SELECT * FROM `courses` WHERE course_id ='$course_id'";
         $check=mysqli_query($conn,$query);
 
         if ($check){
@@ -165,7 +165,7 @@
                         </div>
                         
                     </div>
-                    <a class="btn btn-primary py-3 px-5 mt-2" href="">Apply Now</a>
+                    <a class="btn btn-primary py-3 px-5 mt-2" href="Student/student_course_apply.php">Apply Now</a>
                 </div>
             </div>
         </div>

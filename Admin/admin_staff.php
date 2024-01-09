@@ -1,7 +1,10 @@
+<?php include("../protect.php");
+notAuthenticated("admin", "login.php"); // if user not authenticated and redirect to login
+?>
 <!doctype html>
 <html lang="en">
 
-<?php session_start(); ?>
+
    <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">

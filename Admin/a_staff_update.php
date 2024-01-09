@@ -1,7 +1,10 @@
+<?php include("../protect.php");
+notAuthenticated("admin", "login.php"); // if user not authenticated and redirect to login
+?>
 <?Php
 
 require "db_connection.php";
- session_start();
+ 
  if($_SERVER["REQUEST_METHOD"]=="POST"){
     $salary = $_POST['salary'];
     $sid = $_POST['staffid'];

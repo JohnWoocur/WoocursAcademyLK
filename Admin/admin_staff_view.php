@@ -1,6 +1,9 @@
+<?php include("../protect.php");
+notAuthenticated("admin", "login.php"); // if user not authenticated and redirect to login
+?>
 <?php
 include 'db_connection.php';
-session_start();
+
 // if(!isset($_SESSION["id"])){
 //     header("Location:login.php");
 //     exit();

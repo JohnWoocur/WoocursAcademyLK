@@ -68,7 +68,7 @@
                         <li><a href="a_studentlist.php"><i class="fa fa-users"></i>Students</a> </li>   
                         <li><a href="course.php"><i class="fa fa-book"></i> Courses </a></li>   
                         <li><a href="admin_leave_list.php"><i class="fa fa-calendar-times-o"></i>Manage Staff Leave</a></li>
-                        <li><a href="payments.php"> <i class='fa fa-credit-card'></i> Payments </a></li>
+                        <li><a href="admin_payment.php"> <i class='fa fa-credit-card'></i> Payments </a></li>
                         <li><a href="salary.php"><i class="fas fa-money"></i> Salary </a></li>
 
                   

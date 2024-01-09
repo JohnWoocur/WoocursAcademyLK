@@ -72,35 +72,22 @@ input[type=date] ,[type=file] ,[type=number]{
 
  
 
-/* input[type=submit]{
+.sub_btn{
  
-  background-color: #09044d;
+  background-color: #067223;
   color: white;
   padding: 12px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   margin-left:40%;
-} */
-
-/* input[type=submit]:hover {
-  background-color: #45a049;
 }
 
-.r_btn button{
+.sub_btn:hover {
+  background-color: #0bb5cb;
+}
+
  
-  background-color: #09044d;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left:40%;
-} */
-
-.r_btn:hover {
-  background-color: #45a049;
-}
 
 
 

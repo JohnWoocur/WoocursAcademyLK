@@ -224,11 +224,11 @@
                                                         alt="">
                                                     <div
                                                         class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                                        <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end"
-                                                            style="border-radius: 30px 0 0 30px;">EDIT</a>
-                                                        <a href='a_course_delete.php? c_id=<?php echo $row["c_id"]; ?>'
+                                                        <a href="../course_details.php?course_id=<?php echo $row["course_id"]; ?>" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end"
+                                                            style="border-radius: 30px 0 0 30px;">Show more</a>
+                                                        <a href="student_course_apply.php"
                                                             class="flex-shrink-0 btn btn-sm btn-primary px-3"
-                                                            style="border-radius: 0 30px 30px 0;">DELETE</a>
+                                                            style="border-radius: 0 30px 30px 0;">Apply</a>
                                                     </div>
                                                 </div>
                                                 <div class="text-center p-4 pb-0">

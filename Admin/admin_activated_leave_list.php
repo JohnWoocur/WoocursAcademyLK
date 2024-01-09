@@ -1,4 +1,6 @@
-<!doctype html>
+<?php include("../protect.php");
+notAuthenticated("admin", "login.php"); // if user not authenticated and redirect to login
+?><!doctype html>
 <html lang="en">
    <head>
       <!-- Required meta tags -->

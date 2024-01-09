@@ -14,12 +14,12 @@ $sql="INSERT INTO `leaves`( `staff_id`, `type`, `description`, `start_date`, `en
 
 $result =mysqli_query($conn,$sql);
 if ($result){
-    $_SESSION['Booksmsg']="Leave Request successfuly!";
-	header("Location: staff_dashboard.php");
+    $_SESSION['message']="Leave Request successfuly send !";
+	header("Location: staff_leave_list.php");
     
 }else{
-    $_SESSION['Bookemsg']="Leave Request Failed!";
-	header("Location: staff_dashboard.php");
+    $_SESSION['message']="Leave Request Failed!";
+	header("Location: staff_leave.php");
 }
 
 

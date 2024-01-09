@@ -1,12 +1,12 @@
 <?php include("../protect.php");
 notAuthenticated("admin", "login.php"); // if user not authenticated and redirect to login
 ?>
-<?php 
- require 'db_connection.php';
- 
+<?php
+require 'db_connection.php';
 
- if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     $Firstname = $_POST['firstname'];
     $Lastname = $_POST['lastname'];
     $gender = $_POST['gender'];
@@ -21,7 +21,7 @@ notAuthenticated("admin", "login.php"); // if user not authenticated and redirec
     $salary = $_POST['salary'];
     $status = "Active";
 
-    
+
     $sql = "SELECT * FROM staffs WHERE contact_no = '$phone'";
     $result = mysqli_query($conn, $sql);
 
@@ -29,7 +29,7 @@ notAuthenticated("admin", "login.php"); // if user not authenticated and redirec
         header('location:admin_staff_add.php');
         $_SESSION['Emsg'] = "Staff Contact NO Already Taken";
     } else {
-        
+
         $sql = "SELECT * FROM staffs WHERE username = '$staffname'";
         $result = mysqli_query($conn, $sql);
 
@@ -37,7 +37,7 @@ notAuthenticated("admin", "login.php"); // if user not authenticated and redirec
             header('location:admin_staff_add.php');
             $_SESSION['Emsg'] = "Staff Name Already Taken. Please Use Different Staff Name";
         } else {
-            
+
             $sql = "SELECT * FROM staffs WHERE email = '$email'";
             $result = mysqli_query($conn, $sql);
 
@@ -45,8 +45,8 @@ notAuthenticated("admin", "login.php"); // if user not authenticated and redirec
                 header('location:admin_staff_add.php');
                 $_SESSION['Emsg'] = "Staff Email Already Taken. Please Use Different Email";
             } else {
-                
-                $query = "INSERT INTO `staffs`(`first_name`, `last_name`, `gender`, `dob`, `contact_no`, `email`, `address`, `qualification`, `password`, `status`, `department`, `salary`, `username`) VALUES ('$Firstname','$Lastname','$gender','$date','$phone','$email','$Address','$qualification','$password','$status','$department','$salary','$staffname')";
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                $query = "INSERT INTO `staffs`(`first_name`, `last_name`, `gender`, `dob`, `contact_no`, `email`, `address`, `qualification`, `password`, `status`, `department`, `salary`, `username`) VALUES ('$Firstname','$Lastname','$gender','$date','$phone','$email','$Address','$qualification','$hashed_password','$status','$department','$salary','$staffname')";
 
                 $result = mysqli_query($conn, $query);
 
@@ -63,6 +63,6 @@ notAuthenticated("admin", "login.php"); // if user not authenticated and redirec
 }
 ?>
 
- 
+
 
 ?>

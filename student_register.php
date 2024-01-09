@@ -17,8 +17,8 @@ if ($password !== $confirm_password) {
     $_SESSION["error"] = "Password miss match!";
     header("Location: register.php");
 }
-
-$sql = "INSERT INTO `students` (`first_name`, `last_name`, `gender`, `category`, `email`, `contact_no`, `dob`, `department`, `password`, `image`) VALUES ('$first_name', '$last_name', '$gender', '$category', '$email', '$contact_no', '$dob', '$department', '$password', 'default_pic.jpg')";
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+$sql = "INSERT INTO `students` (`first_name`, `last_name`, `gender`, `category`, `email`, `contact_no`, `dob`, `department`, `password`, `image`) VALUES ('$first_name', '$last_name', '$gender', '$category', '$email', '$contact_no', '$dob', '$department', '$hashed_password', 'default_pic.jpg')";
 
 try {
     $result = mysqli_query($conn, $sql);

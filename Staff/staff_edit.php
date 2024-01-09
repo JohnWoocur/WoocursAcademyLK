@@ -1,6 +1,19 @@
+<?php include("../protect.php");
+notAuthenticated("staff", "login.php"); // if user not authenticated and redirect to login
+$Sid = $_SESSION["user_id"];
+
+require "db_connection.php";
+$query = "SELECT * FROM staffs WHERE staff_id = $Sid"; 
+
+$results = mysqli_query($conn, $query);
+$Irow = mysqli_fetch_assoc($results);
+$sname=$Irow["username"];
+$simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
+
+?>
 <!doctype html>
 <html lang="en">
-   <h   <!-- Required meta tags -->
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- favicon -->
@@ -43,8 +56,8 @@
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
-                                <img src="assets/images/comment.jpg" alt="">
-                                <span>My Account </span>
+                                <img src="./staff_pro/<?php echo $simage?>" alt="">
+                                <span><?php echo"$sname";?></span>
                                 <i class="fas fa-caret-down"></i>
                             </div>
                         </a>
@@ -81,6 +94,27 @@
             </div>
         </div>
         <div class="db-info-wrap">
+        <?php
+                    
+                    if(isset($_SESSION['Smsg'])):
+                    ?>
+                    <div class="form-group">
+                        <label class="badge badge-success"><?php echo $_SESSION['Smsg']; ?></label>
+                    </div>
+                    <?php
+                    unset($_SESSION['Smsg']);
+                    endif;
+                    ?>
+                    <?php
+                    if(isset($_SESSION['Emsg'])):
+                    ?>
+                    <div class="form-group">
+                    <label class="badge badge-danger"><?php echo $_SESSION['Emsg']; ?></label>
+                    </div>
+                    <?php
+                    unset($_SESSION['Emsg']);
+                    endif;
+                    ?>
                 <div class="row">
                     <div class="col-lg-12">
                         
@@ -101,7 +135,7 @@
             </div>
             <?php
             include "db_connection.php";
-            $id=1;
+            $id= $_SESSION["user_id"];
 
                 $sql="SELECT * FROM `staffs`WHERE staff_id='$id'";
                 $check=mysqli_query($conn,$sql);
@@ -120,7 +154,7 @@
                     }
                 }        
              ?>
-            <form action="sta_update.php" method="post" enc="multipart/form-data">
+            <form action="sta_update.php" method="post" enctype="multipart/form-data">
                 <h3> Profile</h3>
                 
                 <div class="form-wrapper">

@@ -10,19 +10,14 @@ include 'db_connection.php';
 //     }
 
 
+$Sid = $_GET['Sid'];
 
-    $Sid = $_GET['Sid'];
+$query = "SELECT * FROM staffs WHERE staff_id = $Sid"; 
 
-    $query = "SELECT * FROM staffs WHERE staff_id = $Sid "; 
+$results = mysqli_query($conn, $query);
+$Irow = mysqli_fetch_assoc($results);
 
-    $results = mysqli_query($conn, $query);
-    $Irow = mysqli_fetch_assoc($results);
-
-    if ($Irow = mysqli_fetch_assoc($results)) {
-        $simage = $Irow['image'];
-    } else {
-        $simage ="./admin_pro/default_pic.jpg"; 
-    }
+$simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
 
 ?>
 
@@ -157,7 +152,7 @@ if(isset($_GET['Sid'])){
                            
                                     <div class="col-sm-6">     
                                         <div class="form-group" style="border-radius:50px; width:30%;">
-                                        <img src="<?php echo $simage; ?>" alt="Staff image">
+                                        <img src="../Staff/staff_pro/<?php echo $simage; ?>" alt="Staff image">
                                         
                                         </div>
                                         

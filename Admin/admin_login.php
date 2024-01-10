@@ -5,8 +5,8 @@ session_start();
 
 $username = $_POST["username"];
 $password = $_POST["password"];
-
-$sql = "SELECT * FROM admins WHERE username = '$username' AND password = '$password'";
+$hashed_password = hash('md5',$password);
+$sql = "SELECT * FROM admins WHERE username = '$username' AND password = '$hashed_password'";
 
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {

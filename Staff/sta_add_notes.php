@@ -1,9 +1,10 @@
 
 <?php
+session_start();
 
 require 'db_connection.php';
 $cid=$_POST['cid'];
-$sid=$_POST['sid'];
+$sid=$_SESSION["user_id"];
 // $Lecture_id=1;
 
 $fileName = $_FILES["file"]["name"];

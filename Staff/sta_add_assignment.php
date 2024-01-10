@@ -1,9 +1,10 @@
 <?php
+session_start();
 
 require 'db_connection.php';
 $Cid=$_POST['cid'];
 // $lid=$_POST['lid'];
-$Lecture_id=1;
+$Lecture_id=$_SESSION["user_id"];
 
 $postdate=$_POST['pdate'];
 $deadline=$_POST['ddate'];
@@ -23,7 +24,7 @@ if($result){
     header('location:staff_assigment.php');
 }
 else{
-    header('location:staff_assigment.php');
+    header('location:staff_add_assigment.php');
 }
 
 ?>

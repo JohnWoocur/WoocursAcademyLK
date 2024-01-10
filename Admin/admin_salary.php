@@ -1,3 +1,7 @@
+<?php include("../protect.php");
+notAuthenticated("admin", "login.php"); // if user not authenticated and redirect to login
+?>
+
 <?php
 session_start();
 require "db_connection.php";

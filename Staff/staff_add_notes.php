@@ -91,8 +91,23 @@ notAuthenticated("staff", "login.php"); // if user not authenticated and redirec
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Course Id</label>
-                                            <input name="cid" class="form-control" type="text" required>
+                                        <label for="course_id"> Course ID </label>
+                                            <select id="course_id" name="course_id" required>
+                                            
+                                             <?php 
+                                             require "db_connection.php";
+                                             
+                                                $query = "SELECT course_id FROM courses";
+                                                $result = mysqli_query($conn, $query);
+                                                while ($row = $result->fetch_assoc()) {
+                                                    echo "<option value='" . $row['course_id'] . "'>" . $row['course_id'] . "</option>";
+                                                }
+                                                
+                                                ?>
+                                            
+
+
+                                            </select>
                                         </div>
                                     </div>
 

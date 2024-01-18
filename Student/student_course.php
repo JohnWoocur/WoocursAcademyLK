@@ -226,7 +226,7 @@
                                                         class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
                                                         <a href="../course_details.php?course_id=<?php echo $row["course_id"]; ?>" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end"
                                                             style="border-radius: 30px 0 0 30px;">Show more</a>
-                                                        <a href="student_course_apply.php"
+                                                        <a href="student_course_apply.php?course_id=<?php echo $row["course_id"]; ?>"
                                                             class="flex-shrink-0 btn btn-sm btn-primary px-3"
                                                             style="border-radius: 0 30px 30px 0;">Apply</a>
                                                     </div>

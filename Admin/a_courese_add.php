@@ -42,7 +42,7 @@ if($query)
 else 
 {
   //echo "Package Added failure!";
-  header("Location: index.php");
+  header("Location: a_course_addform.php");
 }
 
 ?>

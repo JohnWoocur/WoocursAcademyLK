@@ -154,6 +154,9 @@
                         <div class="col-sm-6">
                             <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Duration :<?php echo $row['duration']; ?>  </p>
                         </div>
+                        
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Duration :<?php echo $row['course_id']; ?>  </p> 
+                        
                         <div class="col-sm-6">
                             <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i> Course Fees :<?php echo $row['fees']; ?> </p>
                         </div>
@@ -165,7 +168,7 @@
                         </div>
                         
                     </div>
-                    <a class="btn btn-primary py-3 px-5 mt-2" href="Student/student_course_apply.php">Apply Now</a>
+                    <a class="btn btn-primary py-3 px-5 mt-2" href="Student/student_course_apply.php?course_id=<?php echo $row["course_id"]; ?>">Apply Now</a>
                 </div>
             </div>
         </div>

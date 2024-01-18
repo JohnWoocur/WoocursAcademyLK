@@ -1,3 +1,6 @@
+<?php include("../protect.php");
+notAuthenticated("student", "login.php"); // if user not authenticated and redirect to login
+?>
 <!doctype html>
 <html lang="en">
 

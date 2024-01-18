@@ -155,7 +155,7 @@
                             <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Duration :<?php echo $row['duration']; ?>  </p>
                         </div>
                         
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Duration :<?php echo $row['course_id']; ?>  </p> 
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Duration :<?php echo $row['course_id']; ?> hidden  </p> 
                         
                         <div class="col-sm-6">
                             <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i> Course Fees :<?php echo $row['fees']; ?> </p>

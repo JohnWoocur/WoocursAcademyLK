@@ -52,7 +52,7 @@ $fees=$row["fees"];
     <input type="text" id="last_name" name="category" value="<?php echo $cate ;?>" placeholder="student category">
 
     
-    <input type="text" id="course_id" name="course_id" value="<?php echo $cid ;?>" >
+    <input type="text" id="course_id" name="course_id" value="<?php echo $cid ;?>" hidden >
 
     <label for="course"> Cousrse</label>
     <input type="text" id="course_name" name="course_name" value="<?php echo $course_name ;?>" placeholder="Course name..">

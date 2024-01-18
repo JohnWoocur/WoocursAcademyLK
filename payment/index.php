@@ -2,7 +2,7 @@
 notAuthenticated("student", "login.php"); // if user not authenticated and redirect to login 
 $Stid=$_SESSION['user_id'];
 require "db_connection.php";
-$query = "SELECT * FROM payments WHERE student_id = $Stid"; 
+$query = "SELECT * FROM students WHERE student_id = $Stid"; 
 
 $results = mysqli_query($conn, $query);
 $row = mysqli_fetch_assoc($results);
@@ -10,7 +10,7 @@ $first=$row["first_name"];
 $last=$row["last_name"];
 $email=$row["email"];
 $gender=$row["gender"];
-$address=$row["address"];
+
 
 
 
@@ -56,7 +56,7 @@ $address=$row["address"];
             </div>
             <div class="input_group">
                 <div class="input_box">
-                    <input type="text" placeholder="Address" name="address" value="<?php echo $address ;?>" required class="name">
+                    <input type="text" placeholder="Address" name="address"  required class="name">
                     <i class="fa fa-map-marker icon" aria-hidden="true"></i>
                 </div>
             </div>

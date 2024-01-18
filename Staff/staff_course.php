@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- favicon -->
         <link rel="icon" type="image/png" href="../assets/images/favicon.png">
@@ -16,31 +16,29 @@
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <!-- Custom CSS -->
         <link rel="stylesheet" type="text/css" href="style.css">
-        <title>Woocurs Academy</title>
+        <title>Woocurs Academy LK</title>
 
-
-        <!-- course design files -->
         <!-- Favicon -->
-            <link href="assets/c_css/img/favicon.ico" rel="icon">
+        <link href="assets/c_css/img/favicon.ico" rel="icon">
 
-            <!-- Google Web Fonts -->
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<!-- Google Web Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
 
-            <!-- Icon Font Stylesheet -->
-            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+<!-- Icon Font Stylesheet -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-            <!-- Libraries Stylesheet -->
-            <link href="assets/c_css/lib/animate/animate.min.css" rel="stylesheet">
-            <link href="assets/c_css/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+<!-- Libraries Stylesheet -->
+<link href="assets/c_css/lib/animate/animate.min.css" rel="stylesheet">
+<link href="assets/c_css/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-            <!-- Customized Bootstrap Stylesheet -->
-            <link href="assets/c_css/css/bootstrap.min.css" rel="stylesheet">
+<!-- Customized Bootstrap Stylesheet -->
+<link href="assets/c_css/css/bootstrap.min.css" rel="stylesheet">
 
-            <!-- Template Stylesheet -->
-            <link href="assets/c_css/css/style.css" rel="stylesheet">
+<!-- Template Stylesheet -->
+<link href="assets/c_css/css/style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -62,6 +60,98 @@
                         </form>
                     </div>
                     <div class="dropdown">
+                        <a class="dropdown-toggle" id="notifyDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="dropdown-item">
+                                <i class="far fa-envelope"></i>
+                                <span class="notify">3</span>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu notification-menu" aria-labelledby="notifyDropdown">
+                            <h4> 3 Notifications</h4>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <div class="list-img">
+                                            <img src="assets/images/comment.jpg" alt="">
+                                        </div>
+                                        <div class="notification-content">
+                                            <p>You have a notification.</p>
+                                            <small>2 hours ago</small>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="list-img">
+                                            <img src="assets/images/comment2.jpg" alt="">
+                                        </div>
+                                        <div class="notification-content">
+                                            <p>You have a notification.</p>
+                                            <small>2 hours ago</small>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="list-img">
+                                            <img src="assets/images/comment3.jpg" alt="">
+                                        </div>
+                                        <div class="notification-content">
+                                            <p>You have a notification.</p>
+                                            <small>2 hours ago</small>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                            <a href="#" class="all-button">See all messages</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            <div class="dropdown-item">
+                                <i class="far fa-bell"></i>
+                                <span class="notify">3</span>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu notification-menu">
+                            <h4> 3 Messages</h4>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <div class="list-img">
+                                            <img src="assets/images/comment4.jpg" alt="">
+                                        </div>
+                                        <div class="notification-content">
+                                            <p>You have a notification.</p>
+                                            <small>2 hours ago</small>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="list-img">
+                                            <img src="assets/images/comment5.jpg" alt="">
+                                        </div>
+                                        <div class="notification-content">
+                                            <p>You have a notification.</p>
+                                            <small>2 hours ago</small>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="list-img">
+                                            <img src="assets/images/comment6.jpg" alt="">
+                                        </div>
+                                        <div class="notification-content">
+                                            <p>You have a notification.</p>
+                                            <small>2 hours ago</small>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                            <a href="#" class="all-button">See all messages</a>
+                        </div>
                     </div>
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
@@ -71,39 +161,36 @@
                                 <i class="fas fa-caret-down"></i>
                             </div>
                         </a>
-                    </a>
-                    <div class="dropdown-menu account-menu">
-                        <ul>
-                            <li><a href="staff_edit.php"><i class="fas fa-cog"></i>Edit Profile</a></li>
-                            <li><a href="staff_profilecard.php"><i class="fas fa-user-tie"></i>Profile</a></li>
-                            <li><a href="staff_change_password.php"><i class="fas fa-key"></i>Password</a></li>
-                            <li><a href="login.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
-                        </ul>
+                        <div class="dropdown-menu account-menu">
+                            <ul>
+                                <li><a href="student_edit.php"><i class="fas fa-cog"></i>Edit Profile</a></li>
+                                <li><a href="student_profilecard.php"><i class="fas fa-user-tie"></i>Profile</a></li>
+                                <li><a href="user-change-password.php"><i class="fas fa-key"></i>Password</a></li>
+                                <li><a href="login.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="dashboard-navigation">
-            <!-- Responsive Navigation Trigger -->
-            <div id="dashboard-Navigation" class="slick-nav"></div>
-            <div id="navigation" class="navigation-container">
-                <ul>
-                    <li><a href="staff_dashboard.php"><i class="far fa-chart-bar"></i> Dashboard</a></li>
-                    <li><a href="staff_edit.php"><i class="fas fa-user"></i>Edit Profile</a> </li>
-                    <li class="active-menu"><a href="staff_course.php"> <i class='fa fa-book'></i>Course</a></li>
-                    <li ><a href="staff_notes.php"> <i class='fa fa-sticky-note-o'></i>Notes</a></li>
-                    </li>
-                    <li><a href="staff_assigment.php"><i class="fa fa-tasks"></i>Assigment</a></li>
-
-                    <li><a href="staff_calander.php"><i class="fa fa-calendar"></i> Calander </a></li>
-                    <li><a href="staff_salary.php"><i class="fa fa-money"></i>Salary</a></li>
-                    
-                    <li><a href="staff_leave.php"><i class="fa fa-calendar-times-o"></i>Leaves</a></li>
-                    <li><a href="login.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-                </ul>
+            <div class="dashboard-navigation">
+                <!-- Responsive Navigation Trigger -->
+                <div id="dashboard-Navigation" class="slick-nav"></div>
+                <div id="navigation" class="navigation-container">
+                    <ul>
+                        <li class="active-menu"><a href="student_dashboard.php"><i class="far fa-chart-bar"></i> Dashboard</a></li>
+                        <li><a href="student_profilecard.php"><i class="fas fa-user"></i> Profile</a> </li>
+                        <li><a href="student_course.php"><i class="fa fa-book"></i> Course</a></li>
+                        <li><a href="student_notes.php"><i class="fa fa-sticky-note-o"></i> Notes</a></li>
+                        <li><a href="student_assignment.php"><i class="fa fa-tasks"></i> Assignments </a></li>
+                        <li><a href="calender.php"><i class="fa fa-calendar"></i> Calendar</a></li>
+                        <li><a href="student_payment.php"> <i class='fa fa-credit-card'></i> Payment</a></li>
+                        <li><a href="login.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-            <!---course-->
+            <!-- contents satrt -->
+
+             <!---course-->
             <div class="db-info-wrap db-wislist-wrap">
                 <div class="dashboard-box ">
                     <div class="row">
@@ -137,11 +224,11 @@
                                                         alt="">
                                                     <div
                                                         class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                                        <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end"
-                                                            style="border-radius: 30px 0 0 30px;">EDIT</a>
-                                                        <a href='a_course_delete.php? course_id=<?php echo $row["course_id"]; ?>'
+                                                        <a href="../course_details.php?course_id=<?php echo $row["course_id"]; ?>" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end"
+                                                            style="border-radius: 30px 0 0 30px;">Show more</a>
+                                                        <!-- <a href="student_course_apply.php"
                                                             class="flex-shrink-0 btn btn-sm btn-primary px-3"
-                                                            style="border-radius: 0 30px 30px 0;">DELETE</a>
+                                                            style="border-radius: 0 30px 30px 0;">Apply</a> -->
                                                     </div>
                                                 </div>
                                                 <div class="text-center p-4 pb-0">
@@ -192,11 +279,14 @@
         <!-- Dashboard / End -->
     </div>
     <!-- end Container Wrapper -->
+    </div>
+    <!-- end Container Wrapper -->
     <!-- *Scripts* -->
     <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/canvasjs.min.js"></script>
+    <script src="assets/js/chart.js"></script>
     <script src="assets/js/counterup.min.js"></script>
     <script src="assets/js/jquery.slicknav.js"></script>
     <script src="assets/js/dashboard-custom.js"></script>

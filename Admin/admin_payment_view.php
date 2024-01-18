@@ -1,5 +1,49 @@
+<?php include("../protect.php");
+notAuthenticated("admin", "login.php"); // if user not authenticated and redirect to login
+$Aid = $_SESSION["user_id"];
+
+require "db_connection.php";
+$query = "SELECT * FROM admins WHERE admin_id = $Aid"; 
+
+$results = mysqli_query($conn, $query);
+$Irow = mysqli_fetch_assoc($results);
+$aname=$Irow["username"];
+$aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
+
+?>
 <?php
 include 'db_connection.php';
+
+// if(!isset($_SESSION["id"])){
+//     header("Location:login.php");
+//     exit();
+//     }
+
+
+$$Stuid = $_GET['$Stuid'];
+
+$query = "SELECT * FROM payments WHERE student_id = $$Stuid"; 
+
+$results = mysqli_query($conn, $query);
+$Irow = mysqli_fetch_assoc($results);
+
+$simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
+
+?>
+
+
+<?php
+if(isset($_GET['$Stuid'])){
+    $$Stuid = $_GET['$Stuid'] ;
+
+
+    $query = "SELECT * FROM payments WHERE student_id = $$Stuid "; 
+
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    $sName = $row['first_name'] . " " . $row["last_name"];
+}
+   
 ?>
 
 
@@ -20,6 +64,54 @@ include 'db_connection.php';
       <!-- Custom CSS -->
       <link rel="stylesheet" type="text/css" href="style.css">
       <title>WoocursacademyLK</title>
+      <style>
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      font-weight: bold;
+      padding-top: 1em;
+      margin-bottom: -0.5em;
+    }
+
+    form {
+      padding: 40px;
+    }
+
+    input,
+    textarea {
+      margin: 5px;
+      font-size: 1.1em !important;
+      outline: none;
+    }
+
+    label {
+      margin-top: 2em;
+      font-size: 1.1em !important;
+    }
+
+    label.form-check-label {
+      margin-top: 0px;
+    }
+
+    #err {
+      display: none;
+      padding: 1.5em;
+      padding-left: 4em;
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-top: 1em;
+    }
+
+    table{
+      width: 90% !important;
+      margin: 1.5rem auto !important;
+      font-size: 1.1em !important;
+    }
+
+    .error{
+      color: #FF0000;
+    }
+  </style>
 </head>
 <body>
 
@@ -182,55 +274,115 @@ include 'db_connection.php';
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="dashboard-box">
+                        <?php
+                    
+                    if(isset($_SESSION['Smsg'])):
+                    ?>
+                    <div class="form-group">
+                        <label class="badge badge-success"><?php echo $_SESSION['Smsg']; ?></label>
+                    </div>
+                    <?php
+                    unset($_SESSION['Smsg']);
+                    endif;
+                    ?>
+                    <?php
+                    if(isset($_SESSION['Emsg'])):
+                    ?>
+                    <div class="form-group">
+                    <label class="badge badge-danger"><?php echo $_SESSION['Emsg']; ?></label>
+                    </div>
+                    <?php
+                    unset($_SESSION['Emsg']);
+                    endif;
+                    ?>
                             <h4>payment Details</h4>
-                            <p>Users</p>
-                            <div class="table-responsive">
-                               
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Student ID</th>
-                                            <th>Name</th>
-                                            <!-- <th>Contect No</th> -->
-                                            <th>Email</th>
-                                            <th>Slip</th>
-                                            <th>Status</th>
-                                            <th>action</th>
-                                        </tr>
-                                    </thead>
-                                <?php
-                                    include "db_connection.php";
-                                    $result = mysqli_query($conn,"SELECT * FROM payments");
+                            <div class="col-sm-6">     
+                                        <div class="form-group" style="border-radius:50px; width:30%;">
+                                            <img src="../payment/images/<?php echo $simage; ?>" alt=" image">
+                                        
+                                        </div>
+                                        
+                                <form action="payment.php" method="POST" enctype="multipart/form-data">
+                                    <!--Account Information Start-->
+                                    <h4>Account</h4>
+                                    <div class="input_group">
+                                        <div class="input_box">
+                                            <input type="text" placeholder="First Name" name="<?php echo $row['first_name']; ?>" required class="name" >
+                                            <i class="fa fa-user icon"></i>
+                                        </div>
+                                        <div class="input_box">
+                                            <input type="text" placeholder="Last Name" name="<?php echo $row['last_name']; ?>" required class="name" name="">
+                                            <i class="fa fa-user icon"></i>
+                                        </div>
+                                    </div>
+                                    <div class="input_group">
+                                        <div class="input_box">
+                                            <input type="email" placeholder="Email Address" name="<?php echo $row['email']; ?>" required class="name">
+                                            <i class="fa fa-envelope icon"></i>
+                                        </div>
+                                    </div>
+                                    <div class="input_group">
+                                        <div class="input_box">
+                                            <input type="text" placeholder="Address" name="<?php echo $row['address']; ?>" required class="name">
+                                            <i class="fa fa-map-marker icon" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <div class="input_group">
+                                        <div class="input_box">
+                                            <input type="number" placeholder="Phone Number" name="<?php echo $row['phone_no']; ?>" required class="name">
+                                            <i class="fa fa-phone icon"></i>
+                                        </div>
+                                    </div>
+                                    <div class="input_group">
+                                        <div class="input_box">
+                                            <input type="text" placeholder="Course Name" name="<?php echo $row['course']; ?>" required class="name">
+                                            <i class="fa fa-book icon"></i>
+                                        </div>
+                                    </div>
+                                    <div class="input_group">
+                                        <div class="input_box">
+                                            <input type="text" placeholder="Slip No" name="<?php echo $row['slip_no']; ?>" required class="name">
+                                            <i class="fa fa-pencil icon"></i>
+                                        </div>
+                                    </div>
+                                    <div class="input_group">
+                                        <div class="input_box">
+                                            <input type="date" placeholder="DD.MM.YYYY" name="<?php echo $row['dob']; ?>" required class="name">
+                                            <i class="fa fa-calendar icon"></i>
+                                        </div>
+                                    </div>
+                                    <div class="input_group">
+                                        <div class="input_box">
+                                            <input type="text" placeholder="Gender" name="<?php echo $row['gender']; ?>" required class="name">
+                                            <i class="fa fa-users icon"></i>
+                                            <!-- <select name="gender">
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                            </select> -->
+                                        </div>
+                                    </div>
 
-                                    ?>
 
-                                    <tbody>
-                                        <?php
+                                    <!--Payment Details Start-->
+                                    <div class="input_group">
+                                        <div class="input_box">
+                                            <!-- <input type="radio" name="photo" class="radio" id="bc1" checked>
+                                            <label for="bc1"><span>
+                                                    <i class="fa fa-cc-visa"></i>Credit Card</span></label> -->
+                                            <input type="file" name="image" class="radio" id="bc2"  for="file" accept="image/*">
+                                            <label for="bc2" ><span>
+                                                    <i class="fa fa-cc-slip"></i>Slip</span></label>
+                                        </div>
+                                    </div>
+                                
 
-                                    while($row = $result->fetch_assoc()) {
-                                        ?>
-
-                                        <tr>
-                                        <?php 
-                                            echo'<td>'.$row["student_id"].'</td>';
-                                            echo'<td>'.$row["last_name"].'</td>';
-                                            // echo'<td>'.$row["phone_no"].'</td>';
-                                            echo'<td>'.$row["email"].'</td>';
-                                            echo'<td>'.$row["photo"].'</td>';
-                                            echo'<td>'.$row["status"].'</td>';
-                                            ?>
-                                            <td>
-                                                <a href="a_approvepay.php ?pay_id=<?php  echo $row["pay_id"]; ?> "><span class="badge badge-success"><i class="far fa-check-circle"></i></span></a>
-                                                <a href="admin_payment_view.php ?pay_id=<?php  echo $row["pay_id"]; ?> "><span class="badge badge-success"><i class="far fa-eye"></i></span></a>
-                                                <a href="a_rejectpay.php ?pay_id=<?php  echo $row["pay_id"]; ?> "><span class="badge badge-danger"><i class="far fa-trash-alt"></i></span></a>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                    }
-                                    $conn->close();
-                                        ?>
-                                        </tbody>
-                                </table>
+                                    <div class="input_group">
+                                        <div class="input_box">
+                                            <button type="submit" name="submit">PAY NOW</button>
+                                        </div>
+                                    </div>
+                                    <!-- <?php  ?> -->
+                                </form>
                             </div>
                         </div>
                     </div>  

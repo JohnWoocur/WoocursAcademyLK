@@ -66,18 +66,16 @@ notAuthenticated("staff", "login.php"); // if user not authenticated and redirec
                 <div id="dashboard-Navigation" class="slick-nav"></div>
                 <div id="navigation" class="navigation-container">
                     <ul>
-                        <li><a href="staff_dashboard.php"><i class="far fa-chart-bar"></i> Dashboard</a></li>
-                        <li><a href="staff_edit.php"><i class="fas fa-user"></i>Edit Profile</a> </li>
-                        <li><a href="staff_course.php"> <i class='fa fa-book'></i>Course</a></li>
-                        <li class="active-menu"><a href="staff_notes.php"> <i class='fa fa-sticky-note-o'></i>Notes</a></li>
-                        </li>
-                        <li><a href="staff_assigment.php"><i class="fa fa-tasks"></i>Assigment</a></li>
-  
-                        <li><a href="staff_calander.php"><i class="fa fa-calendar"></i> Calander </a></li>
-                        <li><a href="staff_salary.php"><i class="fa fa-money"></i>Salary</a></li>
-                        
-                        <li><a href="staff_leave.php"><i class="fa fa-calendar-times-o"></i>Leaves</a></li>
-                        <li><a href="login.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        < <li><a href="admin_dashboard.php"><i class="fa fa-chart-bar"></i>Dashboard</a> </li>
+                        <li><a href="admin_staff.php"><i class="fas fa-user"></i>Staff</a> </li>
+                        <li><a href="admin_studentlist.php"><i class="fa fa-users"></i>Students</a> </li>   
+                        <li><a href="admin_course.php"><i class="fa fa-book"></i>Courses</a></li>   
+
+                        <li><a href="admin_leave_list.php"><i class="fa fa-calendar-times-o"></i>Manage Staff Leave</a></li>
+                        <li><a href="admin_payment.php"> <i class='fa fa-credit-card'></i> Payments </a></li>
+                        <li><a href="admin_salary.php"><i class="fas fa-money"></i> Salary </a></li>
+
+                        <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
                 </div>
             </div>

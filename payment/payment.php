@@ -1,34 +1,36 @@
-<?php
-include ("db-connection.php");
+<?php 
 
+include ("db_connection.php");
+include("../protect.php");
+notAuthenticated("student", "login.php"); // if user not authenticated and redirect to login
 
-	$filename = $_FILES["photo"]["name"];
+    $stuid=$_SESSION['user_id'];
+	$filename = $_FILES["image"]["name"];
 
-    $tempname = $_FILES["photo"]["tmp_name"];  
+    $tempname = $_FILES["image"]["tmp_name"];  
 
     $folder = "images/".$filename; 
     move_uploaded_file($tempname, $folder);
 		
     $first_name=$_POST['first_name'];
     $last_name=$_POST['last_name']; 
-    // $student_id=$_POST['student_id'];
+    $student_id=$stuid;
     $email=$_POST['email'];
     $address=$_POST['address'];
-    $phone_no=$_POST['phone_no'];
     $slip_no=$_POST['slip_no'];
     $date=$_POST['date'];	
     $gender=$_POST['gender'];	
-    //$id=1;
 
-$check=mysqli_query($conn,"INSERT INTO `payments`( `first_name`, `last_name`,  `email`, `address`, `phone_no`, `slip_no`, `date`, `gender`, `photo`) 
-VALUES('$first_name','$last_name','$email','$address','$phone_no','$slip_no','$date','$gender', '$filename')");
-if ($check) {
-    echo "success";
-    // header("Location:index.php?id=$First_name");
-    }else{
+    $query="INSERT INTO `payments`(`first_name`, `last_name`, `student_id`, `email`, `address`, `slip_no`, `date`, `gender`, `photo`) 
+    VALUES ('$first_name','$last_name','$student_id','$email','$address','$slip_no','$date','$gender','$filename')";
+    $result=mysqli_query($conn,$query);
+    if ($check) {
 
-    echo "Adding failed. ";
-        
-
-    }
+        header("Location:../Student/student_payment.php");
+        }else{
+    
+        header("location:index.php");
+            
+    
+        }
 ?>

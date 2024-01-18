@@ -1,3 +1,6 @@
+<?php include("../protect.php");
+notAuthenticated("student", "login.php"); // if user not authenticated and redirect to login
+?>
 <!doctype html>
 <html lang="en">
    <head>
@@ -19,6 +22,7 @@
         <title>Woocurs Academy LK</title>
 </head>
 <body>
+    
 
     <!-- start Container Wrapper -->
     <div id="container-wrapper">
@@ -168,7 +172,91 @@
             </div>
             <!-- contents satrt -->
 
+            <div class="db-info-wrap">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="dashboard-box">
+                            <h4>Payments Details </h4>
+                            
+                            <div class="table-responsive">
+                                <table class="table">
+                                <thead>
+                                        <tr>
+                                            <th>Student ID</th>
+                                            <th>Name</th>
+                                            <!-- <th>Contect No</th> -->
+                                            <th>Email</th>
+                                            <th>Slip</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+									<?php
+                                    include "db_connection.php";
+                                    $stuid=$_SESSION["user_id"]; 
+                                    $sql = mysqli_query($conn,"SELECT * FROM payments WHERE student_id=$stuid");
 
+                                    ?>
+
+                                    <tbody>
+                                        <?php
+
+                                    while($row = $sql->fetch_assoc()) {
+										// $name = $row["last_name"];
+                                        ?>
+										
+                                    <?php
+                                    // include "db_connection.php";
+                                    // $result = mysqli_query($conn,"SELECT * FROM payments WHERE status = 'approved'");
+
+                                    // ?>
+
+                                    <tbody>
+                                        <?php
+
+                                    // while($row = $result->fetch_assoc()) {
+                                        ?>
+
+                                        <tr>
+
+                                        <?php 
+                                        // output data of each row
+                                        
+                                        echo'<td>'.$row["student_id"].'</td>';
+                                        echo'<td>'.$row["last_name"].'</td>';
+                                        // echo'<td>'.$row["phone_no"].'</td>';
+                                        echo'<td>'.$row["email"].'</td>';
+                                        echo'<td>'.$row["photo"].'</td>';
+                                        // echo'<td><span class="badge badge-success">'.$row["status"].'</span></td>';
+                                        
+                                            ?>
+                                            <?php if($row["status"]=='approved'): 
+                                            ?>
+                                            <td><span class="badge badge-success"><?php echo $row["status"] ?></span></td>
+                                            <?php elseif($row["status"]=='rejected'):
+                                            ?>
+                                            <td><span class="badge badge-danger"><?php echo $row["status"] ?></span></td>
+                                            <?php else: ?>
+                                            <td><span class="badge badge-primary"><?php echo $row["status"] ?></span></td>
+                                           
+                                            <?php endif;  ?>
+
+
+
+                                           
+                                        </tr>
+                                        <?php
+                                    
+									
+                                    $conn->close();
+                                        ?>
+                                        
+                                    </tbody>
+                                    <?php }?>
+                                </table>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
 
 
 
@@ -194,5 +282,7 @@
     <script src="assets/js/counterup.min.js"></script>
     <script src="assets/js/jquery.slicknav.js"></script>
     <script src="assets/js/dashboard-custom.js"></script>
+
+
 </body>
 </html>

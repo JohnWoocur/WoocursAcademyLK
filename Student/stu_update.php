@@ -1,7 +1,10 @@
+<?php include("../protect.php");
+notAuthenticated("student", "login.php"); // if user not authenticated and redirect to login
+?>
 <?php
 include "db_connection.php";
 
-$id=1;
+$id= $_SESSION["user_id"];
 $first_name =$_POST['first_name'];
 $last_name = $_POST['last_name'];
 $dob = $_POST['dob'];
@@ -23,10 +26,11 @@ $result=mysqli_query($conn,$query);
 
 if($result)
 {
-    
+    $_SESSION['Smsg']="Student Details updated";
     header('location:student_profilecard.php');
 }
 else{
+    $_SESSION['Smsg']="Student Details updated";
     header('location:student_edit.php');
 }
 ?>

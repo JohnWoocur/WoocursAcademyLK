@@ -1,3 +1,16 @@
+<?php include("../protect.php");
+notAuthenticated("student", "login.php"); // if user not authenticated and redirect to login
+$Stid = $_SESSION["user_id"];
+
+require "db_connection.php";
+$query = "SELECT * FROM students WHERE student_id = $Stid"; 
+
+$results = mysqli_query($conn, $query);
+$Irow = mysqli_fetch_assoc($results);
+$sname=$Irow["username"];
+$simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
+
+?>
 <!doctype html>
 <html lang="en">
    <head>
@@ -135,8 +148,8 @@
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
-                                <img src="assets/images/comment.jpg" alt="">
-                                <span>My Account </span>
+                            <img src="./student_pro/<?php echo $simage?>" alt="">
+                                <span><?php echo"$sname";?></span>
                                 <i class="fas fa-caret-down"></i>
                             </div>
                         </a>
@@ -169,6 +182,27 @@
             </div>
             <!-- contents satrt -->
             <div class="db-info-wrap">
+            <?php
+                    
+                    if(isset($_SESSION['Smsg'])):
+                    ?>
+                    <div class="form-group">
+                        <label class="badge badge-success"><?php echo $_SESSION['Smsg']; ?></label>
+                    </div>
+                    <?php
+                    unset($_SESSION['Smsg']);
+                    endif;
+                    ?>
+                    <?php
+                    if(isset($_SESSION['Emsg'])):
+                    ?>
+                    <div class="form-group">
+                    <label class="badge badge-danger"><?php echo $_SESSION['Emsg']; ?></label>
+                    </div>
+                    <?php
+                    unset($_SESSION['Emsg']);
+                    endif;
+                    ?>
                 <div class="row">
                     <div class="col-lg-12">
                         
@@ -185,7 +219,7 @@
                         <main class="container">
                         <?php
             include "db_connection.php";
-            $id=1;
+            $id= $_SESSION["user_id"];
 
                 $sql="SELECT * FROM `students`WHERE student_id='$id'";
                 $check=mysqli_query($conn,$sql);

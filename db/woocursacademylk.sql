@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2024 at 07:17 PM
+-- Generation Time: Jan 18, 2024 at 06:56 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -143,11 +143,10 @@ INSERT INTO `notes` (`notes_id`, `course_id`, `staff_id`, `file`) VALUES
 CREATE TABLE `payments` (
   `pay_id` int(11) NOT NULL,
   `first_name` varchar(50) NOT NULL,
-  `last_name` int(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
   `student_id` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
   `address` varchar(255) NOT NULL,
-  `reason` varchar(255) NOT NULL,
   `slip_no` varchar(255) NOT NULL,
   `date` date NOT NULL,
   `gender` enum('male','female','other') NOT NULL,
@@ -163,10 +162,12 @@ CREATE TABLE `payments` (
 CREATE TABLE `salarys` (
   `salary_id` int(11) NOT NULL,
   `staff_id` int(11) NOT NULL,
-  `month` varchar(100) NOT NULL,
-  `credited_date` date NOT NULL,
-  `salary` float NOT NULL,
-  `status` varchar(255) NOT NULL DEFAULT 'pending'
+  `month` varchar(50) NOT NULL,
+  `year` varchar(50) NOT NULL,
+  `credited_date` varchar(255) NOT NULL,
+  `salary` int(10) NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'pending',
+  `slip_img` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -261,7 +262,6 @@ CREATE TABLE `student_courses` (
   `student_id` int(11) NOT NULL,
   `course_id` int(11) NOT NULL,
   `paid_amount` float NOT NULL,
-  `is_paid` tinyint(1) NOT NULL DEFAULT 0,
   `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

@@ -1,5 +1,6 @@
 <?php include("../protect.php");
 notAuthenticated("student", "login.php"); // if user not authenticated and redirect to login
+$stid = $_SESSION["user_id"];
 ?>
 
 <!doctype html>
@@ -194,10 +195,15 @@ notAuthenticated("student", "login.php"); // if user not authenticated and redir
                                     </thead>
                                     <?php 
                                             require 'db_connection.php';
-                                            $query="SELECT * FROM `assignments`";
-                                            $result=mysqli_query($conn,$query);
+
+                                            $sql = "SELECT student_courses.*, assignments.*         
+                                            FROM student_courses          
+                                            JOIN assignments  ON student_courses.course_id = assignments.course_id         
+                                            WHERE student_courses.student_id = '$stid'";
+
+                                            $result=mysqli_query($conn,$sql);
                                             while($row=mysqli_fetch_assoc($result)):
-                                            $id=1;?>
+                                            ?>
                                             
                                                 <tr>
                                                 <td><?php echo $row['assignment_id']; ?></td>

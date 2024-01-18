@@ -6,7 +6,7 @@ include "db_connection.php";
 $student_id = $_GET['pay_id'];
 
 
-$result = "UPDATE payments  SET Status ='Approve' WHERE student_id ={$_GET['pay_id']} " ;
+$result = "UPDATE payments  SET Status ='approved' WHERE pay_id ={$_GET['pay_id']} " ;
 
 if ($conn->query ($result)=== TRUE) 
     {

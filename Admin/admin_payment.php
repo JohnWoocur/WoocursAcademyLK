@@ -159,20 +159,16 @@ include 'db_connection.php';
                 <div id="navigation" class="navigation-container">
                     <ul>
                         
-                            <li><a href="admin_dashboard.php"><i class="fa fa-chart-bar"></i>Dashboard</a> </li>
-                        <li><a href="staff.php"><i class="fas fa-user"></i>Staff</a> </li>
-                        <li><a href="a_studentlist.php"><i class="fa fa-users"></i>Students</a> </ul>
-                        <ul>
-                                <li><a href="a_studentactive.php">Active</a></li>
-                                <li><a href="a_studentpending.php">Pending</a></li>
-                            </ul>  
-                            <ul> 
-                        </li> 
-                        <li><a href="courses.php"><i class="fa fa-book"></i> Courses </a></li>   
-                         <li><a href="leave.php"><i class="fa fa-calendar-times-o"></i> Leave</a></li>
+                    <li><a href="admin_dashboard.php"><i class="fa fa-chart-bar"></i>Dashboard</a> </li>
+                        <li><a href="admin_staff.php"><i class="fas fa-user"></i>Staff</a> </li>
+                        <li><a href="admin_studentlist.php"><i class="fa fa-users"></i>Students</a> </li>   
+                        <li><a href="admin_course.php"><i class="fa fa-book"></i>Courses</a></li>   
+
+                        <li><a href="admin_leave_list.php"><i class="fa fa-calendar-times-o"></i>Manage Staff Leave</a></li>
                         <li><a href="admin_payment.php"> <i class='fa fa-credit-card'></i> Payments </a></li>
-                        <li><a href="salary.php"><i class="fas fa-money"></i> Salary </a></li>
-                        <li><a href="login.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        <li><a href="admin_salary.php"><i class="fas fa-money"></i> Salary </a></li>
+
+                        <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
                 </div>
             </div>

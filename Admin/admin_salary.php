@@ -3,7 +3,6 @@ notAuthenticated("admin", "login.php"); // if user not authenticated and redirec
 ?>
 
 <?php
-session_start();
 require "db_connection.php";
 $year=date('Y');
 $month=date('F');

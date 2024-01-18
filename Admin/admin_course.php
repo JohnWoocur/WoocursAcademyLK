@@ -103,7 +103,7 @@
                         <li><a href="staff_assigment.php"><i class="fa fa-tasks"></i>Assigment</a></li>
 
                         <li><a href="staff_calander.php"><i class="fa fa-calendar"></i> Calander </a></li>
-                        <li><a href="staff_salary.php"><i class="fa fa-money"></i>Salary</a></li>
+                        <li><a href="admin_salary.php"><i class="fa fa-money"></i>Salary</a></li>
 
                         <li><a href="staff_leave.php"><i class="fa fa-calendar-times-o"></i>Leaves</a></li>
                         <li><a href="login.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>

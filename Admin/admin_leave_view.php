@@ -1,3 +1,7 @@
+<?php include("../protect.php");
+notAuthenticated("admin", "login.php"); // if user not authenticated and redirect to login
+?>
+
 <?php
       include "db_connection.php";
       $sql = mysqli_query($conn,"SELECT * FROM staffs WHERE status = 'Active'");
@@ -7,7 +11,7 @@
                                   
 <?php
 
-	while($row = $sql->fetch_assoc()) {
+	if($row = $sql->fetch_assoc()) {
 	$staff_id = $row["staff_id"];
 	$last_name = $row["last_name"];
 	$contact_no = $row["contact_no"];
@@ -17,12 +21,14 @@
 										
 <?php
     include "db_connection.php";
-    $result = mysqli_query($conn,"SELECT * FROM leaves");
+	$leave_id = $_GET['leave_id'];
+    $result = mysqli_query($conn,"SELECT * FROM leaves WHERE leave_id ={$_GET['leave_id']}");
+	
 
 ?>
 <?php
 
-         while($row = $result->fetch_assoc()) {
+        if($row = $result->fetch_assoc()) {
 		$type = $row["type"];
 		$description = $row["description"];
 		$start_date = $row["start_date"];

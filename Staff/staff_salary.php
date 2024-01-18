@@ -1,3 +1,7 @@
+<?php include("../protect.php");
+notAuthenticated("staff", "login.php"); // if user not authenticated and redirect to login
+?>
+
 <?php
 require "db_connection.php";
 $year=date('Y');

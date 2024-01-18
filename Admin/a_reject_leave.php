@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include "db_connection.php";
 
 
@@ -10,7 +10,7 @@ $result = "UPDATE leaves  SET Status ='rejected' WHERE leave_id ={$_GET['leave_i
 
 if ($conn->query ($result)=== TRUE) 
     {
-       
+       $_SESSION['message']="Leave Request successfully Rejected !";
         header("Location:admin_leave_list.php");
     }
 else{

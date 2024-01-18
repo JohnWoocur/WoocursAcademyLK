@@ -166,7 +166,7 @@
                         <li><a href="courses.php"><i class="fa fa-book"></i> Courses </a></li>   
                          <li><a href="leave.php"><i class="fa fa-calendar-times-o"></i> Leave</a></li>
                         <li><a href="payments.php"> <i class='fa fa-credit-card'></i> Payments </a></li>
-                        <li><a href="salary.php"><i class="fas fa-money"></i> Salary </a></li>
+                        <li><a href="admin_salary.php"><i class="fas fa-money"></i> Salary </a></li>
                         <li><a href="login.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
                 </div>

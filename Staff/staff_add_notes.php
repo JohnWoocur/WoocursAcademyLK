@@ -1,3 +1,7 @@
+<?php include("../protect.php");
+notAuthenticated("staff", "login.php"); // if user not authenticated and redirect to login
+?>
+
 <!doctype html>
 <html lang="en">
    <head>
@@ -91,13 +95,18 @@
                                             <input name="cid" class="form-control" type="text" required>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+
+                                    
+                                    <!-- <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Lecture Id</label>
                                             <input name="sid" class="form-control" type="text" required>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-sm-6"> 
+                                    <br>
+                                    <br>
+                                
                                         <div class="upload-input">
                                             <div class="form-group">
                                               <span class="upload-btn">Notes File</span>

@@ -156,7 +156,7 @@ $month=$_GET['month'];
         <?php
         endif;
         ?>
-          <td><?php echo $salary-$amount; ?></td>
+          <td><?php $sal=$salary-$amount; echo $sal; ?></td>
         </tr>
       </table>
     </td>
@@ -164,6 +164,11 @@ $month=$_GET['month'];
 </table>
 <br>
 <button onclick="window.print()" style="position:absolute ; bottom:0;">Print</button>
+<?php
+require 'db_connection.php';
+$queryN="UPDATE `salarys` SET `salary`='$sal' WHERE staff_id='$id'";
+$resultN=mysqli_query($conn,$queryN);
 
+?>
 </body>
 </html>

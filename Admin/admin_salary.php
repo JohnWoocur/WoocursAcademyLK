@@ -17,7 +17,7 @@ if(mysqli_num_rows($result)==0){
     if(mysqli_num_rows($result2)>0){
         while($row=mysqli_fetch_assoc($result2)){
             $id=$row['staff_id'];
-            $query3="INSERT INTO `salarys`(`staff_id`, `month`, `year`, `credited_date`, `status`, `slip_number`, `slip_img`) VALUES ('$id','$month','$year','','Pending','','')";
+            $query3="INSERT INTO `salarys`(`staff_id`, `month`, `year`, `credited_date`, `status`, `salary`, `slip_img`) VALUES ('$id','$month','$year','','Pending','','')";
             $result3=mysqli_query($conn,$query3);
         }
     }

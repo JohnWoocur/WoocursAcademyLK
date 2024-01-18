@@ -238,7 +238,7 @@ notAuthenticated("student", "login.php"); // if user not authenticated and redir
                                             <?php else: ?>
                                             <td><span class="badge badge-primary"><?php echo $row["status"] ?></span></td>
                                            
-                                            <?php endif;  ?>
+                                            <?php endif;?>
 
 
 

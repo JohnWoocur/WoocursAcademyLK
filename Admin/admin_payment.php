@@ -193,7 +193,7 @@ include 'db_connection.php';
                                             <th>Name</th>
                                             <!-- <th>Contect No</th> -->
                                             <th>Email</th>
-                                            <th>Slip</th>
+                                            <th>Slip_no</th>
                                             <th>Status</th>
                                             <th>action</th>
                                         </tr>
@@ -216,7 +216,7 @@ include 'db_connection.php';
                                             echo'<td>'.$row["last_name"].'</td>';
                                             // echo'<td>'.$row["phone_no"].'</td>';
                                             echo'<td>'.$row["email"].'</td>';
-                                            echo'<td>'.$row["photo"].'</td>';
+                                            echo'<td>'.$row["slip_no"].'</td>';
                                             echo'<td>'.$row["status"].'</td>';
                                             ?>
                                             <td>

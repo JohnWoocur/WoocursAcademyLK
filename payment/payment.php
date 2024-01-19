@@ -29,7 +29,7 @@ notAuthenticated("student", "login.php"); // if user not authenticated and redir
         header("Location:../Student/student_payment.php");
         }else{
     
-        header("location:index.php");
+        header("location:../Student/student_payment.php");
             
     
         }

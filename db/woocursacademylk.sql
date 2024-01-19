@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 18, 2024 at 06:56 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Jan 19, 2024 at 05:21 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -150,8 +150,16 @@ CREATE TABLE `payments` (
   `slip_no` varchar(255) NOT NULL,
   `date` date NOT NULL,
   `gender` enum('male','female','other') NOT NULL,
-  `photo` varchar(255) NOT NULL
+  `photo` varchar(255) NOT NULL,
+  `status` varchar(100) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`pay_id`, `first_name`, `last_name`, `student_id`, `email`, `address`, `slip_no`, `date`, `gender`, `photo`, `status`) VALUES
+(0, 'steve', 'rogers', 4, 'steve@gmail.com', 'vavuniya', '1656', '2024-01-11', 'male', '1.jpg.jpg', 'approved');
 
 -- --------------------------------------------------------
 
@@ -229,7 +237,9 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`student_id`, `first_name`, `last_name`, `username`, `gender`, `category`, `email`, `contact_no`, `dob`, `department`, `password`, `image`, `status`) VALUES
-(1, 'Linthujan', 'Linthujan', 'linthujan', 'male', 'training', 'linthujan99@gmail.com', '0768911918', '2024-01-27', 'training', '556bb61f2184baa840b4f16701c06316', 'default_pic.jpg', 'pending');
+(1, 'Linthujan', 'Linthujan', 'linthujan', 'male', 'training', 'linthujan99@gmail.com', '0768911918', '2024-01-27', 'training', '556bb61f2184baa840b4f16701c06316', 'default_pic.jpg', 'pending'),
+(2, 'jd', 'revan', 'jd', 'male', 'training', 'JD@gmail.com', '0775552215', '2024-01-12', 'training', 'ba346c2dcda486519a2aea5c5b637177', 'default_pic.jpg', 'pending'),
+(4, 'steve', 'rogers', 'steve', 'male', 'training', 'steve@gmail.com', '0775454511', '2024-01-17', 'training', 'd69403e2673e611d4cbd3fad6fd1788e', '1.jpg.jpg', 'pending');
 
 -- --------------------------------------------------------
 
@@ -408,7 +418,7 @@ ALTER TABLE `staffs`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `student_assignments`
@@ -457,26 +467,6 @@ ALTER TABLE `notes`
 --
 ALTER TABLE `payments`
   ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`);
-
---
--- Constraints for table `salarys`
---
-ALTER TABLE `salarys`
-  ADD CONSTRAINT `salarys_ibfk_1` FOREIGN KEY (`staff_id`) REFERENCES `staffs` (`staff_id`);
-
---
--- Constraints for table `student_assignments`
---
-ALTER TABLE `student_assignments`
-  ADD CONSTRAINT `student_assignments_ibfk_1` FOREIGN KEY (`assignment_id`) REFERENCES `assignments` (`assignment_id`),
-  ADD CONSTRAINT `student_assignments_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`);
-
---
--- Constraints for table `student_courses`
---
-ALTER TABLE `student_courses`
-  ADD CONSTRAINT `student_courses_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`),
-  ADD CONSTRAINT `student_courses_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

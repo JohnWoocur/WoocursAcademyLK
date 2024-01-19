@@ -1,6 +1,6 @@
 <?php
 include "db_connection.php";
-// session_start();
+ session_start();
 
 $course_name= $_POST['course_name'];
 $duration= $_POST['duration'];
@@ -38,11 +38,13 @@ if($query)
 {	
 	//echo "Package Added successfully!";
 	header("Location:admin_course.php");
+  $_SESSION['Smsg'] = " course added Successfully";
 }
 else 
 {
   //echo "Package Added failure!";
   header("Location: a_course_addform.php");
+  $_SESSION['Emsg'] = "course added failed";
 }
 
 ?>

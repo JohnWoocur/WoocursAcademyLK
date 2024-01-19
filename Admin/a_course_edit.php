@@ -1,3 +1,7 @@
+<?php include("../protect.php");
+notAuthenticated("admin", "login.php"); // if user not authenticated and redirect to login
+$Aid = $_SESSION["user_id"];
+?>
 <?php
 include "db_connection.php";
 $course_id = $_GET['course_id'];
@@ -38,6 +42,27 @@ if ($check) {
 </head>
 
 <body>
+                            <?php
+                            
+                            if(isset($_SESSION['Smsg'])):
+                            ?>
+                            <div class="form-group">
+                                <label class="badge badge-success"><?php echo $_SESSION['Smsg']; ?></label>
+                            </div>
+                            <?php
+                            unset($_SESSION['Smsg']);
+                            endif;
+                            ?>
+                            <?php
+                            if(isset($_SESSION['Emsg'])):
+                            ?>
+                            <div class="form-group">
+                            <label class="badge badge-danger"><?php echo $_SESSION['Emsg']; ?></label>
+                            </div>
+                            <?php
+                            unset($_SESSION['Emsg']);
+                            endif;
+                            ?>
     <h1>Course Update </h1>
     <div class="container">
         <form action="a_course_update.php" method="POST" enctype="multipart/form-data">
@@ -48,6 +73,9 @@ if ($check) {
             <label for="course"> Cousrse</label>
             <input type="text" id="course_name" name="course_name" placeholder="Course name.."
                 value="<?php echo $course_name; ?>">
+            
+            <input type="text" id="course_id" name="course_id" placeholder="Course name.."
+            value="<?php echo $course_id; ?> " hidden>
 
             <label for="duration">Duration</label>
             <input type="text" id="duration" name="duration" placeholder="Couse duration"

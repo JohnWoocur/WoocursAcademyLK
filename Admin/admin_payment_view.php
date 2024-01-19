@@ -1,5 +1,5 @@
 <?php include("../protect.php");
-notAuthenticated("staff", "login.php"); // if user not authenticated and redirect to login
+notAuthenticated("admin", "login.php"); // if user not authenticated and redirect to login
 ?>
 
 <!doctype html>

@@ -113,7 +113,6 @@
                    
             
                 <div class="row">
-				<?php include "../session_message.php"; ?>
                     <div class="col-lg-12">
                         <div class="dashboard-box">
                             <h4>Staff Leave Details  </h4>

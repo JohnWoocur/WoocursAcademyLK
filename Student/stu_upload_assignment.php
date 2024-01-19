@@ -9,7 +9,7 @@ $fileFile = $_FILES["file"]["tmp_name"];
 $path = "materials/".$fileName;
 move_uploaded_file($fileFile,$path);
 
-$assignment=$_GET['aid'];
+$assignment=$_POST['aid'];
 $student= $_SESSION["user_id"];
 
 $query="INSERT INTO `student_assignments`( `assignment_id`, `student_id`, `file`) VALUE ('$assignment','$student','$fileName')";

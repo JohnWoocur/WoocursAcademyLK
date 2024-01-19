@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 include "db_connection.php";
 
@@ -12,9 +13,11 @@ if ($conn->query ($result)=== TRUE)
     {
        
         header("Location:admin_studentlist.php");
+        $_SESSION['Smsg'] = "Approved Successfully";
     }
 else{
     echo "Error";
+    $_SESSION['Emsg'] = "Approved Failed";
     }  
 $conn->close();
 

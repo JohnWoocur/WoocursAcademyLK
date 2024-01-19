@@ -204,8 +204,9 @@ $stid = $_SESSION["user_id"];
                                             $result=mysqli_query($conn,$sql);
                                             while($row=mysqli_fetch_assoc($result)):
                                             ?>
-                                            
+                                                <form action="stu_upload_assignment.php" method="POST" enctype="multipart/form-data">
                                                 <tr>
+                                                    <input type="text" name="aid" value="<?php echo $row['assignment_id']; ?>" hidden>
                                                 <td><?php echo $row['assignment_id']; ?></td>
                                                 <td><?php echo $row['course_id']; ?></td>
                                                 <td><?php echo $row['staff_id']; ?></td>
@@ -215,12 +216,14 @@ $stid = $_SESSION["user_id"];
                                                 <td><a href="../Staff/materials/<?php echo $row['file']; ?>" target="_blank"><span class="badge badge-success"><i class="far fa-eye"></i></span></a></td>
                                                 <td><a href="../staff/materials/<?php echo $row['file']; ?>>"download="<?php echo $row['file'];?>"><span class="badge badge-danger"><i class="fa fa-download"></i></span></a></td>
                                                 <td>
-                                                <form action="stu_upload_assignment.php?aid=<?php echo $row['assignment_id']; ?> & sid=<?php echo $id; ?>" method="POST" enctype="multipart/form-data">
+                                                
                                                     <input type="file" name="file">
                                                     <span class="badge badge-success"><button type="submit"><i class="fa fa-upload"></i></button></span>
-                                                </form></td>
+                                                    <!-- <button type="submit"><span class="badge badge-success"></span></button> -->
+                                                
+                                            </td>
                                             </tr>
-                                            
+                                            </form>
                                     <?php
                                         endwhile;
                                     ?>

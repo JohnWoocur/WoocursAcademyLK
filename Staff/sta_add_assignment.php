@@ -2,7 +2,7 @@
 session_start();
 
 require 'db_connection.php';
-$Cid=$_POST['cid'];
+$Cid=$_POST['course_id'];
 // $lid=$_POST['lid'];
 $Lecture_id=$_SESSION["user_id"];
 

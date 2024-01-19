@@ -1,3 +1,17 @@
+<?php include("../protect.php");
+notAuthenticated("admin", "login.php"); // if user not authenticated and redirect to login
+$Aid = $_SESSION["user_id"];
+
+require "db_connection.php";
+$query = "SELECT * FROM admins WHERE admin_id = $Aid"; 
+
+$results = mysqli_query($conn, $query);
+$Irow = mysqli_fetch_assoc($results);
+$aname=$Irow["username"];
+$aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
+
+?>
+
 <!doctype html>
 <html lang="en">
    <head>
@@ -41,8 +55,8 @@
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
-                                <img src="assets/images/comment.jpg" alt="">
-                                <span>My Account </span>
+                            <img src="./admin_pro/<?php echo $aimage?>" alt="">
+                                <span><?php echo"$aname";?></span>
                                 <i class="fas fa-caret-down"></i>
                             </div>
                         </a>
@@ -125,22 +139,31 @@
                                             <th>First Name</th>
                                             <th>Last Name</th>
                                             <th>Category</th>
-                                            <!-- <th>Course</th> -->
-                                            <th>Department</th>
-                                            <!-- <th>Payment</th> -->
+                                            <th>Course</th> 
+                                            <th>Duration</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
                                     <?php
                                     include "db_connection.php";
-                                    $result = mysqli_query($conn,"SELECT * FROM students");
+
+                                    $sql="SELECT students.*,students.first_name,students.last_name,students.category FROM students
+                                    JOIN student_courses ON students.student_id = student_courses.student_id ";
+                                    $results=mysqli_query($conn,$sql);
+                                    while($urow=mysqli_fetch_assoc($results)){
+
+                                    $sql="SELECT courses.*,courses.course_name,courses.duration FROM courses
+                                    JOIN student_courses ON courses.course_id = student_courses.course_id ";
+                                    $result=mysqli_query($conn,$sql);
+
+                                    
 
                                     ?>
 
                                     <tbody>
                                         <?php
-
-                                    while($row = $result->fetch_assoc()) {
+                                    
+                                    while($row =mysqli_fetch_assoc($result)) {
                                         ?>
 
                                         <tr>
@@ -148,26 +171,26 @@
                                         <?php 
                                         // output data of each row
                                         
-                                            echo'<td>'.$row["student_id"].'</td>';
-                                            echo'<td>'.$row["first_name"].'</td>';
-                                            echo'<td>'.$row["last_name"].'</td>';
-                                            echo'<td>'.$row["category"].'</td>';
-                                            // echo'<td>'.$row["course_name"].'</td>';
-                                            echo'<td>'.$row["department"].'</td>';
-                                            // echo'<td>'.$row["payment"].'</td>';
-                                            echo'<td>'.$row["status"].'</td>';
+                                            echo'<td>'.$urow["student_id"].'</td>';
+                                            echo'<td>'.$urow["first_name"].'</td>';
+                                            echo'<td>'.$urow["last_name"].'</td>';
+                                            echo'<td>'.$urow["category"].'</td>';
+                                            echo'<td>'.$row["course_name"].'</td>';
+                                            echo'<td>'.$row["duration"].'</td>';
+                                            echo'<td>'.$urow["status"].'</td>';
                                         
 
                                             ?>
 
                                             <td>
-                                                <a href="a_Student.php ?student_id=<?php  echo $row["student_id"]; ?> "><span class="badge badge-success"><i class="far fa-eye"></i></span></a>
-                                                <a href="a_activeStudent.php ?student_id=<?php  echo $row["student_id"]; ?> "><span class="badge badge-success"><i class="far fa-check-circle"></i></span></a>
-                                                <a href="a_rejectStudent.php ?student_id=<?php  echo $row["student_id"]; ?> "><span class="badge badge-danger"><i class="far fa-trash-alt"></i></span></a>
+                                                <a href="admin_studentDetails.php ?student_id=<?php  echo $urow["student_id"]; ?> " ><span class="badge badge-success"><i class="far fa-eye"></i></span></a>
+                                                <a href="a_activeStudent.php ?student_id=<?php  echo $urow["student_id"]; ?> "><span class="badge badge-success"><i class="far fa-check-circle"></i></span></a>
+                                                <a href="a_rejectStudent.php ?student_id=<?php  echo $urow["student_id"]; ?> "><span class="badge badge-danger"><i class="far fa-trash-alt"></i></span></a>
                                             </td>
                                         </tr>
                                         <?php
                                     }
+                                }
                                     $conn->close();
                                         ?>
                                         

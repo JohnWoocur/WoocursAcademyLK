@@ -1,5 +1,6 @@
 <?php include("../protect.php");
 notAuthenticated("admin", "login.php"); // if user not authenticated and redirect to login
+
 $Aid = $_SESSION["user_id"];
 
 require "db_connection.php";
@@ -9,6 +10,7 @@ $results = mysqli_query($conn, $query);
 $Irow = mysqli_fetch_assoc($results);
 $aname=$Irow["username"];
 $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
+
 
 ?>
 

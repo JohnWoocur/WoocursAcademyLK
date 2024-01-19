@@ -6,8 +6,8 @@ session_start();
 $username = $_POST["username"];
 $password = $_POST["password"];
 $hashed_password = hash('md5',$password);
-echo $password;
-echo $hashed_password;
+// echo $password;
+// echo $hashed_password;
 // return ;
  
 $sql = "SELECT * FROM students WHERE username = '$username' AND password = '$hashed_password'";

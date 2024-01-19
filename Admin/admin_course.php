@@ -126,6 +126,27 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
             <div class="db-info-wrap db-wislist-wrap">
                 <div class="dashboard-box ">
                     <div class="row">
+                    <?php
+                    
+                    if(isset($_SESSION['Smsg'])):
+                    ?>
+                    <div class="form-group">
+                        <label class="badge badge-success"><?php echo $_SESSION['Smsg']; ?></label>
+                    </div>
+                    <?php
+                    unset($_SESSION['Smsg']);
+                    endif;
+                    ?>
+                    <?php
+                    if(isset($_SESSION['Emsg'])):
+                    ?>
+                    <div class="form-group">
+                    <label class="badge badge-danger"><?php echo $_SESSION['Emsg']; ?></label>
+                    </div>
+                    <?php
+                    unset($_SESSION['Emsg']);
+                    endif;
+                    ?>
 
 
 

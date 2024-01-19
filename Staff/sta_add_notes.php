@@ -3,7 +3,7 @@
 session_start();
 
 require 'db_connection.php';
-$cid=$_POST['cid'];
+$cid=$_POST['course_id'];
 $sid=$_SESSION["user_id"];
 // $Lecture_id=1;
 
@@ -19,9 +19,11 @@ $result=mysqli_query($conn,$query);
 
 if($result){
     header('location:staff_notes.php');
+    $_SESSION['Smsg'] = " notes added Successfully";
 }
 else{
     header('location:staff_add_notes.php');
+    $_SESSION['Emsg'] = "notes added failed";
 }
 
 ?>

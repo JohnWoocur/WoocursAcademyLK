@@ -1,3 +1,16 @@
+<?php include("../protect.php");
+notAuthenticated("staff", "login.php"); // if user not authenticated and redirect to login
+$Sid = $_SESSION["user_id"];
+
+require "db_connection.php";
+$query = "SELECT * FROM staffs WHERE staff_id = $Sid"; 
+
+$results = mysqli_query($conn, $query);
+$Irow = mysqli_fetch_assoc($results);
+$sname=$Irow["username"];
+$simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
+
+?>
 <!doctype html>
 <html lang="en">
    <head>
@@ -60,107 +73,20 @@
                         </form>
                     </div>
                     <div class="dropdown">
-                        <a class="dropdown-toggle" id="notifyDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <div class="dropdown-item">
-                                <i class="far fa-envelope"></i>
-                                <span class="notify">3</span>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu notification-menu" aria-labelledby="notifyDropdown">
-                            <h4> 3 Notifications</h4>
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <div class="list-img">
-                                            <img src="assets/images/comment.jpg" alt="">
-                                        </div>
-                                        <div class="notification-content">
-                                            <p>You have a notification.</p>
-                                            <small>2 hours ago</small>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="list-img">
-                                            <img src="assets/images/comment2.jpg" alt="">
-                                        </div>
-                                        <div class="notification-content">
-                                            <p>You have a notification.</p>
-                                            <small>2 hours ago</small>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="list-img">
-                                            <img src="assets/images/comment3.jpg" alt="">
-                                        </div>
-                                        <div class="notification-content">
-                                            <p>You have a notification.</p>
-                                            <small>2 hours ago</small>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                            <a href="#" class="all-button">See all messages</a>
-                        </div>
+                         
                     </div>
                     <div class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown">
-                            <div class="dropdown-item">
-                                <i class="far fa-bell"></i>
-                                <span class="notify">3</span>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu notification-menu">
-                            <h4> 3 Messages</h4>
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <div class="list-img">
-                                            <img src="assets/images/comment4.jpg" alt="">
-                                        </div>
-                                        <div class="notification-content">
-                                            <p>You have a notification.</p>
-                                            <small>2 hours ago</small>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="list-img">
-                                            <img src="assets/images/comment5.jpg" alt="">
-                                        </div>
-                                        <div class="notification-content">
-                                            <p>You have a notification.</p>
-                                            <small>2 hours ago</small>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="list-img">
-                                            <img src="assets/images/comment6.jpg" alt="">
-                                        </div>
-                                        <div class="notification-content">
-                                            <p>You have a notification.</p>
-                                            <small>2 hours ago</small>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                            <a href="#" class="all-button">See all messages</a>
-                        </div>
+                         
                     </div>
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
-                                <img src="assets/images/comment.jpg" alt="">
-                                <span>My Account </span>
+                            <img src="./staff_pro/<?php echo $simage?>" alt="">
+                                <span><?php echo"$sname";?></span>
                                 <i class="fas fa-caret-down"></i>
                             </div>
                         </a>
+                        
                         <div class="dropdown-menu account-menu">
                             <ul>
                                 <li><a href="student_edit.php"><i class="fas fa-cog"></i>Edit Profile</a></li>
@@ -177,14 +103,15 @@
                 <div id="dashboard-Navigation" class="slick-nav"></div>
                 <div id="navigation" class="navigation-container">
                     <ul>
-                        <li class="active-menu"><a href="student_dashboard.php"><i class="far fa-chart-bar"></i> Dashboard</a></li>
-                        <li><a href="student_profilecard.php"><i class="fas fa-user"></i> Profile</a> </li>
-                        <li><a href="student_course.php"><i class="fa fa-book"></i> Course</a></li>
-                        <li><a href="student_notes.php"><i class="fa fa-sticky-note-o"></i> Notes</a></li>
-                        <li><a href="student_assignment.php"><i class="fa fa-tasks"></i> Assignments </a></li>
-                        <li><a href="calender.php"><i class="fa fa-calendar"></i> Calendar</a></li>
-                        <li><a href="student_payment.php"> <i class='fa fa-credit-card'></i> Payment</a></li>
-                        <li><a href="login.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        <li class="active-menu"><a href="staff_dashboard.php"><i class="far fa-chart-bar"></i> Dashboard</a></li>
+                        <li><a href="staff_edit.php"><i class="fas fa-user"></i>Edit Profile</a> </li>
+                        <li><a href="staff_course.php"> <i class='fa fa-book'></i>Course</a></li>
+                        <li><a href="staff_notes.php"> <i class='fa fa-sticky-note-o'></i>Notes</a></li>
+                        <li><a href="staff_assigment.php"><i class="fa fa-tasks"></i>Assigment</a></li>
+                        <li><a href="staff_calander.php"><i class="fa fa-calendar"></i> Calander </a></li>
+                        <li><a href="staff_salary.php"><i class="fa fa-money"></i>Salary</a></li>
+                        <li><a href="staff_leave.php"><i class="fa fa-calendar-times-o"></i>Leaves</a></li>
+                        <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
                 </div>
             </div>

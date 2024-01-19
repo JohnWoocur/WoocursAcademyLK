@@ -22,9 +22,11 @@ $result=mysqli_query($conn,$query);
 
 if($result){
     header('location:staff_assigment.php');
+    $_SESSION['Smsg'] = " assignmrnt post Successfully";
 }
 else{
     header('location:staff_add_assigment.php');
+    $_SESSION['Emsg'] = " Assignment post failed";
 }
 
 ?>

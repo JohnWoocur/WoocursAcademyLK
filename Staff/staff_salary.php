@@ -98,17 +98,17 @@ if(mysqli_num_rows($result)==0){
             <!-- Responsive Navigation Trigger -->
             <div id="dashboard-Navigation" class="slick-nav"></div>
             <div id="navigation" class="navigation-container">
-                <ul>
-                    <li class="active-menu"><a href="staff_dashboard.php"><i class="far fa-chart-bar"></i> Dashboard</a></li>
-                    <li><a href="staff_edit.php"><i class="fas fa-user"></i>Edit Profile</a> </li>
-                    <li><a href="staff_course.php"> <i class='fa fa-book'></i>Course</a></li>
-                    <li ><a href="staff_notes.php"> <i class='fa fa-sticky-note-o'></i>Notes</a></li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-                    <li><a href="staff_assigment.php"><i class="fa fa-tasks"></i>Assigment</a></li>
-                    <li><a href="staff_calander.php"><i class="fa fa-calendar"></i> Calander </a></li>
-                    <li><a href="staff_salary.php"><i class="fa fa-money"></i>Salary</a></li>
-                    <li><a href="staff_leave.php"><i class="fa fa-calendar-times-o"></i>Leaves</a></li>
-                    <li><a href="login.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-                </ul>
+                    <ul>
+                        <li class="active-menu"><a href="staff_dashboard.php"><i class="far fa-chart-bar"></i> Dashboard</a></li>
+                        <li><a href="staff_edit.php"><i class="fas fa-user"></i>Edit Profile</a> </li>
+                        <li><a href="staff_course.php"> <i class='fa fa-book'></i>Course</a></li>
+                        <li><a href="staff_notes.php"> <i class='fa fa-sticky-note-o'></i>Notes</a></li>
+                        <li><a href="staff_assigment.php"><i class="fa fa-tasks"></i>Assigment</a></li>
+                        <li><a href="staff_calander.php"><i class="fa fa-calendar"></i> Calander </a></li>
+                        <li><a href="staff_salary.php"><i class="fa fa-money"></i>Salary</a></li>
+                        <li><a href="staff_leave.php"><i class="fa fa-calendar-times-o"></i>Leaves</a></li>
+                        <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
             </div>
         </div>
 

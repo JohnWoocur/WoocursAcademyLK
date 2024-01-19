@@ -1,6 +1,4 @@
-<?php include("../protect.php");
-notAuthenticated("admin", "login.php"); // if user not authenticated and redirect to login
-?>
+
 <!doctype html>
 <html lang="en">
 
@@ -18,7 +16,7 @@ notAuthenticated("admin", "login.php"); // if user not authenticated and redirec
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title>John Travels LK</title>
+    <title>Woocurs Academy LK</title>
 </head>
 
 <body>
@@ -43,9 +41,8 @@ notAuthenticated("admin", "login.php"); // if user not authenticated and redirec
 
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
-                            <div class="dropdown-item profile-sec">
-                                <img src="assets/images/comment.jpg" alt="">
-                                <span>My Account </span>
+                        <img src="./admin_pro/<?php echo $aimage?>" alt="">
+                                <span><?php echo"$aname";?></span>
                                 <i class="fas fa-caret-down"></i>
                             </div>
                         </a>

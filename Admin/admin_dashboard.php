@@ -1,4 +1,16 @@
+<?php include("../protect.php");
+notAuthenticated("admin", "login.php"); // if user not authenticated and redirect to login
+$aid = $_SESSION["user_id"];
 
+require "db_connection.php";
+$query = "SELECT * FROM admins WHERE admin_id = $aid"; 
+
+$results = mysqli_query($conn, $query);
+$Irow = mysqli_fetch_assoc($results);
+$aname=$Irow["username"];
+$aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -43,7 +55,8 @@
 
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="./admin_pro/<?php echo $aimage?>" alt="">
+                            <div class="dropdown-item profile-sec">
+                            <img src="./admin_pro/<?php echo $aimage?>" alt="">
                                 <span><?php echo"$aname";?></span>
                                 <i class="fas fa-caret-down"></i>
                             </div>

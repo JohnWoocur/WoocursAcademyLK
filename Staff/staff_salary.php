@@ -1,5 +1,6 @@
 <?php include("../protect.php");
-notAuthenticated("staff", "login.php"); // if user not authenticated and redirect to login
+notAuthenticated("staff", "login.php");
+$id=$_SESSION["user_id"]; // if user not authenticated and redirect to login
 ?>
 
 <?php
@@ -184,7 +185,7 @@ if(mysqli_num_rows($result)==0){
                                     
                                         <?php
                                         require 'db_connection.php';
-                                        $id=1;
+                                        // $id=1;
                                         $query4="SELECT * FROM `salarys` WHERE `staff_id`='$id'";
                                         $result4=mysqli_query($conn,$query4);
                                         while($row=mysqli_fetch_array($result4)):

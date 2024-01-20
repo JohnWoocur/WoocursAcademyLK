@@ -1,5 +1,6 @@
 <?php include("../protect.php");
 notAuthenticated("student", "login.php"); // if user not authenticated and redirect to login
+$id=$_SESSION["user_id"];
 ?>
 <!doctype html>
 <html lang="en">
@@ -182,7 +183,15 @@ notAuthenticated("student", "login.php"); // if user not authenticated and redir
                             </div>
                             <div class="dashboard-stat-content">
                                 <h4>Courses</h4>
-                                <h5>04</h5>
+                                <?php
+                                require 'db_connection.php';
+                                $query="SELECT COUNT(*) AS count FROM `student_courses` WHERE student_id='$id'"; 
+                                $result=mysqli_query($conn,$query);
+                                $row=mysqli_fetch_array($result);
+                                $count=$row['count'];
+                                ?>
+                                <h5><?php echo $count; ?></h5>
+                                <?php ?>
                             </div>
                         </div>
                     </div>
@@ -195,7 +204,14 @@ notAuthenticated("student", "login.php"); // if user not authenticated and redir
                             </div>
                             <div class="dashboard-stat-content">
                                 <h4>Approval</h4>
-                                <h5>01</h5>
+                                <?php
+                                require 'db_connection.php';
+                                $query="SELECT COUNT(*) AS count FROM `student_courses` WHERE student_id='$id' AND `status`='approved'"; 
+                                $result=mysqli_query($conn,$query);
+                                $row=mysqli_fetch_array($result);
+                                $count=$row['count'];
+                                ?>
+                                <h5><?php echo $count; ?></h5>
                             </div>
                         </div>
                     </div>
@@ -208,7 +224,14 @@ notAuthenticated("student", "login.php"); // if user not authenticated and redir
                             </div>
                             <div class="dashboard-stat-content">
                                 <h4>Pending</h4>
-                                <h5>01</h5>
+                                <?php
+                                require 'db_connection.php';
+                                $query="SELECT COUNT(*) AS count FROM `student_courses` WHERE student_id='$id' AND `status`='pending'"; 
+                                $result=mysqli_query($conn,$query);
+                                $row=mysqli_fetch_array($result);
+                                $count=$row['count'];
+                                ?>
+                                <h5><?php echo $count; ?></h5>
                             </div>
                         </div>
                     </div>
@@ -220,7 +243,14 @@ notAuthenticated("student", "login.php"); // if user not authenticated and redir
                             </div>
                             <div class="dashboard-stat-content">
                                 <h4>Cancel</h4>
-                                <h5>01</h5>
+                                <?php
+                                require 'db_connection.php';
+                                $query="SELECT COUNT(*) AS count FROM `student_courses` WHERE student_id='$id' AND `status`='rejected'"; 
+                                $result=mysqli_query($conn,$query);
+                                $row=mysqli_fetch_array($result);
+                                $count=$row['count'];
+                                ?>
+                                <h5><?php echo $count; ?></h5>
                             </div>
                         </div>
                     </div>
@@ -240,24 +270,44 @@ notAuthenticated("student", "login.php"); // if user not authenticated and redir
                                     <thead>
                                         <tr>
                                             <th>Course</th>
-                                            <th>Date</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
                                             <th>Duration</th>
                                             <th>Fee</th>
-                                            <!-- <th>status</th> -->
+                                            <th>status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php 
+                                            require "db_connection.php";
+                                            $query="SELECT * FROM `student_courses` WHERE student_id='$id'";
+                                            $result=mysqli_query($conn,$query);
+                                            while($row=mysqli_fetch_array($result)){
+                                                $cid=$row['course_id'];
+                                                ?>
                                         <tr>
-
-                                            <td><a href="#"><span class="list-name">Kathy Brown</span><span class="list-enq-city"></span></a>
+                                            <?php 
+                                            require "db_connection.php";
+                                            $query2="SELECT * FROM `courses` WHERE course_id ='$cid'";
+                                            $result2=mysqli_query($conn,$query2);
+                                            while($row2=mysqli_fetch_array($result2)){?>
+                                             
+                                            <td><a href="#"><span class="list-name"><?php echo $row2['course_name'];?></span><span class="list-enq-city"></span></a>
                                             </td>
-                                            <td>12.21.2121</td>
-                                            <td>vavuniya</td>
-                                            <td>100</td>
+                                            <td><?php echo $row2['start_date'];?></td>
+                                            <td><?php echo $row2['end_date'];?></td>
+                                            <td><?php echo $row2['duration'];?></td>
+                                            <td><?php echo $row2['fees'];?></td>
                                             <td>
-                                                <span class="badge badge-primary">Pending</span>
+                                                <span class="badge badge-primary"><?php echo $row['status'];?></span>
                                             </td>
+                                            <?php 
+                                            }
+                                            ?>
                                         </tr>
+                                        <?php 
+                                            }
+                                            ?>
                                     </tbody>
                                 </table>
                             </div>

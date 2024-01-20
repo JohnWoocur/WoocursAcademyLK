@@ -195,7 +195,7 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">
-               Copyright © 2023 Woocurs Academy. All rights reserveds.
+            Copyright © 2023 Woocurs Academy LK. All rights reserved.
             </div>
         </div>
         <!-- Dashboard / End -->

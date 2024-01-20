@@ -1,3 +1,16 @@
+<?php include("../protect.php");
+notAuthenticated("staff", "login.php"); // if user not authenticated and redirect to login
+$Sid = $_SESSION["user_id"];
+
+require "db_connection.php";
+$query = "SELECT * FROM staffs WHERE staff_id = $Sid"; 
+
+$results = mysqli_query($conn, $query);
+$Irow = mysqli_fetch_assoc($results);
+$sname=$Irow["username"];
+$simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
+
+?>
 <!doctype html>
 <html lang="en">
    <head>
@@ -43,8 +56,8 @@
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
-                                <img src="assets/images/comment.jpg" alt="">
-                                <span>My Account </span>
+                            <img src="../Admin/admin_pro/<?php echo $simage?>" alt="profile">
+                                <span><?php echo"$sname";?></span>
                                 <i class="fas fa-caret-down"></i>
                             </div>
                         </a>
@@ -194,7 +207,7 @@
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">
-               Copyright © 2023 Woocurs Academy. All rights reserveds.
+               Copyright © 2023  Woocurs Academy LK. All rights reserved.
             </div>
         </div>
         <!-- Dashboard / End -->

@@ -1,6 +1,17 @@
 <?php include("../protect.php");
 notAuthenticated("student", "login.php"); // if user not authenticated and redirect to login
-$stid = $_SESSION["user_id"];
+$stid=$_SESSION['user_id'];
+
+
+
+require "db_connection.php";
+$query = "SELECT * FROM students WHERE student_id = $stid"; 
+
+$results = mysqli_query($conn, $query);
+$Irow = mysqli_fetch_assoc($results);
+$sname=$Irow["username"];
+$simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
+
 ?>
 
 <!doctype html>
@@ -139,8 +150,8 @@ $stid = $_SESSION["user_id"];
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
-                                <img src="assets/images/comment.jpg" alt="">
-                                <span>My Account </span>
+                            <img src="./student_pro/<?php echo $simage?>" alt="">
+                                <span><?php echo"$sname";?></span>
                                 <i class="fas fa-caret-down"></i>
                             </div>
                         </a>

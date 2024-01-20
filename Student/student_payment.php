@@ -1,5 +1,17 @@
 <?php include("../protect.php");
 notAuthenticated("student", "login.php"); // if user not authenticated and redirect to login
+
+$stid=$_SESSION['user_id'];
+
+
+
+require "db_connection.php";
+$query = "SELECT * FROM students WHERE student_id = $stid"; 
+
+$results = mysqli_query($conn, $query);
+$Irow = mysqli_fetch_assoc($results);
+$sname=$Irow["username"];
+$simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
 ?>
 <!doctype html>
 <html lang="en">
@@ -138,8 +150,8 @@ notAuthenticated("student", "login.php"); // if user not authenticated and redir
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
-                                <img src="assets/images/comment.jpg" alt="">
-                                <span>My Account </span>
+                            <img src="./student_pro/<?php echo $simage?>" alt="">
+                                <span><?php echo"$sname";?></span>
                                 <i class="fas fa-caret-down"></i>
                             </div>
                         </a>
@@ -174,6 +186,27 @@ notAuthenticated("student", "login.php"); // if user not authenticated and redir
 
             <div class="db-info-wrap">
                 <div class="row">
+                    <?php
+                    
+                    if(isset($_SESSION['Smsg'])):
+                    ?>
+                    <div class="form-group">
+                        <label class="badge badge-success"><?php echo $_SESSION['Smsg']; ?></label>
+                    </div>
+                    <?php
+                    unset($_SESSION['Smsg']);
+                    endif;
+                    ?>
+                    <?php
+                    if(isset($_SESSION['Emsg'])):
+                    ?>
+                    <div class="form-group">
+                    <label class="badge badge-danger"><?php echo $_SESSION['Emsg']; ?></label>
+                    </div>
+                    <?php
+                    unset($_SESSION['Emsg']);
+                    endif;
+                    ?>
                     <div class="col-lg-12">
                         <div class="dashboard-box">
                             <h4>Payments Details </h4>
@@ -247,8 +280,7 @@ notAuthenticated("student", "login.php"); // if user not authenticated and redir
                                         <?php
                                     
 									
-                                    $conn->close();
-                                        ?>
+                                         ?>
                                         
                                     </tbody>
                                     <?php }?>

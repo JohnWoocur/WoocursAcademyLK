@@ -1,5 +1,16 @@
 <?php include("../protect.php");
 notAuthenticated("staff", "login.php"); // if user not authenticated and redirect to login
+$Sid = $_SESSION["user_id"];
+?>
+<?php
+require "db_connection.php";
+$query = "SELECT * FROM staffs WHERE staff_id = $Sid"; 
+
+$results = mysqli_query($conn, $query);
+$Irow = mysqli_fetch_assoc($results);
+$sname=$Irow["username"];
+$simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
+
 ?>
 
 <!doctype html>
@@ -45,8 +56,8 @@ notAuthenticated("staff", "login.php"); // if user not authenticated and redirec
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
-                                <img src="assets/images/comment.jpg" alt="">
-                                <span>My Account </span>
+                            <img src="../Admin/admin_pro/<?php echo $simage?>" alt="">
+                                <span><?php echo"$sname";?></span>
                                 <i class="fas fa-caret-down"></i>
                             </div>
                         </a>
@@ -91,16 +102,16 @@ notAuthenticated("staff", "login.php"); // if user not authenticated and redirec
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                        <label for="course_id"> Course ID </label>
+                                        <label for="course_id"> Course Name </label>
                                             <select id="course_id" name="course_id" required>
                                             
                                              <?php 
                                              require "db_connection.php";
                                              
-                                                $query = "SELECT course_id FROM courses";
+                                                $query = "SELECT course_id,course_name FROM courses";
                                                 $result = mysqli_query($conn, $query);
                                                 while ($row = $result->fetch_assoc()) {
-                                                    echo "<option value='" . $row['course_id'] . "'>" . $row['course_id'] . "</option>";
+                                                    echo "<option value='" . $row['course_id'] . "'>" . $row['course_name'] . "</option>";
                                                 }
                                                 
                                                 ?>
@@ -124,7 +135,7 @@ notAuthenticated("staff", "login.php"); // if user not authenticated and redirec
                                 
                                         <div class="upload-input">
                                             <div class="form-group">
-                                              <span class="upload-btn">Notes File</span>
+                                              <span class="upload-btn">Materials</span>
                                               <input type="file" name="file" required>
                                             </div>
                                         </div>

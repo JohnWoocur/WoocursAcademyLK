@@ -48,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $hashed_password = hash('md5',$password);
                 $query = "INSERT INTO `staffs`(`first_name`, `last_name`, `gender`, `dob`, `contact_no`, `email`, `address`, `qualification`, `password`, `status`, `department`, `salary`, `username`) VALUES ('$Firstname','$Lastname','$gender','$date','$phone','$email','$Address','$qualification','$hashed_password','$status','$department','$salary','$staffname')";
 
+                
                 $result = mysqli_query($conn, $query);
 
                 if ($result) {

@@ -18,24 +18,33 @@ $year=date('Y');
 $month=date('F');
 
 // echo $month;
-$query="SELECT * FROM `salarys` WHERE year='$year' AND month='$month'";
+// $query="SELECT * FROM `salarys` WHERE year='$year' AND month='$month'";
+// $result=mysqli_query($conn,$query);
+// if(mysqli_num_rows($result)==0){
+//     $query2="SELECT * FROM `staffs`";
+//     $result2=mysqli_query($conn,$query2);
+//     if(mysqli_num_rows($result2)>0){
+//         while($row=mysqli_fetch_assoc($result2)){
+//             $id=$row['staff_id'];
+//             $query3="INSERT INTO `salarys`(`staff_id`, `month`, `year`, `credited_date`, `status`, `salary`, `slip_img`) VALUES ('$id','$month','$year','','Pending','','')";
+//             $result3=mysqli_query($conn,$query3);
+//         }
+//     }
+// }
+
+$query="SELECT * FROM `staffs`";
 $result=mysqli_query($conn,$query);
-if(mysqli_num_rows($result)==0){
-    $query2="SELECT * FROM `staffs`";
+while($row=mysqli_fetch_assoc($result)){
+    $idd=$row['staff_id'];
+    $query2="SELECT * FROM `salarys` WHERE staff_id='$idd' AND year='$year' AND month='$month'";
     $result2=mysqli_query($conn,$query2);
-    if(mysqli_num_rows($result2)>0){
-        while($row=mysqli_fetch_assoc($result2)){
-            $id=$row['staff_id'];
-            $query3="INSERT INTO `salarys`(`staff_id`, `month`, `year`, `credited_date`, `status`, `salary`, `slip_img`) VALUES ('$id','$month','$year','','Pending','','')";
-            $result3=mysqli_query($conn,$query3);
-        }
+    if(mysqli_num_rows($result2)==0){
+        $query3="INSERT INTO `salarys`(`staff_id`, `month`, `year`, `credited_date`, `status`, `salary`, `slip_img`) VALUES ('$idd','$month','$year','','Pending','','')";
+        $result3=mysqli_query($conn,$query3);
     }
-        
 
-    // for($i=1;$i<=10;$i++){
-
-    // }
 }
+
 
 ?>
 <!doctype html>
@@ -383,7 +392,7 @@ if(mysqli_num_rows($result)==0){
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">
-                Copyright © 2023 John Travels LK. All rights reserveds.
+            Copyright © 2023 Woocurs Academy LK. All rights reserved.
             </div>
         </div>
         <!-- Dashboard / End -->

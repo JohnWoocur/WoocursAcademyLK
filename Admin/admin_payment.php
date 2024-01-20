@@ -164,7 +164,7 @@ include 'db_connection.php';
                         <li><a href="admin_studentlist.php"><i class="fa fa-users"></i>Students</a> </li>   
                         <li><a href="admin_course.php"><i class="fa fa-book"></i>Courses</a></li>   
 
-                        <li><a href="admin_leave_list.php"><i class="fa fa-calendar-times-o"></i>Manage Staff Leave</a></li>
+                        <li><a href="admin_leave_list.php"><i class="fa fa-envelope-open-o"></i>Manage Staff Leave</a></li>
                         <li><a href="admin_payment.php"> <i class='fa fa-credit-card'></i> Payments </a></li>
                         <li><a href="admin_salary.php"><i class="fas fa-money"></i> Salary </a></li>
 

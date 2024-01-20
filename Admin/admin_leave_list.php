@@ -143,67 +143,53 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
 											<th>End Date</th>
                                             <th>Status</th>
                                         </tr>
-                                    </thead>
-									<?php
-                                    include "db_connection.php";
-                                    $sql = mysqli_query($conn,"SELECT * FROM staffs WHERE status = 'Active'");
-
-                                    ?>
-
+                                    </thead>                                  
                                     <tbody>
-                                        <?php
-
-                                    while($row = $sql->fetch_assoc()) {
-										$last_name = $row["last_name"];
-                                        ?>
-										
                                     <?php
                                     include "db_connection.php";
-                                    $result = mysqli_query($conn,"SELECT * FROM leaves");
 
+            
+
+                                    $sql = "SELECT staffs.staff_id, staffs.first_name,staffs.last_name, leaves.* 
+                                    FROM staffs
+                                    INNER JOIN leaves ON staffs.staff_id = leaves.staff_id  WHERE staffs.status ='Active'";
+
+                                    $result = mysqli_query($conn,$sql);
+
+                                    
+                                    
                                     ?>
 
-                                    <tbody>
-                                        <?php
-
-                                    while($row = $result->fetch_assoc()) {
-                                        ?>
-
                                         <tr>
+                                            <?php
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                            // output data of each row
+                                            echo '<td>' . $row['staff_id'] . '</td>';
+                                            echo '<td>' . $row['first_name'] ." ". $row['last_name'] . '</td>';
+                                            echo '<td>' . $row['type'] . '</td>';
+                                            echo '<td>' . $row["start_date"] . '</td>';
+                                            echo '<td>' . $row["end_date"] . '</td>';
 
-                                        <?php 
-                                        // output data of each row
-                                            echo'<td>'.$row["staff_id"].'</td>';
-                                            echo'<td>'.$last_name.'</td>';
-											echo'<td>'.$row["type"].'</td>';
-											echo'<td>'.$row["start_date"].'</td>';
-											echo'<td>'.$row["end_date"].'</td>';
-                                            if($row["status"]=='rejected')
-                                            {
-                                                echo'<td><span class="badge badge-danger">'.$row["status"].'</span></td>';
-                                            }
-                                             elseif($row["status"]=='approved')
-                                            {
-                                                echo'<td><span class="badge badge-success">'.$row["status"].'</span></td>';
-                                            }
-                                            else
-                                            {
-                                                echo'<td><span class="badge badge-primary">'.$row["status"].'</span></td>';
+                                            if ($row["status"] == 'rejected') {
+                                                echo '<td><span class="badge badge-danger">' . $row["status"] . '</span></td>';
+                                            } elseif ($row["status"] == 'approved') {
+                                                echo '<td><span class="badge badge-success">' . $row["status"] . '</span></td>';
+                                            } else {
+                                                echo '<td><span class="badge badge-primary">' . $row["status"] . '</span></td>';
                                             }
                                             ?>
 
                                             <td>
-                                                <a href="admin_leave_view.php ?leave_id=<?php  echo $row["leave_id"]; ?> "><span class="badge badge-success"><i class="far fa-eye"></i></span></a>
-                                                
+                                                <a href="admin_leave_view.php?leave_id=<?php echo $row["leave_id"]; ?>"><span class="badge badge-success"><i class="far fa-eye"></i></span></a>
                                             </td>
                                         </tr>
-                                        <?php
+
+                                    <?php
                                     }
-									}
-                                    $conn->close();
-                                        ?>
-                                        
-                                    </tbody>
+                                    
+                                    mysqli_close($conn);
+                                    ?>
+                                </tbody>
                                 </table>
                             </div>
                         </div>

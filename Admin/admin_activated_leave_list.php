@@ -142,22 +142,14 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                                             <th>Status</th>
                                         </tr>
                                     </thead>
-									<?php
-                                    include "db_connection.php";
-                                    $sql = mysqli_query($conn,"SELECT * FROM staffs WHERE status = 'Active'");
-
-                                    ?>
-
-                                    <tbody>
-                                        <?php
-
-                                    while($row = $sql->fetch_assoc()) {
-										$name = $row["last_name"];
-                                        ?>
-										
+									
+                                  	
                                     <?php
-                                    include "db_connection.php";
-                                    $result = mysqli_query($conn,"SELECT * FROM leaves WHERE status = 'approved'");
+                                    $sql = "SELECT staffs.staff_id, staffs.first_name,staffs.last_name, leaves.* 
+                                    FROM staffs
+                                    INNER JOIN leaves ON staffs.staff_id = leaves.staff_id  WHERE staffs.status ='Active'  AND leaves.status = 'approved'";
+
+                                    $result = mysqli_query($conn,$sql);
 
                                     ?>
 
@@ -173,7 +165,7 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                                         // output data of each row
                                         
 											echo'<td>'.$row["staff_id"].'</td>';
-                                            echo'<td>'.$name.'</td>';
+                                            echo '<td>' . $row['first_name'] ." ". $row['last_name'] . '</td>';
 											echo'<td>'.$row["type"].'</td>';
 											echo'<td>'.$row["start_date"].'</td>';
 											echo'<td>'.$row["end_date"].'</td>';
@@ -185,7 +177,7 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                                         </tr>
                                         <?php
                                     }
-									}
+									
                                     $conn->close();
                                         ?>
                                         

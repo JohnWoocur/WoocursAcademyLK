@@ -392,7 +392,7 @@ while($row=mysqli_fetch_assoc($result)){
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">
-                Copyright © 2023 John Travels LK. All rights reserveds.
+            Copyright © 2023 Woocurs Academy LK. All rights reserved.
             </div>
         </div>
         <!-- Dashboard / End -->

@@ -969,7 +969,7 @@ input:checked ~ .custom-input-field:before {
 /*Dashboard navigation
 ------------------------------------- */
 .dashboard-navigation {
-  background-color: #000080;
+  background-color: #02023f;
   float: left;
   width: 20%;
   padding-top: 75px;
@@ -1011,7 +1011,7 @@ input:checked ~ .custom-input-field:before {
   position: relative;
 }
 .dashboard-navigation li.open-menu:before {
-  color: #F0FBFC;
+  color: #000080;
   -webkit-transform: rotate(180deg);
   -moz-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
@@ -1023,10 +1023,10 @@ input:checked ~ .custom-input-field:before {
   display: block;
 }
 .dashboard-navigation li:hover > a {
-  background-color: #373737;
+  background-color: #191970;
 }
 .dashboard-navigation li.slicknav_open a, .dashboard-navigation li.active-menu a {
-  background-color: #373737;
+  background-color: #191970;
 }
 .dashboard-navigation a {
   display: block;

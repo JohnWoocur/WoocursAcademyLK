@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 include ("db_connection.php");
 include("../protect.php");
 notAuthenticated("student", "login.php"); // if user not authenticated and redirect to login
@@ -27,9 +27,12 @@ notAuthenticated("student", "login.php"); // if user not authenticated and redir
     if ($check) {
 
         header("Location:../Student/student_payment.php");
-        }else{
+        $_SESSION['Smsg'] = " payment added Successfully";
+        }
+        else{
     
         header("location:index.php");
+        $_SESSION['Smsg'] = "payment not successfully";
             
     
         }

@@ -101,7 +101,7 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                             
                             </div>
                             <div class="dashboard-stat-content">
-                                <h4><a href="admin_activatedstudentlist.php">Aproved</a></h4>
+                                <h4><a href="admin_activatedstudentlist.php">Approved</a></h4>
                                 
                             </div>
                         </div>

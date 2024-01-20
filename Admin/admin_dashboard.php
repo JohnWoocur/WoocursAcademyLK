@@ -64,7 +64,7 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                         <div class="dropdown-menu account-menu">
                             <ul>
 
-                                <li><a href="#"><i class="fas fa-cog"></i>Settings</a></li>
+                                <li><a href="admin_edit.php"><i class="fas fa-cog"></i>Edit Profile</a></li>
                                 <li><a href="admin_profilecard.php"><i class="fas fa-user-tie"></i>Profile</a></li>
                                 <li><a href="#"><i class="fas fa-key"></i>Password</a></li>
                                 <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
@@ -93,6 +93,44 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                     </ul>
                 </div>
             </div>
+            <?php
+            // Count the number of students
+            $sqlstudents = "SELECT COUNT(*) AS total_students FROM students ";
+            $resultstudents = $conn->query($sqlstudents);
+
+            if ($resultstudents) {
+                $rowstudents = $resultstudents->fetch_assoc();
+                $totalstudents = $rowstudents['total_students'];
+                
+            } else {
+                echo "Error: " . $sqlstudents . "<br>" . $conn->error;
+            }
+            
+            // Count the number of staffs
+            $sqlstaffs = "SELECT COUNT(*) AS total_staffs FROM staffs ";
+            $resultstaffs = $conn->query($sqlstaffs);
+
+            if ($resultstaffs) {
+                $rowstaffs = $resultstaffs->fetch_assoc();
+                $totalstaffs = $rowstaffs['total_staffs'];
+                
+            } else {
+                echo "Error: " . $sqlstaffs . "<br>" . $conn->error;
+            }
+
+            // Count the number of courses
+            $sqlcourses = "SELECT COUNT(*) AS total_courses FROM courses";
+            $resultcourses = $conn->query($sqlcourses);
+
+            if ($resultcourses) {
+                $rowcourses = $resultcourses->fetch_assoc();
+                $totalcourses = $rowcourses['total_courses'];
+                
+            } else {
+                echo "Error: " . $sqlcourses . "<br>" . $conn->error;
+            }
+            
+            ?>
             <div class="db-info-wrap">
                 <?php include "../session_message.php"; ?>
                 <div class="row">
@@ -100,11 +138,11 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                     <div class="col-xl-3 col-sm-6">
                         <div class="db-info-list">
                             <div class="dashboard-stat-icon bg-blue">
-                                <i class="far fa-chart-bar"></i>
+                                <i class="fa fa-graduation-cap"></i>
                             </div>
                             <div class="dashboard-stat-content">
-                                <h4>Today Views</h4>
-                                <h5>22,520</h5>
+                                <h4>Total Students</h4>
+                                <h5><?php echo $totalstudents; ?></h5>
                             </div>
                         </div>
                     </div>
@@ -112,11 +150,11 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                     <div class="col-xl-3 col-sm-6">
                         <div class="db-info-list">
                             <div class="dashboard-stat-icon bg-green">
-                                <i class="fas fa-dollar-sign"></i>
+                                <i class="fas fa-users"></i>
                             </div>
                             <div class="dashboard-stat-content">
-                                <h4>Earnings</h4>
-                                <h5>16,520</h5>
+                                <h4>Total Staffs</h4>
+                                <h5><?php echo $totalstaffs; ?></h5>
                             </div>
                         </div>
                     </div>
@@ -124,26 +162,17 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                     <div class="col-xl-3 col-sm-6">
                         <div class="db-info-list">
                             <div class="dashboard-stat-icon bg-purple">
-                                <i class="fas fa-users"></i>
+                                <i class="fa fa-book"></i>
                             </div>
                             <div class="dashboard-stat-content">
-                                <h4>Users</h4>
-                                <h5>18,520</h5>
+                                <h4>Courses</h4>
+                                <h5><?php echo $totalcourses; ?></h5>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-sm-6">
-                        <div class="db-info-list">
-                            <div class="dashboard-stat-icon bg-red">
-                                <i class="far fa-envelope-open"></i>
-                            </div>
-                            <div class="dashboard-stat-content">
-                                <h4>Enquiry</h4>
-                                <h5>19,520</h5>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
+                
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="dashboard-box table-opp-color-box">
@@ -153,90 +182,46 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Select</th>
-                                            <th>User</th>
-                                            <th>Name</th>
-                                            <th>Date</th>
-                                            <th>City</th>
-                                            <th>Enquiry</th>
+                                            <th>Staff</th>
+                                            <th>Full Name</th>
+                                            <th>Department</th>
+                                            <th>Salary</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
+                                    <?php
+                                        $sql="SELECT * FROM staffs ";
+                                        $result=mysqli_query($conn,$sql);
+
+                                        if ($result)
+                                        {
+                                            while ($row = $result->fetch_assoc()) { 
+                                                $name =$row['first_name'] . " " . $row["last_name"];
+                                                $simg = ($row && isset($row['image']) && !empty($row['image'])) ? $row['image'] : "default_pic.jpg";
+                                                $qua = $row['department'];
+                                                $salary = $row['salary'];
+                                                $status = $row['status'];
+
+                                        ?>
                                     <tbody>
                                         <tr>
+                                          
+                                            <td><span class="list-img"><img src="../Staff/staff_pro/<?php echo $simg ;?>" alt=""></span>
+                                            </td>
+                                            <td><span class="list-enq-name"><?php echo $name;?></span>
+                                            </td>
+                                            <td><?php echo $qua ;?></td>
+                                            <td><?php echo $salary ;?></td>
                                             <td>
-                                                <label class="custom-input"><input type="checkbox" checked="checked">
-                                                    <span class="custom-input-field"></span></label>
-                                            </td>
-                                            <td><span class="list-img"><img src="assets/images/comment.jpg" alt=""></span>
-                                            </td>
-                                            <td><span class="list-enq-name">John Doe</span>
-                                            </td>
-                                            <td>12 may</td>
-                                            <td>Japan</td>
-                                            <td>
-                                                <span class="badge badge-success">15</span>
+                                                <span class="badge badge-primary"><?php echo $status;?></span>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom-input"><input type="checkbox" checked="checked">
-                                                    <span class="custom-input-field"></span></label>
-                                            </td>
-                                            <td><span class="list-img"><img src="assets/images/comment2.jpg" alt=""></span>
-                                            </td>
-                                            <td><span class="list-enq-name">John Doe</span>
-                                            </td>
-                                            <td>12 may</td>
-                                            <td>Japan</td>
-                                            <td>
-                                                <span class="badge badge-success">15</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom-input"><input type="checkbox" checked="checked">
-                                                    <span class="custom-input-field"></span></label>
-                                            </td>
-                                            <td><span class="list-img"><img src="assets/images/comment3.jpg" alt=""></span>
-                                            </td>
-                                            <td><span class="list-enq-name">John Doe</span>
-                                            </td>
-                                            <td>12 may</td>
-                                            <td>Japan</td>
-                                            <td>
-                                                <span class="badge badge-success">15</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom-input"><input type="checkbox" checked="checked">
-                                                    <span class="custom-input-field"></span></label>
-                                            </td>
-                                            <td><span class="list-img"><img src="assets/images/comment4.jpg" alt=""></span>
-                                            </td>
-                                            <td><span class="list-enq-name">John Doe</span>
-                                            </td>
-                                            <td>12 may</td>
-                                            <td>Japan</td>
-                                            <td>
-                                                <span class="badge badge-success">15</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom-input"><input type="checkbox" checked="checked">
-                                                    <span class="custom-input-field"></span></label>
-                                            </td>
-                                            <td><span class="list-img"><img src="assets/images/comment5.jpg" alt=""></span>
-                                            </td>
-                                            <td><span class="list-enq-name">John Doe</span>
-                                            </td>
-                                            <td>12 may</td>
-                                            <td>Japan</td>
-                                            <td>
-                                                <span class="badge badge-success">15</span>
-                                            </td>
-                                        </tr>
+                                       <?php
+                                                }
+                                        }
+                                       
+                                       ?>
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -250,90 +235,51 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Select</th>
-                                            <th>User</th>
-                                            <th>Name</th>
-                                            <th>Date</th>
-                                            <th>City</th>
-                                            <th>Enquiry</th>
+                                            
+                                            <th>course name</th>
+                                            <th>No Of stu</th>
+                                            <th>duration</th>
+                                            <th>category</th>
+                                            <th>start_date</th>
+                                            <th>Fees</th>
                                         </tr>
                                     </thead>
+                                    <?php
+                                        $sql="SELECT * FROM courses ";
+                                        $result=mysqli_query($conn,$sql);
+
+                                        if ($result)
+                                        {
+                                            while ($row = $result->fetch_assoc()) { 
+                                                $name =$row['course_name'];
+                                                $nof = $row['num_student'];
+                                                $duration = $row['duration'];
+                                                $cat=$row['category'];
+                                                $fees = $row['fees'];
+                                                $start_date = $row['start_date'];
+                                            
+                                            
+                                        
+                                        ?>
                                     <tbody>
                                         <tr>
-                                            <td>
-                                                <label class="custom-input"><input type="checkbox">
-                                                    <span class="custom-input-field"></span></label>
+                                            
+                                            <td><span class="list-enq-name"><?php echo $name;?></span>
                                             </td>
-                                            <td><span class="list-img"><img src="assets/images/comment.jpg" alt=""></span>
-                                            </td>
-                                            <td><span class="list-enq-name">John Doe</span>
-                                            </td>
-                                            <td>12 may</td>
-                                            <td>Japan</td>
-                                            <td>
-                                                <span class="badge badge-success">15</span>
-                                            </td>
+                                            <td><?php echo $nof;?></td>
+                                            <td><?php echo $duration;?></td>
+                                            <td><?php echo $cat;?></td>
+                                            <td><?php echo $start_date;?></td>
+                                            <td><?php echo $fees;?></td>
+                                            
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom-input"><input type="checkbox">
-                                                    <span class="custom-input-field"></span></label>
-                                            </td>
-                                            <td><span class="list-img"><img src="assets/images/comment2.jpg" alt=""></span>
-                                            </td>
-                                            <td><span class="list-enq-name">John Doe</span>
-                                            </td>
-                                            <td>12 may</td>
-                                            <td>Japan</td>
-                                            <td>
-                                                <span class="badge badge-success">15</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom-input"><input type="checkbox">
-                                                    <span class="custom-input-field"></span></label>
-                                            </td>
-                                            <td><span class="list-img"><img src="assets/images/comment3.jpg" alt=""></span>
-                                            </td>
-                                            <td><span class="list-enq-name">John Doe</span>
-                                            </td>
-                                            <td>12 may</td>
-                                            <td>Japan</td>
-                                            <td>
-                                                <span class="badge badge-success">15</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom-input"><input type="checkbox">
-                                                    <span class="custom-input-field"></span></label>
-                                            </td>
-                                            <td><span class="list-img"><img src="assets/images/comment4.jpg" alt=""></span>
-                                            </td>
-                                            <td><span class="list-enq-name">John Doe</span>
-                                            </td>
-                                            <td>12 may</td>
-                                            <td>Japan</td>
-                                            <td>
-                                                <span class="badge badge-success">15</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="custom-input"><input type="checkbox">
-                                                    <span class="custom-input-field"></span></label>
-                                            </td>
-                                            <td><span class="list-img"><img src="assets/images/comment5.jpg" alt=""></span>
-                                            </td>
-                                            <td><span class="list-enq-name">John Doe</span>
-                                            </td>
-                                            <td>12 may</td>
-                                            <td>Japan</td>
-                                            <td>
-                                                <span class="badge badge-success">15</span>
-                                            </td>
-                                        </tr>
+
+                                        <?php
+                                                }
+                                        }
+                                       
+                                       ?>
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -348,240 +294,66 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
+                                      
                                         <tr>
-                                            <th>User</th>
-                                            <th>Name</th>
+                                            <th>Student</th>
+                                            <th>Full Name</th>
                                             <th>Phone</th>
                                             <th>Email</th>
-                                            <th>Country</th>
-                                            <th>Listings</th>
-                                            <th>Enquiry</th>
-                                            <th>Bookings</th>
-                                            <th>Reviews</th>
+                                            <th>Gender</th>
+                                            <th>Course</th>
+                                            <th>Category</th>
+                                            <th>Duration</th>
+                                            
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><span class="list-img"><img src="assets/images/comment.jpg" alt=""></span>
-                                            </td>
-                                            <td><a href="#"><span class="list-name">Kathy Brown</span><span class="list-enq-city">United States</span></a>
-                                            </td>
-                                            <td>+01 3214 6522</td>
-                                            <td>chadengle@dummy.com</td>
-                                            <td>Australia</td>
-                                            <td>
-                                                <span class="badge badge-primary">02</span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-danger">12</span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success">24</span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-dark">36</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="list-img"><img src="assets/images/comment2.jpg" alt=""></span>
-                                            </td>
-                                            <td><a href="#"><span class="list-name">Kathy Brown</span><span class="list-enq-city">United States</span></a>
-                                            </td>
-                                            <td>+01 3214 6522</td>
-                                            <td>chadengle@dummy.com</td>
-                                            <td>Australia</td>
-                                            <td>
-                                                <span class="badge badge-primary">02</span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-danger">12</span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success">24</span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-dark">36</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="list-img"><img src="assets/images/comment3.jpg" alt=""></span>
-                                            </td>
-                                            <td><a href="#"><span class="list-name">Kathy Brown</span><span class="list-enq-city">United States</span></a>
-                                            </td>
-                                            <td>+01 3214 6522</td>
-                                            <td>chadengle@dummy.com</td>
-                                            <td>Australia</td>
-                                            <td>
-                                                <span class="badge badge-primary">02</span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-danger">12</span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success">24</span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-dark">36</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="list-img"><img src="assets/images/comment4.jpg" alt=""></span>
-                                            </td>
-                                            <td><a href="#"><span class="list-name">Kathy Brown</span><span class="list-enq-city">United States</span></a>
-                                            </td>
-                                            <td>+01 3214 6522</td>
-                                            <td>chadengle@dummy.com</td>
-                                            <td>Australia</td>
-                                            <td>
-                                                <span class="badge badge-primary">02</span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-danger">12</span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-success">24</span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-dark">36</span>
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                    <?php
+                                        include "db_connection.php";
+
+                                        $sql = "SELECT students.*, students.first_name, students.last_name, students.category, courses.course_name, courses.duration
+                                                FROM students
+                                                JOIN student_courses ON students.student_id = student_courses.student_id
+                                                JOIN courses ON student_courses.course_id = courses.course_id";
+                                        $results = mysqli_query($conn, $sql);
+
+                                        while ($row = mysqli_fetch_assoc($results)) {
+                                            $stuimg = ($row && isset($row['image']) && !empty($row['image'])) ? $row['image'] : "default_pic.jpg";
+                                            ?>
+                                            <tr>
+                                                <td><span class="list-img"><img src="../Student/student_pro/<?php echo $stuimg; ?>" alt=""></span></td>
+                                                <td><a href="#"><span class="list-name"><?php echo $row["first_name"] . ' ' . $row["last_name"]; ?> </span></a></td>
+                                                <?php
+                                                echo '<td>' . $row["contact_no"] . '</td>';
+                                                echo '<td>' . $row["email"] . '</td>';
+                                                echo '<td>' . $row["gender"] . '</td>';
+                                                echo '<td>' . $row["course_name"] . '</td>';
+                                                echo '<td>' . $row["category"] . '</td>';
+                                                echo '<td>' . $row["duration"] . '</td>';
+                                                ?>
+                                            </tr>
+                                            <?php
+                                        }
+
+                                        $conn->close();
+                                        ?>
+                                                            
+                                     </tbody>
+
+                                   
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <!-- Recent Activity -->
-                    <div class="col-lg-7 col-12">
-                        <div class="dashboard-box activities-box">
-                            <h4>Recent Activities</h4>
-                            <ul>
-                                <li>
-                                    <i class="far fa-calendar-alt"></i>
-                                    <small>5 mins ago</small>
-                                    <h5>Jane has sent a request for access</h5>
-                                    <a href="#" class="close-icon"><i class="fas fa-times"></i></a>
-                                </li>
-                                <li>
-                                    <i class="far fa-calendar-alt"></i>
-                                    <small>5 mins ago</small>
-                                    <h5>Williams has just joined Project X</h5>
-                                    <a href="#" class="close-icon"><i class="fas fa-times"></i></a>
-                                </li>
-                                <li>
-                                    <i class="far fa-calendar-alt"></i>
-                                    <small>5 mins ago</small>
-                                    <h5>Williams has just joined Project X</h5>
-                                    <a href="#" class="close-icon"><i class="fas fa-times"></i></a>
-                                </li>
-                                <li>
-                                    <i class="far fa-calendar-alt"></i>
-                                    <small>25 mins ago</small>
-                                    <h5>Kathy Brown left a review on Hotel</h5>
-                                    <a href="#" class="close-icon"><i class="fas fa-times"></i></a>
-                                </li>
-                                <li>
-                                    <i class="far fa-calendar-alt"></i>
-                                    <small>25 mins ago</small>
-                                    <h5>Kathy Brown left a review on Hotel</h5>
-                                    <a href="#" class="close-icon"><i class="fas fa-times"></i></a>
-                                </li>
-                                <li>
-                                    <i class="far fa-calendar-alt"></i>
-                                    <small>5 mins ago</small>
-                                    <h5>Williams has just joined Project X</h5>
-                                    <a href="#" class="close-icon"><i class="fas fa-times"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 col-md-12 col-xs-12">
-                        <div class="dashboard-box report-list">
-                            <h4>Reports</h4>
-                            <div class="report-list-content">
-                                <div class="date">
-                                    <h5>Auguest 12</h5>
-                                </div>
-                                <div class="total-amt">
-                                    <strong>$1250000</strong>
-                                </div>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Amount</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>2356</td>
-                                            <td>dummy text </td>
-                                            <td>6,200.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4589</td>
-                                            <td>Lorem Ipsum</td>
-                                            <td>6,500.00</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>3269</td>
-                                            <td>specimen book</td>
-                                            <td>6,800.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5126</td>
-                                            <td>Letraset sheets</td>
-                                            <td>7,200.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>7425</td>
-                                            <td>PageMaker</td>
-                                            <td>5,900.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>7425</td>
-                                            <td>PageMaker</td>
-                                            <td>5,900.00</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- site traffic -->
-                    <div class="col-lg-4">
-                        <div class="dashboard-box chart-box">
-                            <h4>Site Traffic</h4>
-                            <div id="chartContainer" style="height: 250px; width: 100%;"></div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="dashboard-box chart-box">
-                            <h4>Bar Chart</h4>
-                            <div id="barchart" style="height: 250px; width: 100%;"></div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 chart-box">
-                        <div class="dashboard-box">
-                            <h4>Search Engine</h4>
-                            <div id="piechart" style="height: 250px; width: 100%;"></div>
-                        </div>
-                    </div>
-                </div>
+               
+                
             </div>
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">
-                Copyright © 2023 John Travels LK. All rights reserveds.
+            Copyright © 2023 Woocurs Academy. All rights reserveds.
             </div>
         </div>
         <!-- Dashboard / End -->

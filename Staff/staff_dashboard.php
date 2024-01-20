@@ -106,12 +106,19 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                                 <i class="bx bx-book"></i>
                             </div>
                             <div class="dashboard-stat-content">
-                                <h4>Booking</h4>
-                                <h5>22,520</h5>
+                                <h4>Course</h4>
+                                <?php
+                                require 'db_connection.php';
+                                $query="SELECT COUNT(*) AS count FROM `courses` WHERE staff_id='$Sid'"; 
+                                $result=mysqli_query($conn,$query);
+                                $row=mysqli_fetch_array($result);
+                                $count=$row['count'];
+                                ?>
+                                <h5><?php echo $count; ?></h5>
                             </div>
                         </div>
                     </div>
-                    <!-- Item -->
+                    <!-- Item
                     <div class="col-xl-3 col-sm-6">
                         <div class="db-info-list">
                             <div class="dashboard-stat-icon bg-green">
@@ -124,8 +131,8 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                             </div>
                         </div>
                     </div>
-                    <!-- Item -->
-                    <div class="col-xl-3 col-sm-6">
+                    Item -->
+                    <!-- <div class="col-xl-3 col-sm-6">
                         <div class="db-info-list">
                             <div class="dashboard-stat-icon bg-purple">
                                 <i class='bx bxs-file'></i>
@@ -136,8 +143,8 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                                 <h5>18,520</h5>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-6">
+                    </div> -->
+                    <!-- <div class="col-xl-3 col-sm-6">
                         <div class="db-info-list">
                             <div class="dashboard-stat-icon bg-red">
                                 <i class='bx bxs-comment-x'></i>
@@ -148,7 +155,7 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                                 <h5>9,520</h5>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
 
@@ -164,25 +171,33 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Package</th>
-                                            <th>Date</th>
-                                            <th>Destination</th>
-                                            <th>package ID</th>
-                                            <th>status</th>
+                                            <th>Assigment Id</th>
+                                            <th>Course Id</th>
+                                            <th>File</th>
+                                            <th>Post Date</th>
+                                            <th>Deadline</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php 
+                                            require "db_connection.php";
+                                            $query="SELECT * FROM `assignments` WHERE staff_id='$Sid'";
+                                            $result=mysqli_query($conn,$query);
+                                            while($row2=mysqli_fetch_array($result)){
+                                                ?>
                                         <tr>
-
-                                            <td><a href="#"><span class="list-name">Kathy Brown</span><span class="list-enq-city"></span></a>
+                                        
+                                            <td><a href="#"><span class="list-name"><?php echo $row2['assignment_id'];?></span><span class="list-enq-city"></span></a>
                                             </td>
-                                            <td>12.21.2121</td>
-                                            <td>vavuniya</td>
-                                            <td>100</td>
-                                            <td>
-                                                <span class="badge badge-primary">Pending</span>
-                                            </td>
+                                            <td><?php echo $row2['course_id'];?></td>
+                                            <td><?php echo $row2['file'];?></td>
+                                            <td><?php echo $row2['post_date'];?></td>
+                                            <td><?php echo $row2['deadline'];?></td>
+                                            
                                         </tr>
+                                        <?php 
+                                            }
+                                            ?>
                                     </tbody>
                                 </table>
                             </div>

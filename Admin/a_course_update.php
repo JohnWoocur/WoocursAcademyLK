@@ -1,7 +1,8 @@
 <?php
+session_start();
 include "db_connection.php";
 
-
+$course_id=$_POST['course_id'];
 $course_name= $_POST['course_name'];
 $duration= $_POST['duration'];
 $category=$_POST['category'];
@@ -18,17 +19,20 @@ $description=$_POST['description'];
     $folder = "img/".$filename; 
     move_uploaded_file($tempname, $folder);
 
-    $query="UPDATE courses  SET  `course_name`='$course_name',`duration`='$duration',`category`='$category',`start_date`='$start_date',`end_date`='$end_date',`num_student`='$num_student',`fees`='$fees',`description`='$description',`c_image`='$c_image' WHERE course_id='$course_id'";
+    $query="UPDATE courses  SET  `course_name`='$course_name',`duration`='$duration',`category`='$category',`start_date`='$start_date',`end_date`='$end_date',`num_student`='$num_student',`fees`='$fees',`description`='$description',`c_image`='$filename' WHERE course_id='$course_id'";
     $result=mysqli_query($conn,$query);
 
     if($result)
 {
-    //echo "Package update successfully!";
+   
+    echo "Package update successfully!";
     header('location:admin_course.php');
+    $_SESSION['Smsg'] = "course updated Successfully";
 }
 else{
-    echo "Package updated failure!";
-    //header('location:a_admin_course_.php');
+    
+    header('location:admin_course.php');
+    $_SESSION['Emsg'] = "course updated failed";
 }
 
 ?>

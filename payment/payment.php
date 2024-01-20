@@ -4,6 +4,7 @@ include ("db_connection.php");
 include("../protect.php");
 notAuthenticated("student", "login.php"); // if user not authenticated and redirect to login
 
+
     $stuid=$_SESSION['user_id'];
 	$filename = $_FILES["image"]["name"];
 

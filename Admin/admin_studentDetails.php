@@ -30,6 +30,8 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <!-- Custom CSS -->
         <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="assets/stylingcss/viewInfo.css">
+
         <title>Woocurs Academy LK</title>
 </head>
 <body>
@@ -76,20 +78,23 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                 <div id="dashboard-Navigation" class="slick-nav"></div>
                 <div id="navigation" class="navigation-container">
                     <ul>
-                    <li><a href="admin_dashboard.php"><i class="fa fa-chart-bar"></i>Dashboard</a> </li>
-                        <li><a href="admin_staff.php"><i class="fas fa-user"></i>Staff</a> </li>
-                        <li><a href="admin_studentlist.php"><i class="fa fa-users"></i>Students</a> </li>   
-                        <li><a href="admin_course.php"><i class="fa fa-book"></i>Courses</a></li>   
-
+                        <li><a href="admin_dashboard.php"><i class="fa fa-chart-bar"></i>Dashboard</a> </li>
+                        <li><a href="admin_stafflist.php"><i class="fas fa-user"></i>Staff</a> </li>
+                        <li><a href="admin_studentlist.php"><i class="fa fa-users"></i>Students</a></li> 
+                        <li><a href="courses.php"><i class="fa fa-book"></i> Courses </a></li>   
                         <li><a href="admin_leave_list.php"><i class="fa fa-calendar-times-o"></i>Manage Staff Leave</a></li>
-                        <li><a href="admin_payment.php"> <i class='fa fa-credit-card'></i> Payments </a></li>
+                        <li><a href="admin_paymentlist.php"> <i class='fa fa-credit-card'></i> Payments </a></li>
                         <li><a href="admin_salary.php"><i class="fas fa-money"></i> Salary </a></li>
-
-                        <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        <li><a href="login.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
                 </div>
             </div>
             <div class="db-info-wrap">
+            <div class = "blurcontainer" id ="blurcontainer">
+
+
+
+
                 <div class="row">
                     <!-- Item -->
                   
@@ -127,28 +132,6 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                    
             
                 <div class="row">
-                <?php
-                    
-                    if(isset($_SESSION['Smsg'])):
-                    ?>
-                    <div class="form-group">
-                        <label class="badge badge-success"><?php echo $_SESSION['Smsg']; ?></label>
-                    </div>
-                    <?php
-                    unset($_SESSION['Smsg']);
-                    endif;
-                    ?>
-                    <?php
-                    if(isset($_SESSION['Emsg'])):
-                    ?>
-                    <div class="form-group">
-                    <label class="badge badge-danger"><?php echo $_SESSION['Emsg']; ?></label>
-                    </div>
-                    <?php
-                    unset($_SESSION['Emsg']);
-                    endif;
-                    ?>
-
                     <div class="col-lg-12">
                         <div class="dashboard-box">
                             <h4>Students Details </h4>
@@ -205,9 +188,9 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                                             ?>
 
                                             <td>
-                                                <a href="admin_studentDetails.php ?student_id=<?php  echo $urow["student_id"]; ?> " ><span class="badge badge-success"><i class="far fa-eye"></i></span></a>
-                                                <a href="a_activeStudent.php ?student_id=<?php  echo $urow["student_id"]; ?> "><span class="badge badge-success"><i class="far fa-check-circle"></i></span></a>
-                                                <a href="a_rejectStudent.php ?student_id=<?php  echo $urow["student_id"]; ?> "><span class="badge badge-danger"><i class="far fa-trash-alt"></i></span></a>
+                                                <a href="" ><span class="badge badge-success"><i class="far fa-eye"></i></span></a>
+                                                <a href=""><span class="badge badge-success"><i class="far fa-check-circle"></i></span></a>
+                                                <a href=" "><span class="badge badge-danger"><i class="far fa-trash-alt"></i></span></a>
                                             </td>
                                         </tr>
                                         <?php
@@ -222,16 +205,82 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                         </div>
                     </div>  
                 </div>
+</div>     
+    
+                                    </thead>
+                                   
+  <!-- DETAILED VIEW OF A SINGLE Student ---- main Design of this page -->
+
+  <?php
+            include "db_connection.php";
+            
+            $student_id = $_GET['student_id'];
+
+                $sql="SELECT * FROM `students` where student_id ={$_GET['student_id']}  ";
+                $check=mysqli_query($conn,$sql);
+
+                if($check){
+                    if(mysqli_num_rows($check)==1)
+                    {
+                            $row=mysqli_fetch_assoc($check); 
+                            $student_id = $row['student_id'];
+                            $first_name = $row['first_name'];
+                            $last_name = $row['last_name'];
+                            $gender = $row['gender'];
+                            $category = $row['category'];
+                            $email = $row['email'];
+                            $contact_no= $row['contact_no'];
+                            $dob = $row['dob'];
+                            $department= $row['department'];
+                            $image=$row["image"];
+                            $name = $first_name." ".$last_name;
+                    }
+                }        
+             ?>
+
+
+
+
+                                    <div class="viewInfo">
+                    <img src="../Student/student_pro/<?php echo $row['image']; ?>" >
+                    <br>
+                    <form>
+
+                        <input type="text" id="fname" name="first_name" value="<?php echo $student_id; ?>" >
+                        <input type="text" id="fname" name="last_name" value="<?php echo $name; ?>">
+                        <input type="text" id="fname" name="gender" value="<?php echo $gender; ?>">
+                        <input type="text" id="fname" name="category" value="<?php echo $category; ?>" >
+                        <input type="text" id="fname" name="email" value="<?php echo $email; ?>">
+                        <input type="text" id="lname" name="contact_no" value="<?php echo $contact_no; ?>">
+                        <input type="text" id="fname" name="dob" value="<?php echo $dob; ?>" >
+                        <input type="text" id="fname" name="department" value="<?php echo $department; ?>" >
+                    <br>
+
+                        <button class = "btn"><a href ="admin_studentlist.php">Close</a></button>
+                    </form>
+                    </div>
+                        
+                                          
+                           
                 
-                
-            <!-- Content / End -->
-            <!-- Copyrights -->
-            <div class="copyrights">
-               Copyright © 2023 John Travels LK. All rights reserveds.
+                <!-- Content / End -->
+            
+</div>
+                <!-- Copyrights -->
+                <div class="copyrights">
+                 Copyright © 2023 John Travels LK. All rights reserveds.
+                </div>
             </div>
+            <!-- Dashboard / End -->
         </div>
-        <!-- Dashboard / End -->
     </div>
+
+
+    
+
+                 
+   
+   
     <!-- end Container Wrapper -->
     <!-- *Scripts* -->
     <script src="assets/js/jquery-3.2.1.min.js"></script>
@@ -244,3 +293,4 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
     <script src="assets/js/dashboard-custom.js"></script>
 </body>
 </html>
+                    

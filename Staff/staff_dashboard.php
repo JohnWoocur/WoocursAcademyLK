@@ -67,7 +67,7 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                                 <i class="fas fa-caret-down"></i>
                             </div>
                         </a>
-                        </a>
+                        
                         <div class="dropdown-menu account-menu">
                             <ul>
                                 <li><a href="staff_edit.php"><i class="fas fa-cog"></i>Edit Profile</a></li>

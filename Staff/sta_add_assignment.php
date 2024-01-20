@@ -2,7 +2,7 @@
 session_start();
 
 require 'db_connection.php';
-$Cid=$_POST['cid'];
+$Cid=$_POST['course_id'];
 // $lid=$_POST['lid'];
 $Lecture_id=$_SESSION["user_id"];
 
@@ -22,9 +22,11 @@ $result=mysqli_query($conn,$query);
 
 if($result){
     header('location:staff_assigment.php');
+    $_SESSION['Smsg'] = " assignmrnt post Successfully";
 }
 else{
     header('location:staff_add_assigment.php');
+    $_SESSION['Emsg'] = " Assignment post failed";
 }
 
 ?>

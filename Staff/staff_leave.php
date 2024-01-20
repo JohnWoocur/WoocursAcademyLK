@@ -1,5 +1,15 @@
 <?php include("../protect.php");
 notAuthenticated("staff", "login.php"); // if user not authenticated and redirect to login
+$Sid = $_SESSION["user_id"];
+
+require "db_connection.php";
+$query = "SELECT * FROM staffs WHERE staff_id = $Sid"; 
+
+$results = mysqli_query($conn, $query);
+$Irow = mysqli_fetch_assoc($results);
+$sname=$Irow["username"];
+$simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
+
 ?>
 <?php
 include 'db_connection.php';
@@ -78,12 +88,12 @@ if(!isset($_SESSION['id'])){
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
-                                <img src="assets/images/comment.jpg" alt="">
-                                <span>My Account </span>
+                            <img src="./staff_pro/<?php echo $simage?>" alt="">
+                                <span><?php echo"$sname";?></span>
                                 <i class="fas fa-caret-down"></i>
                             </div>
                         </a>
-                        </a>
+                        
                         <div class="dropdown-menu account-menu">
                             <ul>
                                 <li><a href="staff_edit.php"><i class="fas fa-cog"></i>Edit Profile</a></li>

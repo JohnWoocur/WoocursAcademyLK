@@ -1,5 +1,14 @@
 <?php include("../protect.php");
 notAuthenticated("admin", "login.php"); // if user not authenticated and redirect to login
+$Aid = $_SESSION["user_id"];
+
+require "db_connection.php";
+$query = "SELECT * FROM admins WHERE admin_id = $Aid"; 
+
+$results = mysqli_query($conn, $query);
+$Irow = mysqli_fetch_assoc($results);
+$aname=$Irow["username"];
+$aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
 ?>
 
 <!doctype html>
@@ -20,7 +29,7 @@ notAuthenticated("admin", "login.php"); // if user not authenticated and redirec
    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
    <!-- Custom CSS -->
    <link rel="stylesheet" type="text/css" href="style.css">
-   <title>Woocurs Academy</title>
+   <title>Woocurs Academy LK</title>
 </head>
 <body>
     <!-- start Container Wrapper -->
@@ -45,8 +54,8 @@ notAuthenticated("admin", "login.php"); // if user not authenticated and redirec
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
-                                <img src="assets/images/comment.jpg" alt="">
-                                <span>My Account </span>
+                            <img src="./admin_pro/<?php echo $aimage?>" alt="">
+                                <span><?php echo"$aname";?></span>
                                 <i class="fas fa-caret-down"></i>
                             </div>
                         </a>

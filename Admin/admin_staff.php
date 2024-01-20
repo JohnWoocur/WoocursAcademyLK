@@ -31,7 +31,7 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <!-- Custom CSS -->
         <link rel="stylesheet" type="text/css" href="style.css">
-        <title>Woocurs Academy</title>
+        <title>Woocurs Academy LK</title>
 </head>
 <body>
 

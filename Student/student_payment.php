@@ -1,5 +1,14 @@
 <?php include("../protect.php");
 notAuthenticated("student", "login.php"); // if user not authenticated and redirect to login
+$Stid = $_SESSION["user_id"];
+
+require "db_connection.php";
+$query = "SELECT * FROM students WHERE student_id = $Stid"; 
+
+$results = mysqli_query($conn, $query);
+$Irow = mysqli_fetch_assoc($results);
+$sname=$Irow["username"];
+$simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
 ?>
 <!doctype html>
 <html lang="en">

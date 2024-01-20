@@ -56,7 +56,7 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
-                                <img src="./staff_pro/<?php echo $simage?>" alt="">
+                            <img src="../Admin/admin_pro/<?php echo $simage?>" alt="">
                                 <span><?php echo"$sname";?></span>
                                 <i class="fas fa-caret-down"></i>
                             </div>
@@ -183,7 +183,7 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                 </div>
                 <div class="form-wrapper">
                     <!-- <img src="staff_pro/<?php echo $image; ?>" alt="profile"> -->
-                    <input type="file" placeholder="add your image" name="image" class="form-control">
+                    <input type="file" placeholder="add your image" name="image" class="form-control" accept="images/*">
                     
                 </div>
                 <button type="submit" class="sub" >submit</button>

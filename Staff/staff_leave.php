@@ -88,7 +88,7 @@ if(!isset($_SESSION['id'])){
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
-                            <img src="./staff_pro/<?php echo $simage?>" alt="">
+                            <img src="../Admin/admin_pro/<?php echo $simage?>" alt="">
                                 <span><?php echo"$sname";?></span>
                                 <i class="fas fa-caret-down"></i>
                             </div>

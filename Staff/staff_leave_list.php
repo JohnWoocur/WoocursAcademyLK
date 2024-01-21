@@ -174,7 +174,7 @@ if(!isset($_SESSION['id'])){
 											</thead>
                                     <?php
                                     include "db_connection.php";
-                                    $result = mysqli_query($conn,"SELECT * FROM leaves");
+                                    $result = mysqli_query($conn,"SELECT * FROM leaves WHERE staff_id = $Sid");
 
                                     ?>
 

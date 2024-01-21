@@ -1,39 +1,41 @@
 <?php include("../protect.php");
 notAuthenticated("student", "login.php"); // if user not authenticated and redirect to login
-$stid=$_SESSION['user_id'];
+$stid = $_SESSION['user_id'];
 
 
 
 require "db_connection.php";
-$query = "SELECT * FROM students WHERE student_id = $stid"; 
+$query = "SELECT * FROM students WHERE student_id = $stid";
 
 $results = mysqli_query($conn, $query);
 $Irow = mysqli_fetch_assoc($results);
-$sname=$Irow["username"];
+$sname = $Irow["username"];
 $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
 
 ?>
 
 <!doctype html>
 <html lang="en">
-   <head>
-     <!-- Required meta tags -->
-     <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- favicon -->
-        <link rel="icon" type="image/png" href="../assets/images/favicon.png">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css" media="all">
-        <!-- Fonts Awesome CSS -->
-        <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <!-- google fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <title>Woocurs Academy LK</title>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" media="all">
+    <!-- Fonts Awesome CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Woocurs Academy LK</title>
 </head>
+
 <body>
 
     <!-- start Container Wrapper -->
@@ -52,7 +54,7 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                                 <a href="#"><span class="search_btn"><i class="fa fa-search" aria-hidden="true"></i></span></a>
                             </div>
                         </form>
-                     </div>
+                    </div>
                     <!--<div class="dropdown">
                         <a class="dropdown-toggle" id="notifyDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="dropdown-item">
@@ -150,8 +152,8 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
-                            <img src="./student_pro/<?php echo $simage?>" alt="">
-                                <span><?php echo"$sname";?></span>
+                                <img src="./student_pro/<?php echo $simage ?>" alt="">
+                                <span><?php echo "$sname"; ?></span>
                                 <i class="fas fa-caret-down"></i>
                             </div>
                         </a>
@@ -183,19 +185,19 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                 </div>
             </div>
             <!-- contents start -->
-             <div class="db-info-wrap">
+            <div class="db-info-wrap">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="dashboard-box table-opp-color-box">
                             <h4>ASSIGNMENTS</h4>
                             <div class="table-responsive">
-                            <!-- <form  action="staff_view_assignment.php" method="POST" enctype="multipart/form-data">  -->
+                                <!-- <form  action="staff_view_assignment.php" method="POST" enctype="multipart/form-data">  -->
                                 <table class="table">
                                     <thead>
                                         <tr>
                                             <th>Id</th>
                                             <th>Course</th>
-                                            <th>Lecture Id</th>
+                                            <th>Lecturer</th>
                                             <th>Assignment File</th>
                                             <th>Post Date</th>
                                             <th>Deadline</th>
@@ -204,52 +206,59 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                                             <th>Upload</th>
                                         </tr>
                                     </thead>
-                                    <?php 
-                                            require 'db_connection.php';
+                                    <?php
+                                    require 'db_connection.php';
 
-                                            $sql = "SELECT student_courses.*, assignments.*         
-                                            FROM student_courses          
-                                            JOIN assignments  ON student_courses.course_id = assignments.course_id         
-                                            WHERE student_courses.student_id = '$stid'";
+                                    $sql = "SELECT sc.*, a.*, c.course_name, s.first_name, s.last_name, a.file as 'file', sa.file as stu_file,
+                                                CASE 
+                                                    WHEN sa.file != '' THEN 1
+                                                    ELSE 0
+                                                END as is_submited
+                                            FROM student_courses as sc
+                                            JOIN assignments as a ON sc.course_id = a.course_id
+                                            JOIN `courses` as c ON a.course_id = c.course_id 
+                                            JOIN `staffs` as s ON a.staff_id = s.staff_id         
+                                            LEFT JOIN `student_assignments` as sa ON sa.assignment_id = a.assignment_id         
+                                            WHERE sc.student_id = '$stid'";
 
-                                            $result=mysqli_query($conn,$sql);
-                                            while($row=mysqli_fetch_assoc($result)):
-                                            ?>
-                                                <form action="stu_upload_assignment.php" method="POST" enctype="multipart/form-data">
-                                                <tr>
-                                                    <input type="text" name="aid" value="<?php echo $row['assignment_id']; ?>" hidden>
+                                    $result = mysqli_query($conn, $sql);
+                                    while ($row = mysqli_fetch_assoc($result)) :
+                                    ?>
+                                        <form action="stu_upload_assignment.php" method="POST" enctype="multipart/form-data">
+                                            <tr>
+                                                <input type="text" name="aid" value="<?php echo $row['assignment_id']; ?>" hidden>
                                                 <td><?php echo $row['assignment_id']; ?></td>
-                                                <td><?php echo $row['course_id']; ?></td>
-                                                <td><?php echo $row['staff_id']; ?></td>
+                                                <td><?php echo $row['course_name']; ?></td>
+                                                <td><?php echo $row['first_name'] . " " . $row['last_name']; ?></td>
                                                 <td><?php echo $row['file']; ?></td>
                                                 <td><?php echo $row['post_date']; ?></td>
                                                 <td><?php echo $row['deadline']; ?></td>
                                                 <td><a href="../Staff/materials/<?php echo $row['file']; ?>" target="_blank"><span class="badge badge-success"><i class="far fa-eye"></i></span></a></td>
-                                                <td><a href="../staff/materials/<?php echo $row['file']; ?>>"download="<?php echo $row['file'];?>"><span class="badge badge-danger"><i class="fa fa-download"></i></span></a></td>
+                                                <td><a href="../staff/materials/<?php echo $row['file']; ?>>" download="<?php echo $row['file']; ?>"><span class="badge badge-danger"><i class="fa fa-download"></i></span></a></td>
                                                 <td>
-                                                
                                                     <input type="file" name="file">
-                                                    <span class="badge badge-success"><button type="submit"><i class="fa fa-upload"></i></button></span>
+                                                    <span class="badge badge-success"><button type="submit" <?php echo $row['is_submited'] ? "disabled" : "" ?>><i class="fa fa-upload"></i></button></span>
                                                     <!-- <button type="submit"><span class="badge badge-success"></span></button> -->
-                                                
-                                            </td>
+                                                </td>
                                             </tr>
-                                            </form>
+                                        </form>
                                     <?php
-                                        endwhile;
+                                    // echo json_encode($row);
+                                    endwhile;
+                                    // return;
                                     ?>
-                                    
+
                                 </table>
-                            <!-- </form> -->
+                                <!-- </form> -->
                             </div>
                         </div>
-                    </div>  
+                    </div>
                 </div>
             </div>
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">
-               Copyright © 2023 John Travels LK. All rights reserveds.
+                Copyright © 2023 John Travels LK. All rights reserveds.
             </div>
         </div>
         <!-- Dashboard / End -->
@@ -265,4 +274,5 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
     <script src="assets/js/jquery.slicknav.js"></script>
     <script src="assets/js/dashboard-custom.js"></script>
 </body>
+
 </html>

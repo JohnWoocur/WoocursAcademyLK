@@ -3,35 +3,37 @@ notAuthenticated("student", "login.php"); // if user not authenticated and redir
 $Stid = $_SESSION["user_id"];
 
 require "db_connection.php";
-$query = "SELECT * FROM students WHERE student_id = $Stid"; 
+$query = "SELECT * FROM students WHERE student_id = $Stid";
 
 $results = mysqli_query($conn, $query);
 $Irow = mysqli_fetch_assoc($results);
-$sname=$Irow["username"];
+$sname = $Irow["username"];
 $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
 
 ?>
 
 <!doctype html>
 <html lang="en">
-   <head>
-     <!-- Required meta tags -->
-     <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- favicon -->
-        <link rel="icon" type="image/png" href="../assets/images/favicon.png">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css" media="all">
-        <!-- Fonts Awesome CSS -->
-        <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <!-- google fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <title>Woocurs Academy LK</title>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" media="all">
+    <!-- Fonts Awesome CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Woocurs Academy LK</title>
 </head>
+
 <body>
 
     <!-- start Container Wrapper -->
@@ -148,8 +150,8 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
-                            <img src="./student_pro/<?php echo $simage?>" alt="">
-                                <span><?php echo"$sname";?></span>
+                                <img src="./student_pro/<?php echo $simage ?>" alt="">
+                                <span><?php echo "$sname"; ?></span>
                                 <i class="fas fa-caret-down"></i>
                             </div>
                         </a>
@@ -185,49 +187,56 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="dashboard-box table-opp-color-box">
-                       
+
                             <h4>NOTES</h4>
-                            
+
                             <div class="table-responsive">
-                            <form  action="db_view_notes.php" method="POST" enctype="multipart/form-data">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Course</th>
-                                            <th>Lecture Id</th>
-                                            <th>Notes File</th>
-                                            <th>View</th>
-                                            <th>Download</th>
-                                        </tr>
-                                    </thead>
-                                     <?php 
-                                        require 'db_connection.php';
-                                        $query="SELECT * FROM `notes`";
-                                        $result=mysqli_query($conn,$query);
-                                        while($row=mysqli_fetch_assoc($result)):?>
-                                        <tr>
-                                        <td><?php echo $row['notes_id']; ?></td>
-                                        <td><?php echo $row['course_id']; ?></td>
-                                        <td><?php echo $row['staff_id']; ?></td>
-                                        <td><?php echo $row['file']; ?></td>
-                                            <td><a href="../staff/materials/<?php echo $row['file']; ?>" target="_blank"><span class="badge badge-success"><i class="far fa-eye"></i></span></a></td>
-                                            <td><a href="../staff/materials/<?php echo $row['file']; ?>>"download="<?php echo $row['file'];?>"><span class="badge badge-danger"><i class="fa fa-download"></i></span></a></td>
-                                        </tr>
+                                <form action="db_view_notes.php" method="POST" enctype="multipart/form-data">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Course</th>
+                                                <th>Lecturer</th>
+                                                <th>Notes File</th>
+                                                <th>View</th>
+                                                <th>Download</th>
+                                            </tr>
+                                        </thead>
                                         <?php
-                                          endwhile;
-                                        ?>  
-                                </table>
-                            </form>
+                                        require 'db_connection.php';
+                                        // $query="SELECT * FROM `notes`";
+                                        $query = "SELECT student_courses.*, n.*, c.course_name, s.first_name, s.last_name      
+                                            FROM student_courses          
+                                            JOIN notes as n ON student_courses.course_id = n.course_id
+                                            JOIN `courses` as c ON n.course_id = c.course_id 
+                                            JOIN `staffs` as s ON n.staff_id = s.staff_id         
+                                            WHERE student_courses.student_id = '$Stid'";
+
+                                        $result = mysqli_query($conn, $query);
+                                        while ($row = mysqli_fetch_assoc($result)) : ?>
+                                            <tr>
+                                                <td><?php echo $row['notes_id']; ?></td>
+                                                <td><?php echo $row['course_name']; ?></td>
+                                                <td><?php echo $row['first_name'] . " " . $row['last_name']; ?></td>
+                                                <td><?php echo $row['file']; ?></td>
+                                                <td><a href="../staff/materials/<?php echo $row['file']; ?>" target="_blank"><span class="badge badge-success"><i class="far fa-eye"></i></span></a></td>
+                                                <td><a href="../staff/materials/<?php echo $row['file']; ?>>" download="<?php echo $row['file']; ?>"><span class="badge badge-danger"><i class="fa fa-download"></i></span></a></td>
+                                            </tr>
+                                        <?php
+                                        endwhile;
+                                        ?>
+                                    </table>
+                                </form>
                             </div>
                         </div>
-                    </div>  
+                    </div>
                 </div>
             </div>
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">
-               Copyright © 2023 John Travels LK. All rights reserveds.
+                Copyright © 2023 John Travels LK. All rights reserveds.
             </div>
         </div>
         <!-- Dashboard / End -->
@@ -243,4 +252,5 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
     <script src="assets/js/jquery.slicknav.js"></script>
     <script src="assets/js/dashboard-custom.js"></script>
 </body>
+
 </html>

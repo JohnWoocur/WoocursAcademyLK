@@ -16,7 +16,7 @@ $query="INSERT INTO `student_assignments`( `assignment_id`, `student_id`, `file`
 $result=mysqli_query($conn,$query);
 
 if($result){
-    header('location:staff_view_assignment.php');
+    header('location:student_assignment.php');
 }
 else{
     header('location:student_assignment.php');

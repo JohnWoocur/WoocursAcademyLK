@@ -3,11 +3,11 @@ notAuthenticated("staff", "login.php"); // if user not authenticated and redirec
 $Sid = $_SESSION["user_id"];
 
 require "db_connection.php";
-$query = "SELECT * FROM staffs WHERE staff_id = $Sid"; 
+$query = "SELECT * FROM staffs WHERE staff_id = $Sid";
 
 $results = mysqli_query($conn, $query);
 $Irow = mysqli_fetch_assoc($results);
-$sname=$Irow["username"];
+$sname = $Irow["username"];
 $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
 
 ?>
@@ -62,12 +62,12 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
-                            <img src="../Admin/admin_pro/<?php echo $simage?>" alt="">
-                                <span><?php echo"$sname";?></span>
+                                <img src="../Admin/admin_pro/<?php echo $simage ?>" alt="">
+                                <span><?php echo "$sname"; ?></span>
                                 <i class="fas fa-caret-down"></i>
                             </div>
                         </a>
-                        
+
                         <div class="dropdown-menu account-menu">
                             <ul>
                                 <li><a href="staff_edit.php"><i class="fas fa-cog"></i>Edit Profile</a></li>
@@ -99,53 +99,56 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
             <div class="db-info-wrap">
                 <div class="row">
                     <div class="col-lg-12">
-                    <?php
-                    
-                    if(isset($_SESSION['Smsg'])):
-                    ?>
-                    <div class="form-group">
-                        <label class="badge badge-success"><?php echo $_SESSION['Smsg']; ?></label>
-                    </div>
-                    <?php
-                    unset($_SESSION['Smsg']);
-                    endif;
-                    ?>
-                    <?php
-                    if(isset($_SESSION['Emsg'])):
-                    ?>
-                    <div class="form-group">
-                    <label class="badge badge-danger"><?php echo $_SESSION['Emsg']; ?></label>
-                    </div>
-                    <?php
-                    unset($_SESSION['Emsg']);
-                    endif;
-                    ?>
+                        <?php
+
+                        if (isset($_SESSION['Smsg'])) :
+                        ?>
+                            <div class="form-group">
+                                <label class="badge badge-success"><?php echo $_SESSION['Smsg']; ?></label>
+                            </div>
+                        <?php
+                            unset($_SESSION['Smsg']);
+                        endif;
+                        ?>
+                        <?php
+                        if (isset($_SESSION['Emsg'])) :
+                        ?>
+                            <div class="form-group">
+                                <label class="badge badge-danger"><?php echo $_SESSION['Emsg']; ?></label>
+                            </div>
+                        <?php
+                            unset($_SESSION['Emsg']);
+                        endif;
+                        ?>
                         <div class="dashboard-box table-opp-color-box">
                             <h4>ASSIGNMENTS</h4>
                             <div class="table-responsive">
-                            <form  action="sta_view_assignment.php" method="POST" enctype="multipart/form-data"> 
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Course</th>
-                                            <th>Lecture Id</th>
-                                            <th>Assignment File</th>
-                                            <th>Post Date</th>
-                                            <th>Deadline</th>
-                                            <th>View</th>
-                                            <th>Delete</th>
-                                        </tr>
-                                    </thead>
-                                    <?php 
-                                            require 'db_connection.php';
-                                            $query="SELECT * FROM `assignments`";
-                                            $result=mysqli_query($conn,$query);
-                                            while($row=mysqli_fetch_assoc($result)):?>
+                                <form action="sta_view_assignment.php" method="POST" enctype="multipart/form-data">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Course</th>
+                                                <th>Lecturer</th>
+                                                <th>Assignment File</th>
+                                                <th>Post Date</th>
+                                                <th>Deadline</th>
+                                                <th>View</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <?php
+                                        require 'db_connection.php';
+                                        $query = "SELECT a.*,c.course_name,s.first_name,s.last_name FROM `assignments` as a 
+                                            JOIN `courses` as c ON a.course_id = c.course_id 
+                                            JOIN `staffs` as s ON a.staff_id = s.staff_id
+                                            WHERE a.staff_id='$Sid'";
+                                        $result = mysqli_query($conn, $query);
+                                        while ($row = mysqli_fetch_assoc($result)) : ?>
                                             <tr>
                                                 <td><?php echo $row['assignment_id']; ?></td>
-                                                <td><?php echo $row['course_id']; ?></td>
-                                                <td><?php echo $row['staff_id']; ?></td>
+                                                <td><?php echo $row['course_name']; ?></td>
+                                                <td><?php echo $row['first_name']." ".$row['last_name']; ?></td>
                                                 <td><?php echo $row['file']; ?></td>
                                                 <td><?php echo $row['post_date']; ?></td>
                                                 <td><?php echo $row['deadline']; ?></td>
@@ -153,25 +156,25 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                                                 <td><a href="sta_delete_assignment.php?id=<?php echo $row['assignment_id']; ?>"><span class="badge badge-danger"><i class="far fa-trash-alt"></i></span></a></td>
                                                 <!-- <th>Action</th> -->
                                             </tr>
-                                    <?php
+                                        <?php
                                         endwhile;
-                                    ?>
-                                </table>
-                                <h5><b>Add Assignment</b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="staff_add_assignment.php"><span class="badge badge-success"><i class="fa fa-plus"></i></span></a></h5>
-                                <h5><b>View Uploaded Assignment</b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="staff_view_assignment.php"><span class="badge badge-success"><i class="fa fa-eye"></i></span></a></h5>
-                            </form>
+                                        ?>
+                                    </table>
+                                    <h5><b>Add Assignment</b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="staff_add_assignment.php"><span class="badge badge-success"><i class="fa fa-plus"></i></span></a></h5>
+                                    <h5><b>View Uploaded Assignment</b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="staff_view_assignment.php"><span class="badge badge-success"><i class="fa fa-eye"></i></span></a></h5>
+                                </form>
                             </div>
                         </div>
-                    </div>  
+                    </div>
                 </div>
             </div>
             <!-- Content / End -->
 
             <!-- Copyrights -->
             <div class="copyrights">
-            Copyright © 2023  Woocurs Academy LK. All rights reserved.
+                Copyright © 2023 Woocurs Academy LK. All rights reserved.
 
-             </div>
+            </div>
         </div>
         <!-- Dashboard / End -->
     </div>
@@ -187,4 +190,5 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
 </body>
 
 <!-- Mirrored from cyclonethemes.com/demo/html/padhai/dashboard-addtour.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 02 Feb 2020 09:01:50 GMT -->
+
 </html>

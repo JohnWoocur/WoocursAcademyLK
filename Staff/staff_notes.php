@@ -3,35 +3,37 @@ notAuthenticated("staff", "login.php"); // if user not authenticated and redirec
 $Sid = $_SESSION["user_id"];
 
 require "db_connection.php";
-$query = "SELECT * FROM staffs WHERE staff_id = $Sid"; 
+$query = "SELECT * FROM staffs WHERE staff_id = $Sid";
 
 $results = mysqli_query($conn, $query);
 $Irow = mysqli_fetch_assoc($results);
-$sname=$Irow["username"];
+$sname = $Irow["username"];
 $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['image'] : "default_pic.jpg";
 
 ?>
 
 <!doctype html>
 <html lang="en">
-   <head>
-   <!-- Required meta tags -->
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <!-- favicon -->
-   <link rel="icon" type="image/png" href="../assets/images/favicon.png">
-   <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="assets/css/bootstrap.min.css" media="all">
-   <!-- Fonts Awesome CSS -->
-   <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <!-- google fonts -->
-   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
-   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-   <!-- Custom CSS -->
-   <link rel="stylesheet" type="text/css" href="style.css">
-   <title>Woocurs Academy</title>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" media="all">
+    <!-- Fonts Awesome CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Woocurs Academy</title>
 </head>
+
 <body>
     <!-- start Container Wrapper -->
     <div id="container-wrapper">
@@ -60,12 +62,12 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
-                            <img src="../Admin/admin_pro/<?php echo $simage?>" alt="">
-                                <span><?php echo"$sname";?></span>
+                                <img src="../Admin/admin_pro/<?php echo $simage ?>" alt="">
+                                <span><?php echo "$sname"; ?></span>
                                 <i class="fas fa-caret-down"></i>
                             </div>
                         </a>
-                        
+
                         <div class="dropdown-menu account-menu">
                             <ul>
                                 <li><a href="staff_edit.php"><i class="fas fa-cog"></i>Edit Profile</a></li>
@@ -97,76 +99,81 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
             <div class="db-info-wrap">
                 <div class="row">
                     <?php
-                    
-                    if(isset($_SESSION['Smsg'])):
+
+                    if (isset($_SESSION['Smsg'])) :
                     ?>
-                    <div class="form-group">
-                        <label class="badge badge-success"><?php echo $_SESSION['Smsg']; ?></label>
-                    </div>
+                        <div class="form-group">
+                            <label class="badge badge-success"><?php echo $_SESSION['Smsg']; ?></label>
+                        </div>
                     <?php
-                    unset($_SESSION['Smsg']);
+                        unset($_SESSION['Smsg']);
                     endif;
                     ?>
                     <?php
-                    if(isset($_SESSION['Emsg'])):
+                    if (isset($_SESSION['Emsg'])) :
                     ?>
-                    <div class="form-group">
-                    <label class="badge badge-danger"><?php echo $_SESSION['Emsg']; ?></label>
-                    </div>
+                        <div class="form-group">
+                            <label class="badge badge-danger"><?php echo $_SESSION['Emsg']; ?></label>
+                        </div>
                     <?php
-                    unset($_SESSION['Emsg']);
+                        unset($_SESSION['Emsg']);
                     endif;
                     ?>
                     <div class="col-lg-12">
                         <div class="dashboard-box table-opp-color-box">
-                       
+
                             <h4>NOTES</h4>
-                            
+
                             <div class="table-responsive">
-                            <form  action="sta_view_notes.php" method="POST" enctype="multipart/form-data">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Course</th>
-                                            <th>Lecture Id</th>
-                                            <th>Notes File</th>
-                                            <th>View</th>
-                                            <th>Delete</th>
-                                        </tr>
-                                    </thead>
-                                    <?php 
-            require 'db_connection.php';
-            $query="SELECT * FROM `notes`";
-            $result=mysqli_query($conn,$query);
-            while($row=mysqli_fetch_assoc($result)):?>
-            <tr>
-                <td><?php echo $row['notes_id']; ?></td>
-                <td><?php echo $row['course_id']; ?></td>
-                <td><?php echo $row['staff_id']; ?></td>
-                <td><?php echo $row['file']; ?></td>
-                <td><a href="../staff/materials/<?php echo $row['file']; ?>" target="_blank"><span class="badge badge-success"><i class="far fa-eye"></i></span></a></td>
-                <td><a href="sta_delete_notes.php?id=<?php echo $row['notes_id']; ?>"> <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span></a></td>
-                <!-- <th>Action</th> -->
-            </tr>
-            <?php
-            endwhile;
-            ?>
-                                  </table>
-                                <h5><b>Add Notes</b>&nbsp;&nbsp;<a href="staff_add_notes.php"><span class="badge badge-success"><i class="fa fa-plus"></i></span></a></h5>
-                            </form>
+                                <form action="sta_view_notes.php" method="POST" enctype="multipart/form-data">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Course</th>
+                                                <th>Lecture Id</th>
+                                                <th>Notes File</th>
+                                                <th>View</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <?php
+                                        require 'db_connection.php';
+                                        // $query = "SELECT * FROM `notes` WHERE staff_id='$Sid'";
+                                        $query = "SELECT n.*,c.course_name,s.first_name,s.last_name FROM `notes` as n 
+                                            JOIN `courses` as c ON n.course_id = c.course_id 
+                                            JOIN `staffs` as s ON n.staff_id = s.staff_id
+                                            WHERE n.staff_id='$Sid'";
+
+                                        $result = mysqli_query($conn, $query);
+                                        while ($row = mysqli_fetch_assoc($result)) : ?>
+                                            <tr>
+                                                <td><?php echo $row['notes_id']; ?></td>
+                                                <td><?php echo $row['course_name']; ?></td>
+                                                <td><?php echo $row['first_name']." ".$row['last_name']; ?></td>
+                                                <td><?php echo $row['file']; ?></td>
+                                                <td><a href="../staff/materials/<?php echo $row['file']; ?>" target="_blank"><span class="badge badge-success"><i class="far fa-eye"></i></span></a></td>
+                                                <td><a href="sta_delete_notes.php?id=<?php echo $row['notes_id']; ?>"> <span class="badge badge-danger"><i class="far fa-trash-alt"></i></span></a></td>
+                                                <!-- <th>Action</th> -->
+                                            </tr>
+                                        <?php
+                                        endwhile;
+                                        ?>
+                                    </table>
+                                    <h5><b>Add Notes</b>&nbsp;&nbsp;<a href="staff_add_notes.php"><span class="badge badge-success"><i class="fa fa-plus"></i></span></a></h5>
+                                </form>
                             </div>
                         </div>
-                    </div>  
+                    </div>
                 </div>
             </div>
             <!-- Content / End -->
 
             <!-- Copyrights -->
             <div class="copyrights">
-            Copyright © 2023  Woocurs Academy LK. All rights reserved.
+                Copyright © 2023 Woocurs Academy LK. All rights reserved.
 
-             </div>
+            </div>
         </div>
         <!-- Dashboard / End -->
     </div>
@@ -182,4 +189,5 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
 </body>
 
 <!-- Mirrored from cyclonethemes.com/demo/html/padhai/dashboard-addtour.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 02 Feb 2020 09:01:50 GMT -->
+
 </html>

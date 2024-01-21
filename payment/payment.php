@@ -1,5 +1,5 @@
 <?php 
-session_start();
+
 include ("db_connection.php");
 include("../protect.php");
 notAuthenticated("student", "login.php"); // if user not authenticated and redirect to login
@@ -21,19 +21,14 @@ notAuthenticated("student", "login.php"); // if user not authenticated and redir
     $date=$_POST['date'];	
     $gender=$_POST['gender'];	
 
-    $query="INSERT INTO `payments`(`first_name`, `last_name`, `student_id`, `email`, `address`, `slip_no`, `date`, `gender`, `photo`) 
-    VALUES ('$first_name','$last_name','$student_id','$email','$address','$slip_no','$date','$gender','$filename')";
+    $query="INSERT INTO `payments`(`first_name`, `last_name`, `student_id`, `email`, `address`, `slip_no`, `date`, `gender`, `photo`) VALUES ('$first_name','$last_name','$student_id','$email','$address','$slip_no','$date','$gender','$filename')";
     $result=mysqli_query($conn,$query);
-    if ($check) {
-
+    if ($result) {
         header("Location:../Student/student_payment.php");
-        $_SESSION['Smsg'] = " payment added Successfully";
+        $_SESSION['Smsg'] = "payment added Successfully";
         }
         else{
-    
         header("location:index.php");
         $_SESSION['Smsg'] = "payment not successfully";
-            
-    
         }
 ?>

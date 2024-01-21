@@ -1,40 +1,40 @@
+<?php include("../protect.php");
+notAuthenticated("admin", "login.php"); // if user not authenticated and redirect to login
+$aid = $_SESSION["user_id"];
 
+?>
 
 <?php
       include "db_connection.php";
-      $sql = mysqli_query($conn,"SELECT * FROM staffs WHERE status = 'Active'");
+
+	  $leave_id = $_GET['leave_id'];
+	 	$sql = "SELECT staffs.staff_id, staffs.first_name,staffs.last_name,staffs.contact_no,staffs.email,staffs.department, leaves.* 
+    	FROM staffs
+     	INNER JOIN leaves ON staffs.staff_id = leaves.staff_id  WHERE staffs.status ='Active' AND leaves.leave_id = $leave_id";
+
+      $query = mysqli_query($conn,$sql);
 
 ?>
 
                                   
 <?php
 
-	if($row = $sql->fetch_assoc()) {
+	if($row = $query->fetch_assoc()) {
 	$staff_id = $row["staff_id"];
-	$last_name = $row["last_name"];
+	$last_name = $row["first_name"]." ".$row["last_name"]  ;
 	$contact_no = $row["contact_no"];
 	$email = $row["email"];
 	$department = $row["department"];
+	$type = $row["type"];
+	$description = $row["description"];
+	$start_date = $row["start_date"];
+	$end_date = $row["end_date"];
+	$no_of_leaves = $row["no_of_leaves"];
+	$date = $row["date"];
+	$status = $row["status"];
 ?>
 										
-<?php
-    include "db_connection.php";
-	$leave_id = $_GET['leave_id'];
-    $result = mysqli_query($conn,"SELECT * FROM leaves WHERE leave_id ={$_GET['leave_id']}");
-	
 
-?>
-<?php
-
-        if($row = $result->fetch_assoc()) {
-		$type = $row["type"];
-		$description = $row["description"];
-		$start_date = $row["start_date"];
-		$end_date = $row["end_date"];
-		$no_of_leaves = $row["no_of_leaves"];
-		$date = $row["date"];
-		$status = $row["status"];
-?>
 
 
 <html lang="en">
@@ -120,7 +120,7 @@
 			</div>
 			<?php
                 }
-				}
+				
                 $conn->close();
             ?>
 		</form>

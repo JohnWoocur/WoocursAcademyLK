@@ -106,7 +106,7 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                             
                             </div>
                             <div class="dashboard-stat-content">
-                                <h4><a href="admin_activatedstudentlist.php">Aproved</a></h4>
+                                <h4><a href="admin_activatedstudentlist.php">Approved</a></h4>
                                 
                             </div>
                         </div>
@@ -152,37 +152,33 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                                     <?php
                                     include "db_connection.php";
 
-                                    $sql="SELECT students.*,students.first_name,students.last_name,students.category FROM students
-                                    JOIN student_courses ON students.student_id = student_courses.student_id ";
-                                    $results=mysqli_query($conn,$sql);
-                                    while($urow=mysqli_fetch_assoc($results)){
+                                    $sql = "SELECT students.*, students.first_name, students.last_name, students.category, courses.course_name, courses.duration
+                                                FROM students
+                                                JOIN student_courses ON students.student_id = student_courses.student_id
+                                                JOIN courses ON student_courses.course_id = courses.course_id";
+                                        $results = mysqli_query($conn, $sql);
 
-                                    $sql="SELECT courses.*,courses.course_name,courses.duration FROM courses
-                                    JOIN student_courses ON courses.course_id = student_courses.course_id ";
-                                    $result=mysqli_query($conn,$sql);
+                                        while ($row = mysqli_fetch_assoc($results)) {
 
+                                    
                                     
 
                                     ?>
 
                                     <tbody>
-                                        <?php
-                                    
-                                    while($row =mysqli_fetch_assoc($result)) {
-                                        ?>
-
+                                       
                                         <tr>
 
                                         <?php 
                                         // output data of each row
                                         
-                                            echo'<td>'.$urow["student_id"].'</td>';
-                                            echo'<td>'.$urow["first_name"].'</td>';
-                                            echo'<td>'.$urow["last_name"].'</td>';
-                                            echo'<td>'.$urow["category"].'</td>';
-                                            echo'<td>'.$row["course_name"].'</td>';
-                                            echo'<td>'.$row["duration"].'</td>';
-                                            echo'<td>'.$urow["status"].'</td>';
+                                        echo'<td>'.$row["student_id"].'</td>';
+                                        echo'<td>'.$row["first_name"].'</td>';
+                                        echo'<td>'.$row["last_name"].'</td>';
+                                        echo'<td>'.$row["category"].'</td>';
+                                        echo'<td>'.$row["course_name"].'</td>';
+                                        echo'<td>'.$row["duration"].'</td>';
+                                        echo'<td>'.$row["status"].'</td>';
                                         
 
                                             ?>
@@ -195,7 +191,7 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                                         </tr>
                                         <?php
                                     }
-                                }
+                                
                                     $conn->close();
                                         ?>
                                         

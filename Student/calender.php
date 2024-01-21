@@ -50,100 +50,7 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                             </div>
                         </form>
                     </div>
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" id="notifyDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <div class="dropdown-item">
-                                <i class="far fa-envelope"></i>
-                                <span class="notify">3</span>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu notification-menu" aria-labelledby="notifyDropdown">
-                            <h4> 3 Notifications</h4>
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <div class="list-img">
-                                            <img src="assets/images/comment.jpg" alt="">
-                                        </div>
-                                        <div class="notification-content">
-                                            <p>You have a notification.</p>
-                                            <small>2 hours ago</small>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="list-img">
-                                            <img src="assets/images/comment2.jpg" alt="">
-                                        </div>
-                                        <div class="notification-content">
-                                            <p>You have a notification.</p>
-                                            <small>2 hours ago</small>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="list-img">
-                                            <img src="assets/images/comment3.jpg" alt="">
-                                        </div>
-                                        <div class="notification-content">
-                                            <p>You have a notification.</p>
-                                            <small>2 hours ago</small>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                            <a href="#" class="all-button">See all messages</a>
-                        </div>
-                    </div>
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown">
-                            <div class="dropdown-item">
-                                <i class="far fa-bell"></i>
-                                <span class="notify">3</span>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu notification-menu">
-                            <h4> 3 Messages</h4>
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <div class="list-img">
-                                            <img src="assets/images/comment4.jpg" alt="">
-                                        </div>
-                                        <div class="notification-content">
-                                            <p>You have a notification.</p>
-                                            <small>2 hours ago</small>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="list-img">
-                                            <img src="assets/images/comment5.jpg" alt="">
-                                        </div>
-                                        <div class="notification-content">
-                                            <p>You have a notification.</p>
-                                            <small>2 hours ago</small>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="list-img">
-                                            <img src="assets/images/comment6.jpg" alt="">
-                                        </div>
-                                        <div class="notification-content">
-                                            <p>You have a notification.</p>
-                                            <small>2 hours ago</small>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                            <a href="#" class="all-button">See all messages</a>
-                        </div>
-                    </div>
+                    
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="dropdown-item profile-sec">
@@ -192,7 +99,7 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
             <!-- Content / End -->
             <!-- Copyrights -->
             <div class="copyrights">
-               Copyright © 2023 John Travels LK. All rights reserveds.
+            Copyright © 2023 Woocurs Academy LK. All rights reserved.
             </div>
         </div>
         <!-- Dashboard / End -->

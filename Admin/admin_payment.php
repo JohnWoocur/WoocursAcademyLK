@@ -120,7 +120,7 @@ include 'db_connection.php';
                                     </thead>
                                 <?php
                                     include "db_connection.php";
-                                    $result = mysqli_query($conn,"SELECT * FROM payments");
+                                    $result = mysqli_query($conn,"SELECT * FROM payments WHERE status = 'pending' OR status = 'approved'");
 
                                     ?>
 

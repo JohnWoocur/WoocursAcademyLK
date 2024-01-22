@@ -108,7 +108,7 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                                             <select id="course_id" name="course_id" required>
                                                 <?php
                                                 require "db_connection.php";
-                                                $query = "SELECT course_id,course_name FROM courses WHERE staff_id='$Sid'";
+                                                $query = "SELECT course_id,course_name FROM courses WHERE staff_id= $Sid";
                                                 $result = mysqli_query($conn, $query);
                                                 while ($row = $result->fetch_assoc()) {
                                                     echo "<option value='" . $row['course_id'] . "'>" . $row['course_name'] . "</option>";

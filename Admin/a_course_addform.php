@@ -22,6 +22,19 @@
     <label for="duration">Duration</label>
     <input type="text" id="duration" name="duration" placeholder="Couse duration">
 
+    <label for="course_id"> Staff Name </label>
+                                            <select id="staff_id" name="staff_id" required>
+                                              <?php
+                   require "db_connection.php";
+                                                $query = "SELECT first_name,last_name,staff_id FROM staffs WHERE status = 'Active'";
+                                                $result = mysqli_query($conn, $query);
+                                                while ($row = $result->fetch_assoc()) {
+                                                  $name=$row['first_name']." ".$row['last_name'];
+                                                    echo "<option value='" . $row['staff_id'] . "'>" . $name . "</option>";
+                                                }
+                                                ?>
+                                            </select>
+
     <label for="c_cetegory">Course Category</label>
     <input type="text" id="category" name="category" placeholder="Couse category (Part Time /Full Time)">
     

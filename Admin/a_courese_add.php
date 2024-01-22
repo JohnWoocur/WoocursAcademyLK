@@ -5,6 +5,7 @@ include "db_connection.php";
 $course_name= $_POST['course_name'];
 $duration= $_POST['duration'];
 $category=$_POST['category'];
+$sid=$_POST['staff_id'];
 $start_date= $_POST['start_date'];
 $end_date= $_POST['end_date'];
 $num_student=$_POST['num_student'];
@@ -20,7 +21,7 @@ move_uploaded_file($tempname, $folder);
 
 
 
-$sql="INSERT INTO `courses`(`course_name`, `duration`, `category`, `start_date`, `end_date`, `num_student`, `fees`, `description`, `c_image`) VALUES ('$course_name','$duration','$category','$start_date','$end_date','$num_student','$fees','$description','$filename')";
+$sql="INSERT INTO `courses`(`course_name`, `duration`, `category`, `start_date`, `end_date`, `num_student`, `fees`, `description`, `c_image`,`staff_id`) VALUES ('$course_name','$duration','$category','$start_date','$end_date','$num_student','$fees','$description','$filename','$sid')";
 $query=mysqli_query($conn,$sql);
 // if (move_uploaded_file($tempname, $folder)) {
 

@@ -7,10 +7,11 @@
     <link rel="stylesheet" type="text/css" href="assets/css/course_style.css">
     <title>Document</title>
 </head>
-<body>
+<body style="background-image: url(assets/images/bg4.avif);">
     <h1>Course Add </h1>
 
-<div class="container">
+<div class="container"  >
+  
   <form action="a_courese_add.php" method="POST" enctype="multipart/form-data">
 
     <label for="image">  <i class="fa-sharp fa-regular fa-image"></i>image</label><br>

@@ -22,7 +22,7 @@ hasAuthenticated("staff", "staff_dashboard.php"); // if user authenticated redir
 </head>
 
 <body>
-    <div class="login-page" style="background-image: url(assets/images/bg.jpg);">
+    <div class="login-page" style="background-image: url(assets/images/bg1.avif);">
         <div class="login-from-wrap">
             <?php
             if (isset($_SESSION["error"])) {

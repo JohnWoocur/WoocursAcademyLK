@@ -57,10 +57,10 @@ session_start();
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="#index" class="nav-item nav-link active">Home</a>
-                <a href="#about" class="nav-item nav-link">About</a>
-                <a href="#courses" class="nav-item nav-link">Courses</a>
-                <a href="#contact" class="nav-item nav-link">Contact</a>
+                <a href="index.php" class="nav-item nav-link active">Home</a>
+                <a href="index.php#about" class="nav-item nav-link">About</a>
+                <a href="index.php#courses" class="nav-item nav-link">Courses</a>
+                <a href="index.php#contact" class="nav-item nav-link">Contact</a>
             </div>
             <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
         </div>

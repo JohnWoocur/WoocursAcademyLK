@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2024 at 10:01 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Jan 30, 2024 at 08:18 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,13 +38,6 @@ CREATE TABLE `admins` (
   `gender` enum('male','female','other') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `admins`
---
-
-INSERT INTO `admins` (`admin_id`, `first_name`, `last_name`, `username`, `email`, `contact_no`, `password`, `gender`) VALUES
-(1, 'linthujan', 'vimalanathan', 'linthujan', 'linthujan99@gmail.com', '0768911918', '12345678', 'male');
-
 -- --------------------------------------------------------
 
 --
@@ -59,14 +52,6 @@ CREATE TABLE `assignments` (
   `post_date` date NOT NULL,
   `deadline` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `assignments`
---
-
-INSERT INTO `assignments` (`assignment_id`, `course_id`, `staff_id`, `file`, `post_date`, `deadline`) VALUES
-(1, 1, 1, 'Va-Va-En-MassTamilan.com.mp3', '2024-01-06', '2024-01-04'),
-(2, 1, 1, 'Va-Va-En-MassTamilan.com.mp3', '2024-01-20', '2024-01-13');
 
 -- --------------------------------------------------------
 
@@ -87,14 +72,6 @@ CREATE TABLE `courses` (
   `description` text NOT NULL,
   `c_image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `courses`
---
-
-INSERT INTO `courses` (`course_id`, `course_name`, `staff_id`, `duration`, `category`, `start_date`, `end_date`, `num_student`, `fees`, `description`, `c_image`) VALUES
-(1, 'HNDIT', 1, '2 Years', 'Full Time', '2024-01-03', '2025-12-23', 20, 200000, 'HNDIT', '414077571_766830598800392_6168544943932247263_n.jpg'),
-(2, '', NULL, '', '', '0000-00-00', '0000-00-00', 0, 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -126,13 +103,6 @@ CREATE TABLE `notes` (
   `staff_id` int(11) NOT NULL,
   `file` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `notes`
---
-
-INSERT INTO `notes` (`notes_id`, `course_id`, `staff_id`, `file`) VALUES
-(1, 1, 1, 'Screenshot 2023-12-10 205148.png');
 
 -- --------------------------------------------------------
 
@@ -195,14 +165,6 @@ CREATE TABLE `staffs` (
   `department` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `staffs`
---
-
-INSERT INTO `staffs` (`staff_id`, `first_name`, `last_name`, `username`, `gender`, `dob`, `contact_no`, `address`, `email`, `password`, `qualification`, `image`, `status`, `salary`, `department`) VALUES
-(1, 'linthujan', 'vimalanathan', 'linthujan', 'male', '1999-07-08', '0768911918', 'ukkulankulam', 'linthujan99@gmail.com', '12345678', 'A/L', 'default_pic.jpg', 'pending', 10000, 'ICT'),
-(2, 'linthu', 'Linthujan', 'linthujan2', 'male', '2024-01-18', '0768911910', 'Thiruvalluvar Road', 'linthujan99@gmjail.com', '$2y$10$bHCbmxjCOOcJ/', 'sdfgds', '', 'Active', 356, 'afsfdg');
-
 -- --------------------------------------------------------
 
 --
@@ -225,13 +187,6 @@ CREATE TABLE `students` (
   `status` varchar(255) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `students`
---
-
-INSERT INTO `students` (`student_id`, `first_name`, `last_name`, `username`, `gender`, `category`, `email`, `contact_no`, `dob`, `department`, `password`, `image`, `status`) VALUES
-(1, 'Linthujan', 'Linthujan', 'linthujan', 'male', 'training', 'linthujan99@gmail.com', '0768911918', '2024-01-27', 'training', '556bb61f2184baa840b4f16701c06316', 'default_pic.jpg', 'pending');
-
 -- --------------------------------------------------------
 
 --
@@ -244,13 +199,6 @@ CREATE TABLE `student_assignments` (
   `student_id` int(11) NOT NULL,
   `file` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `student_assignments`
---
-
-INSERT INTO `student_assignments` (`student_assignment_id`, `assignment_id`, `student_id`, `file`) VALUES
-(4, 1, 1, 'Exam.zip');
 
 -- --------------------------------------------------------
 

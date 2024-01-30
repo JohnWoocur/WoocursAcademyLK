@@ -22,7 +22,7 @@ hasAuthenticated("student", "student_dashboard.php"); // if user authenticated r
 </head>
 
 <body>
-    <div class="login-page" style="background-image: url(assets/images/bg.jpg);">
+    <div class="login-page" style="background-image: url(assets/images/bg7.avif);">
         <div class="login-from-wrap">
             <?php
             if (isset($_SESSION["error"])) {

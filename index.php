@@ -472,7 +472,8 @@
 						src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15772.995017144669!2d80.4736373!3d8.7626507!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xac9424cdf8a608ab%3A0x648cd994f854466a!2sWoocurs!5e0!3m2!1sen!2slk!4v1700402509027!5m2!1sen!2slk"
 						width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
-                <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+         <!-- Contact start -->
+                <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s" id="contact">
                     <form>
                         <div class="row g-3">
                             <div class="col-md-6">

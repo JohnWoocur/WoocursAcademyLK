@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 30, 2024 at 08:18 AM
+-- Generation Time: Jan 30, 2024 at 08:56 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -37,6 +37,13 @@ CREATE TABLE `admins` (
   `password` varchar(40) NOT NULL,
   `gender` enum('male','female','other') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`admin_id`, `first_name`, `last_name`, `username`, `email`, `contact_no`, `password`, `gender`) VALUES
+(1, 'john', 'woocurs', 'admin', 'admin@gmail.com', '0771234567', '0192023a7bbd73250516f069df18b500', 'male');
 
 -- --------------------------------------------------------
 
@@ -363,7 +370,7 @@ ALTER TABLE `staffs`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `student_assignments`

@@ -46,23 +46,7 @@
 
 
     <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 class="m-0 text-primary">WOOCURS ACADEMY</h2>
-        </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link active">Home</a>
-                <a href="about.html" class="nav-item nav-link">About</a>
-                <a href="courses.html" class="nav-item nav-link">Courses</a>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
-            </div>
-            <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
-        </div>
-    </nav>
+     
     <!-- Navbar End -->
 
 
@@ -78,7 +62,7 @@
                         <div class="p-4">
                             <i class="fa fa-3x fa-graduation-cap text-primary mb-4"></i>
                             <h5 class="mb-3">Skilled Instructors</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                            <p> We have skilled instroctors with strong communication and organizational ability.</p>
                         </div>
                     </div>
                 </div>
@@ -87,7 +71,7 @@
                         <div class="p-4">
                             <i class="fa fa-3x fa-globe text-primary mb-4"></i>
                             <h5 class="mb-3">Online / physical Classes</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                            <p>All of our classes can be condected via online mood zoom as well as direct physical classes.</p>
                         </div>
                     </div>
                 </div>
@@ -96,7 +80,7 @@
                         <div class="p-4">
                             <i class="fa fa-3x fa-hourglass-half text-primary mb-4"></i>
                             <h5 class="mb-3">Realtime Projects</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                            <p>Making the students and trainees able to do any real time project in a specified discipline with the usege of corrent technologies.</p>
                         </div>
                     </div>
                 </div>
@@ -105,7 +89,7 @@
                         <div class="p-4">
                             <i class="fa fa-3x fa-book-open text-primary mb-4"></i>
                             <h5 class="mb-3">Free matrials</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                            <p>All the student will be provided all softcopy meterial of free cost.</p>
                         </div>
                     </div>
                 </div>
@@ -287,9 +271,9 @@
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+94 71 548 6896</p>
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i>info.woocursacademy@gmail.com</p>
                     <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" href="" target="blank"><i class="fab fa-whatsapp"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="https://wa.me/+94715486896" target="blank"><i class="fab fa-whatsapp"></i></a>
                         <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/woocursacademy" target="blank"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="https://youtube.com/@WoocursAcademy?feature=shared"><i class="fab fa-youtube"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>

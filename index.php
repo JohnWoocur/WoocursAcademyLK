@@ -112,7 +112,7 @@
                         <div class="p-4">
                             <i class="fa fa-3x fa-graduation-cap text-primary mb-4"></i>
                             <h5 class="mb-3">Skilled Instructors</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                            <p>We have skilled instroctors with strong communication and organizational ability.</p>
                         </div>
                     </div>
                 </div>
@@ -121,7 +121,7 @@
                         <div class="p-4">
                             <i class="fa fa-3x fa-globe text-primary mb-4"></i>
                             <h5 class="mb-3">Online / physical Classes</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                            <p>All of our classes can be condected via online mood zoom as well as direct physical classes.</p>
                         </div>
                     </div>
                 </div>
@@ -130,7 +130,7 @@
                         <div class="p-4">
                             <i class="fa fa-3x fa-hourglass-half text-primary mb-4"></i>
                             <h5 class="mb-3">Realtime Projects</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                            <p>Making the students and trainees able to do any real time project in a specified discipline with the usege of corrent technologies.</p>
                         </div>
                     </div>
                 </div>
@@ -139,7 +139,7 @@
                         <div class="p-4">
                             <i class="fa fa-3x fa-book-open text-primary mb-4"></i>
                             <h5 class="mb-3">Free matrials</h5>
-                            <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                            <p>All the student will be provided all softcopy meterial of free cost.</p>
                         </div>
                     </div>
                 </div>
@@ -531,9 +531,9 @@
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+94 71 548 6896</p>
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i>info.woocursacademy@gmail.com</p>
                     <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" href="" target="blank"><i class="fab fa-whatsapp"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="https://wa.me/+94715486896" target="blank"><i class="fab fa-whatsapp"></i></a>
                         <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/woocursacademy" target="blank"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="https://youtube.com/@WoocursAcademy?feature=shared"><i class="fab fa-youtube"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
@@ -546,7 +546,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Newsletter</h4>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                    <p>Subscribers to get updated.</p>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
                         <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
                         <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>

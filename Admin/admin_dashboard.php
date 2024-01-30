@@ -66,7 +66,7 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
 
                                 <li><a href="admin_edit.php"><i class="fas fa-cog"></i>Edit Profile</a></li>
                                 <li><a href="admin_profilecard.php"><i class="fas fa-user-tie"></i>Profile</a></li>
-                                <li><a href="admin_change_password.php"><i class="fas fa-key"></i>Password</a></li>
+                                <li><a href="#"><i class="fas fa-key"></i>Password</a></li>
                                 <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
 
                             </ul>

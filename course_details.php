@@ -275,6 +275,7 @@
                         <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/woocursacademy" target="blank"><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-outline-light btn-social" href="https://youtube.com/@WoocursAcademy?feature=shared"><i class="fab fa-youtube"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                        
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">

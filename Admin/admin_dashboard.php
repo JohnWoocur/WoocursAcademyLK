@@ -206,7 +206,7 @@ $aimage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                                     <tbody>
                                         <tr>
                                           
-                                            <td><span class="list-img"><img src="../Admin/admin_pro/<?php echo $simg ;?>" alt=""></span>
+                                            <td><span class="list-img"><img src="../Staff/staff_pro/<?php echo $simg ;?>" alt=""></span>
                                             </td>
                                             <td><span class="list-enq-name"><?php echo $name;?></span>
                                             </td>

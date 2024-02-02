@@ -153,7 +153,7 @@ $simage = ($Irow && isset($Irow['image']) && !empty($Irow['image'])) ? $Irow['im
                 }        
              ?>
   <div class="card">
-    <img src="../Admin/admin_pro/<?php echo $image;?>" alt="User image" class="card__image" />
+    <img src="../Staff/staff_pro/<?php echo $image;?>" alt="User image" class="card__image" />
     <div class="card__text">
     
       

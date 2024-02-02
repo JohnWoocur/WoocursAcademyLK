@@ -17,7 +17,7 @@ $imgName = $_FILES["image"]["name"];
 
 $imgFile = $_FILES["image"]["tmp_name"];  
 
-$path = "../Admin/admin_pro/".$imgName;
+$path = "../Staff/staff_pro/".$imgName;
 move_uploaded_file($imgFile,$path);
 
 
